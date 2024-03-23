@@ -1,4 +1,8 @@
 ---
+import "@fontsource-variable/overpass"
+import "@fontsource/alegreya-sans"
+import "@fontsource/life-savers"
+
 interface Props {
 	title: string
 }
@@ -20,9 +24,71 @@ const { title } = Astro.props
 	</body>
 </html>
 <style is:global>
+	:root {
+		--color-primary: 183 55% 92%;
+		--color-secondary: 218 93% 11%;
+		--color-tertiary: 262 100% 71%;
+		--color-quaternary: 178 55% 58%;
+
+		--background-color: hsl(var(--color-primary) / 1);
+		--text-color: hsl(var(--color-secondary) / 1);
+	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		color: #fff;
+		font-family: "Overpass Variable", system-ui, sans-serif;
+		background: var(--background-color);
+		color: var(--text-color);
+		scrollbar-gutter: stable;
+	}
+	/* Hiding class, making content visible only to screen readers but not visually */
+	/* "sr" meaning "screen-reader" */
+	.sr-only:not(:focus):not(:active) {
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+
+	@supports selector(::-webkit-scrollbar) {
+		::-webkit-scrollbar {
+			width: 10px;
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background-color: theme("colors.primary");
+			border: 2px solid transparent;
+			background-clip: content-box;
+		}
+
+		::-webkit-scrollbar-thumb:active {
+			background-color: #666;
+		}
+
+		::-webkit-scrollbar-track {
+			background: var(--background-image);
+		}
+
+		::-webkit-scrollbar-corner {
+			background: var(--background-image);
+		}
+	}
+
+	@supports not selector(::-webkit-scrollbar) {
+		* {
+			scrollbar-color: theme("colors.primary") transparent;
+			scrollbar-width: thin;
+		}
+	}
+
+	.anchor-main-content {
+		pointer-events: none;
+	}
+
+	.anchor-main-content:focus {
+		pointer-events: all;
 	}
 </style>

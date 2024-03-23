@@ -1,19 +1,23 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config"
 
-import tailwind from '@astrojs/tailwind'
+import tailwind from "@astrojs/tailwind"
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
-  build: {
-    inlineStylesheets: 'always',
-  },
-  vite: {
-    build: {
-      cssMinify: 'lightningcss',
-    },
-    ssr: {
-      noExternal: ['path-to-regexp'],
-    },
-  },
+	prefetch: true,
+	devToolbar: {
+		enabled: false,
+	},
+	integrations: [tailwind()],
+	build: {
+		inlineStylesheets: "always",
+	},
+	vite: {
+		build: {
+			cssMinify: "lightningcss",
+		},
+		ssr: {
+			noExternal: ["path-to-regexp"],
+		},
+	},
 })

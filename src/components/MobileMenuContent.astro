@@ -1,0 +1,50 @@
+---
+import type { Page } from "@/components/Header.astro"
+import HeaderLogo from "@/components/HeaderLogo.astro"
+import NavigationLink from "@/components/NavigationLink.astro"
+
+interface Props {
+	pages: Page[]
+}
+
+const { pages } = Astro.props
+---
+
+<div
+	id="w-nav-overlay-0"
+	class="absolute left-auto right-0 top-0 z-1 w-auto overflow-hidden"
+	style="display: none;"
+>
+	<nav
+		id="w-nav-inner-0"
+		class="fixed bottom-0 left-auto right-0 top-0 z-1 float-right max-h-screen w-3/4 bg-bg-primary p-14 md:w-3/5"
+		style="transform: translateX(462px) translateY(0); transition: transform 400ms ease 0s;"
+	>
+		<div class="relative z-1 flex h-full w-full flex-col items-start justify-between overflow-auto">
+			<div class="flex w-full items-center justify-between">
+				<HeaderLogo
+					href="/"
+					ariaCurrent="page"
+					ariaLabel="home"
+					anchorClassNames="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
+					isMobile
+				/>
+			</div>
+			<div class="flex w-full flex-col items-start justify-start gap-y-5">
+				{
+					pages.map(({ name, href }, key) => (
+						<NavigationLink href={href} name={name} id={`mobile-navigation-link-${key}`} />
+					))
+				}
+			</div>
+			<div class="flex items-center gap-x-5">
+				<a
+					href="#contact"
+					class="inline-block cursor-pointer rounded-[10px] border-0 bg-tertiary px-6 py-3.5 text-center font-title text-lg font-bold tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:bg-secondary hover:[outline:0] xs:leading-[1.875rem]"
+				>
+					Agenda una cita
+				</a>
+			</div>
+		</div>
+	</nav>
+</div>

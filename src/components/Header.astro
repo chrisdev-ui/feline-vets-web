@@ -1,7 +1,10 @@
 ---
-import Logo from "@/icons/Logo.astro"
+import HeaderLogo from "@/components/HeaderLogo.astro"
+import MobileMenuButton from "@/components/MobileMenuButton.astro"
+import MobileMenuContent from "@/components/MobileMenuContent.astro"
+import NavigationLink from "@/components/NavigationLink.astro"
 
-interface Page {
+export interface Page {
 	name: string
 	href: string
 	disabled?: boolean
@@ -23,15 +26,13 @@ const pages: Page[] = [
 		style="will-change: width, height, background; width: 100%; height: var(--height-initial-navbar); background-color: rgba(255, 250, 226, 0);"
 	>
 		<div class="flex w-full max-w-full items-center justify-between px-7.5 lg:max-w-navbar">
-			<a
+			<HeaderLogo
+				anchorClassNames="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
 				href="/"
-				aria-label="home"
-				aria-current="page"
-				class="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
-			>
-				<Logo class:list="w-auto h-20" />
-				<span class="font-title text-3xl font-black">Feline Vets</span>
-			</a>
+				ariaLabel="home"
+				ariaCurrent="page"
+				isMobile
+			/>
 			<div
 				id="mobile-menu-overlay"
 				class="fixed bottom-0 left-0 right-0 top-0 z-1 h-screen w-full bg-[rgba(0,0,0,.7)] p-0"
@@ -43,20 +44,16 @@ const pages: Page[] = [
 				class="relative float-right hidden w-full translate-x-0 translate-y-0 items-center justify-center lg:flex"
 			>
 				<div class="flex w-full items-center justify-between gap-7.5">
-					<a aria-current="page" href="/" class="flex max-w-full items-center">
-						<Logo class:list="w-auto h-20" />
-						<span class="font-title text-3xl font-black">Feline Vets</span>
-					</a>
+					<HeaderLogo href="/" ariaCurrent="page" anchorClassNames="flex max-w-full items-center" />
 					<div class="flex items-center justify-center gap-x-14 text-center">
 						{
 							pages.map(({ name, href }, key) => (
-								<a
+								<NavigationLink
 									href={href}
-									class="relative mx-auto inline-block p-0 text-left align-top font-title text-xl font-bold leading-[1.875rem] tracking-[.02rem] hover:text-tertiary hover:[outline:0]"
+									name={name}
 									id={`navigation-link-${key}`}
-								>
-									{name}
-								</a>
+									className="mx-auto"
+								/>
 							))
 						}
 					</div>
@@ -71,30 +68,7 @@ const pages: Page[] = [
 				</div>
 			</nav>
 			<!-- Mobile Menu Button -->
-			<div
-				style="-webkit-user-select: text;"
-				aria-label="menu"
-				role="button"
-				tabindex="0"
-				aria-controls="w-nav-overlay-0"
-				aria-haspopup="menu"
-				aria-expanded="false"
-				class="w-nav-button relative float-right block size-7.5 select-text p-0 lg:hidden"
-			>
-				<div class="flex h-full w-full items-center justify-center">
-					<img
-						src="/icons/hamburger.png"
-						loading="lazy"
-						alt="Menu Icon"
-						class="my-auto inline-block h-[25px] w-7.5 max-w-full border-0 align-middle"
-					/>
-				</div>
-				<div class="relative hidden size-7.5 overflow-hidden">
-					<div class="h-auto w-full origin-[0_0] bg-secondary pt-[1.5px]"></div>
-					<div class="my-0 h-auto w-full bg-secondary pt-[1.5px]"></div>
-					<div class="h-auto w-full origin-[0_100%] bg-secondary pt-[1.5px]"></div>
-				</div>
-			</div>
+			<MobileMenuButton />
 		</div>
 		<div
 			id="shadow-nav"
@@ -102,18 +76,7 @@ const pages: Page[] = [
 			style="will-change: opacity; opacity: 0;"
 		>
 		</div>
-		<div
-			id="w-nav-overlay-0"
-			class="absolute left-auto right-0 top-0 z-1 w-auto overflow-hidden"
-			style="display: none;"
-		>
-			<nav
-				id="w-nav-inner-0"
-				class="fixed bottom-0 left-auto right-0 top-0 z-1 float-right max-h-screen w-3/5 bg-bg-primary p-14"
-				style="transform: translateX(462px) translateY(0); transition: transform 400ms ease 0s;"
-			>
-			</nav>
-		</div>
+		<MobileMenuContent pages={pages} />
 	</div>
 </div>
 <style>
@@ -122,10 +85,6 @@ const pages: Page[] = [
 		content: " ";
 		grid-area: 1 / 1 / 2 / 2;
 		display: table;
-	}
-
-	.w-nav-button {
-		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	}
 
 	#mobile-menu-overlay {
@@ -186,7 +145,6 @@ const pages: Page[] = [
 			if (overlay.style.display === "none") {
 				overlay.style.display = "flex"
 				navbarOverlayWrapper.style.display = "block"
-				navbarOverlayWrapper.style.width = "462px"
 				navbarOverlayWrapper.style.height = `${overlay.scrollHeight}px`
 				navbarOverlayInner.style.height = `${overlay.scrollHeight}px`
 				navbarOverlayInner.style.transform = "translateX(0%) translateY(0%)"
@@ -199,7 +157,6 @@ const pages: Page[] = [
 				setTimeout(() => {
 					navbarOverlayWrapper.style.height = "auto"
 					navbarOverlayWrapper.style.display = "none"
-					navbarOverlayWrapper.style.width = "0px"
 					overlay.style.display = "none"
 					overlay.style.opacity = "0"
 				}, 500)
@@ -213,7 +170,6 @@ const pages: Page[] = [
 				setTimeout(() => {
 					navbarOverlayWrapper.style.height = "auto"
 					navbarOverlayWrapper.style.display = "none"
-					navbarOverlayWrapper.style.width = "0px"
 					overlay.style.display = "none"
 					overlay.style.opacity = "0"
 				}, 500)

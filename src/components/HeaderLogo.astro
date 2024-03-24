@@ -1,0 +1,38 @@
+---
+import Logo from "@/icons/Logo.astro"
+
+interface Props {
+	href: string
+	ariaLabel?: string
+	ariaCurrent?: boolean | "false" | "true" | "page" | "step" | "location" | "date" | "time" | null
+	anchorClassNames?: string
+	logoClassNames?: string
+	spanClassNames?: string
+	title?: string
+	isMobile?: boolean
+}
+
+const {
+	href,
+	ariaLabel,
+	ariaCurrent,
+	logoClassNames,
+	title,
+	isMobile,
+	spanClassNames,
+	anchorClassNames,
+} = Astro.props
+---
+
+<a href={href} aria-label={ariaLabel} aria-current={ariaCurrent} class:list={[anchorClassNames]}>
+	<Logo class:list={["h-20 w-auto", logoClassNames]} />
+	<span
+		class:list={[
+			"font-title text-3xl font-black",
+			{
+				"hidden xs:block": isMobile,
+			},
+			spanClassNames,
+		]}>{title ?? "Feline Vets"}</span
+	>
+</a>

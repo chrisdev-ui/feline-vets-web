@@ -1,94 +1,154 @@
 ---
+import { ViewTransitions } from "astro:transitions"
+
+import Header from "@/components/Header.astro"
+import type { Preload } from "@/components/SEO.astro"
+import SEO from "@/components/SEO.astro"
+
+// Overpass
 import "@fontsource-variable/overpass"
+
+// Alegreya Sans Normal
 import "@fontsource/alegreya-sans"
-import "@fontsource/life-savers"
+import "@fontsource/alegreya-sans/100.css"
+import "@fontsource/alegreya-sans/300.css"
+import "@fontsource/alegreya-sans/400.css"
+import "@fontsource/alegreya-sans/500.css"
+import "@fontsource/alegreya-sans/700.css"
+import "@fontsource/alegreya-sans/800.css"
+import "@fontsource/alegreya-sans/900.css"
+
+// Life Savers
+import "@fontsource/life-savers/400.css"
+import "@fontsource/life-savers/700.css"
+import "@fontsource/life-savers/800.css"
 
 interface Props {
 	title: string
+	description: string
+	preload?: Array<Preload>
+	canonical?: string
+	image?: string
 }
 
-const { title } = Astro.props
+const { title, description, preload, canonical, image } = Astro.props
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
+		<SEO
+			canonical={canonical}
+			description={description}
+			image={image}
+			preload={preload}
+			title={title}
+		/>
+		<ViewTransitions />
+		<!-- <script is:inline src="/js/register-service-worker.js"></script> -->
 	</head>
-	<body>
+	<body
+		class="h-full w-full overflow-y-auto overflow-x-hidden selection:bg-primary selection:text-secondary [&_:focus-visible]:outline-none [&_:focus-visible]:ring-2 [&_:focus-visible]:ring-primary"
+	>
+		<!-- AnyHiddenContent -->
+		<!-- Anchor to go to the main content -->
+		<!-- NoiseBackground or LightsBackground -->
+		<Header />
 		<slot />
+		<!-- Footer -->
+		<!-- KonamiCode -->
+		<!-- ButtonUp -->
+		<style is:global>
+			:root {
+				--color-primary: 183 55% 92%;
+				--color-secondary: 218 93% 11%;
+				--color-tertiary: 262 100% 71%;
+				--color-tertiary-light: 262 100% 91%;
+				--color-quaternary: 178 55% 58%;
+				--color-bg-primary: 50 100% 94%;
+
+				--background-color: hsl(var(--color-bg-primary) / 1);
+				--text-color: hsl(var(--color-secondary) / 1);
+
+				--height-initial-navbar: 160px;
+				--height-final-navbar: 130px;
+
+				--max-width-navbar: 1345px;
+				--max-width-content: 1290px;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				font-family: "Overpass Variable", system-ui, sans-serif;
+				background: var(--background-color);
+				color: var(--text-color);
+				scrollbar-gutter: stable;
+				overflow: hidden;
+				width: 100vw;
+				height: 100vh;
+			}
+			main {
+				position: relative;
+			}
+			/* Hiding class, making content visible only to screen readers but not visually */
+			/* "sr" meaning "screen-reader" */
+			.sr-only:not(:focus):not(:active) {
+				clip: rect(0 0 0 0);
+				clip-path: inset(50%);
+				height: 1px;
+				overflow: hidden;
+				position: absolute;
+				white-space: nowrap;
+				width: 1px;
+			}
+
+			@supports selector(::-webkit-scrollbar) {
+				::-webkit-scrollbar {
+					width: 10px;
+					border-radius: 10px;
+				}
+
+				::-webkit-scrollbar-thumb {
+					border-radius: 10px;
+					background-color: transparent;
+					border: 2px solid transparent;
+					background-clip: content-box;
+				}
+
+				body:hover::-webkit-scrollbar-thumb,
+				body:active::-webkit-scrollbar-thumb {
+					background-color: theme("colors.tertiary.DEFAULT");
+				}
+
+				body {
+					scrollbar-color: transparent transparent;
+				}
+
+				body:hover,
+				body:active {
+					scrollbar-color: theme("colors.tertiary.DEFAULT") transparent;
+				}
+
+				::-webkit-scrollbar-thumb:active {
+					background-color: #666;
+				}
+
+				::-webkit-scrollbar-track {
+					background: var(--background-image);
+				}
+
+				::-webkit-scrollbar-corner {
+					background: var(--background-image);
+				}
+			}
+
+			@supports not selector(::-webkit-scrollbar) {
+				* {
+					scrollbar-color: theme("colors.tertiary.DEFAULT") transparent;
+					scrollbar-width: thin;
+				}
+			}
+		</style>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--color-primary: 183 55% 92%;
-		--color-secondary: 218 93% 11%;
-		--color-tertiary: 262 100% 71%;
-		--color-quaternary: 178 55% 58%;
-
-		--background-color: hsl(var(--color-primary) / 1);
-		--text-color: hsl(var(--color-secondary) / 1);
-	}
-	html {
-		font-family: "Overpass Variable", system-ui, sans-serif;
-		background: var(--background-color);
-		color: var(--text-color);
-		scrollbar-gutter: stable;
-	}
-	/* Hiding class, making content visible only to screen readers but not visually */
-	/* "sr" meaning "screen-reader" */
-	.sr-only:not(:focus):not(:active) {
-		clip: rect(0 0 0 0);
-		clip-path: inset(50%);
-		height: 1px;
-		overflow: hidden;
-		position: absolute;
-		white-space: nowrap;
-		width: 1px;
-	}
-
-	@supports selector(::-webkit-scrollbar) {
-		::-webkit-scrollbar {
-			width: 10px;
-			border-radius: 10px;
-		}
-
-		::-webkit-scrollbar-thumb {
-			border-radius: 10px;
-			background-color: theme("colors.primary");
-			border: 2px solid transparent;
-			background-clip: content-box;
-		}
-
-		::-webkit-scrollbar-thumb:active {
-			background-color: #666;
-		}
-
-		::-webkit-scrollbar-track {
-			background: var(--background-image);
-		}
-
-		::-webkit-scrollbar-corner {
-			background: var(--background-image);
-		}
-	}
-
-	@supports not selector(::-webkit-scrollbar) {
-		* {
-			scrollbar-color: theme("colors.primary") transparent;
-			scrollbar-width: thin;
-		}
-	}
-
-	.anchor-main-content {
-		pointer-events: none;
-	}
-
-	.anchor-main-content:focus {
-		pointer-events: all;
-	}
-</style>

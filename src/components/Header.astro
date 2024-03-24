@@ -1,0 +1,227 @@
+---
+import Logo from "@/icons/Logo.astro"
+
+interface Page {
+	name: string
+	href: string
+	disabled?: boolean
+}
+
+const pages: Page[] = [
+	{ name: "Servicios", href: "#service" },
+	{ name: "Beneficios", href: "#features" },
+	{ name: "Testimonios", href: "#testimonial" },
+	{ name: "Equipo", href: "#our-team" },
+	{ name: "Precios", href: "#pricing" },
+]
+---
+
+<div class="fixed bottom-auto left-0 right-0 top-0 z-50">
+	<div
+		id="navbar"
+		class="w-nav relative z-[500] flex items-center justify-center py-7.5 [transition:height_0.5s_ease,_background-color_0.5s_ease] lg:z-[1000] lg:py-6"
+		style="will-change: width, height, background; width: 100%; height: var(--height-initial-navbar); background-color: rgba(255, 250, 226, 0);"
+	>
+		<div class="flex w-full max-w-full items-center justify-between px-7.5 lg:max-w-navbar">
+			<a
+				href="/"
+				aria-label="home"
+				aria-current="page"
+				class="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
+			>
+				<Logo class:list="w-auto h-20" />
+				<span class="font-title text-3xl font-black">Feline Vets</span>
+			</a>
+			<div
+				id="mobile-menu-overlay"
+				class="fixed bottom-0 left-0 right-0 top-0 z-1 h-screen w-full bg-[rgba(0,0,0,.7)] p-0"
+				style="display: none; opacity:0;"
+			>
+			</div>
+			<nav
+				role="navigation"
+				class="relative float-right hidden w-full translate-x-0 translate-y-0 items-center justify-center lg:flex"
+			>
+				<div class="flex w-full items-center justify-between gap-7.5">
+					<a aria-current="page" href="/" class="flex max-w-full items-center">
+						<Logo class:list="w-auto h-20" />
+						<span class="font-title text-3xl font-black">Feline Vets</span>
+					</a>
+					<div class="flex items-center justify-center gap-x-14 text-center">
+						{
+							pages.map(({ name, href }, key) => (
+								<a
+									href={href}
+									class="relative mx-auto inline-block p-0 text-left align-top font-title text-xl font-bold leading-[1.875rem] tracking-[.02rem] hover:text-tertiary hover:[outline:0]"
+									id={`navigation-link-${key}`}
+								>
+									{name}
+								</a>
+							))
+						}
+					</div>
+					<div class="flex items-center gap-x-5">
+						<a
+							href="#contact"
+							class="inline-block cursor-pointer rounded-[10px] border-0 bg-tertiary px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:bg-secondary hover:[outline:0]"
+						>
+							Agenda una cita
+						</a>
+					</div>
+				</div>
+			</nav>
+			<!-- Mobile Menu Button -->
+			<div
+				style="-webkit-user-select: text;"
+				aria-label="menu"
+				role="button"
+				tabindex="0"
+				aria-controls="w-nav-overlay-0"
+				aria-haspopup="menu"
+				aria-expanded="false"
+				class="w-nav-button relative float-right block size-7.5 select-text p-0 lg:hidden"
+			>
+				<div class="flex h-full w-full items-center justify-center">
+					<img
+						src="/icons/hamburger.png"
+						loading="lazy"
+						alt="Menu Icon"
+						class="my-auto inline-block h-[25px] w-7.5 max-w-full border-0 align-middle"
+					/>
+				</div>
+				<div class="relative hidden size-7.5 overflow-hidden">
+					<div class="h-auto w-full origin-[0_0] bg-secondary pt-[1.5px]"></div>
+					<div class="my-0 h-auto w-full bg-secondary pt-[1.5px]"></div>
+					<div class="h-auto w-full origin-[0_100%] bg-secondary pt-[1.5px]"></div>
+				</div>
+			</div>
+		</div>
+		<div
+			id="shadow-nav"
+			class="absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full bg-bg-primary shadow-nav [transition:opacity_0.5s_ease]"
+			style="will-change: opacity; opacity: 0;"
+		>
+		</div>
+		<div
+			id="w-nav-overlay-0"
+			class="absolute left-auto right-0 top-0 z-1 w-auto overflow-hidden"
+			style="display: none;"
+		>
+			<nav
+				id="w-nav-inner-0"
+				class="fixed bottom-0 left-auto right-0 top-0 z-1 float-right max-h-screen w-3/5 bg-bg-primary p-14"
+				style="transform: translateX(462px) translateY(0); transition: transform 400ms ease 0s;"
+			>
+			</nav>
+		</div>
+	</div>
+</div>
+<style>
+	.w-nav::before,
+	.w-nav::after {
+		content: " ";
+		grid-area: 1 / 1 / 2 / 2;
+		display: table;
+	}
+
+	.w-nav-button {
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	}
+
+	#mobile-menu-overlay {
+		transition: opacity 0.5s ease;
+	}
+</style>
+<script>
+	let lastScrollTop = 0
+	const minNavbarHeight = 130
+	const maxNavbarHeight = 160
+
+	function handleScroll() {
+		const navbar = document.getElementById("navbar")
+		const shadowNav = document.getElementById("shadow-nav")
+		const initialNavbarHeight = navbar?.offsetHeight as number
+
+		const st = document.body.scrollTop || document.documentElement.scrollTop
+
+		const isScrollingUp = st < lastScrollTop
+
+		let newNavbarHeight, opacity
+		if (isScrollingUp && st > minNavbarHeight) {
+			newNavbarHeight = minNavbarHeight
+			opacity = 1
+		} else if (isScrollingUp && st <= minNavbarHeight) {
+			newNavbarHeight = Math.min(
+				maxNavbarHeight,
+				Math.max(minNavbarHeight, initialNavbarHeight - (st - minNavbarHeight))
+			)
+			opacity = Math.max(
+				0,
+				1 - (newNavbarHeight - minNavbarHeight) / (maxNavbarHeight - minNavbarHeight)
+			)
+		} else {
+			newNavbarHeight = Math.max(minNavbarHeight, initialNavbarHeight - (st - lastScrollTop))
+			opacity = Math.max(
+				0,
+				1 - (newNavbarHeight - minNavbarHeight) / (maxNavbarHeight - minNavbarHeight)
+			)
+		}
+
+		if (navbar && shadowNav) {
+			navbar.style.height = `${newNavbarHeight}px`
+			navbar.style.backgroundColor = `rgba(255, 250, 226, ${opacity})`
+			shadowNav.style.opacity = `${opacity}`
+		}
+
+		lastScrollTop = st <= 0 ? 0 : st
+	}
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const mobileMenuButton = document.querySelector(".w-nav-button") as Element
+		const overlay = document.getElementById("mobile-menu-overlay") as HTMLElement
+		const navbarOverlayWrapper = document.getElementById("w-nav-overlay-0") as HTMLElement
+		const navbarOverlayInner = document.getElementById("w-nav-inner-0") as HTMLElement
+		document.body.addEventListener("scroll", handleScroll)
+		mobileMenuButton.addEventListener("click", () => {
+			if (overlay.style.display === "none") {
+				overlay.style.display = "flex"
+				navbarOverlayWrapper.style.display = "block"
+				navbarOverlayWrapper.style.width = "462px"
+				navbarOverlayWrapper.style.height = `${overlay.scrollHeight}px`
+				navbarOverlayInner.style.height = `${overlay.scrollHeight}px`
+				navbarOverlayInner.style.transform = "translateX(0%) translateY(0%)"
+
+				setTimeout(() => {
+					overlay.style.opacity = "1"
+				}, 10)
+			} else {
+				navbarOverlayInner.style.transform = "translateX(100%) translateY(0%)"
+				setTimeout(() => {
+					navbarOverlayWrapper.style.height = "auto"
+					navbarOverlayWrapper.style.display = "none"
+					navbarOverlayWrapper.style.width = "0px"
+					overlay.style.display = "none"
+					overlay.style.opacity = "0"
+				}, 500)
+			}
+		})
+
+		overlay.addEventListener("click", (event) => {
+			if (event.target === overlay) {
+				navbarOverlayInner.style.transform = "translateX(100%) translateY(0%)"
+
+				setTimeout(() => {
+					navbarOverlayWrapper.style.height = "auto"
+					navbarOverlayWrapper.style.display = "none"
+					navbarOverlayWrapper.style.width = "0px"
+					overlay.style.display = "none"
+					overlay.style.opacity = "0"
+				}, 500)
+			}
+		})
+	})
+
+	window.addEventListener("unload", () => {
+		document.body.removeEventListener("scroll", handleScroll)
+	})
+</script>

@@ -1,11 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro"
+import Hero from "@/sections/Hero.astro"
 ---
 
-<Layout title="Feline Vets">
+<Layout title="Feline Vets" description="TODO: Description" canonical="https://example.com">
+	<Hero />
 	<main>
-		<h1>Feline Vets</h1>
-		<p>Find a vet that specializes in cats.</p>
-		<p>Coming soon...</p>
+		<Hero />
+		<Hero />
 	</main>
 </Layout>

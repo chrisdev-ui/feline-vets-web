@@ -7,14 +7,38 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				title: ["Alegreya\\ Sans", ...defaultTheme.fontFamily.mono],
-				subtitle: ["Life\\ Savers", ...defaultTheme.fontFamily.serif],
+				title: ["'Alegreya Sans'", ...defaultTheme.fontFamily.mono],
+				subtitle: ["'Life Savers'", ...defaultTheme.fontFamily.serif],
 			},
 			colors: {
 				primary: "hsl(var(--color-primary) / <alpha-value>)",
 				secondary: "hsl(var(--color-secondary) / <alpha-value>)",
-				tertiary: "hsl(var(--color-tertiary) / <alpha-value>)",
+				tertiary: {
+					DEFAULT: "hsl(var(--color-tertiary) / <alpha-value>)",
+					light: "hsl(var(--color-tertiary-light) / <alpha-value>)",
+				},
 				quaternary: "hsl(var(--color-quaternary) / <alpha-value>)",
+				bg: {
+					primary: "hsl(var(--color-bg-primary) / <alpha-value>)",
+				},
+			},
+			height: {
+				"initial-navbar": "var(--height-initial-navbar)",
+				"final-navbar": "var(--height-final-navbar)",
+			},
+			maxWidth: {
+				navbar: "var(--max-width-navbar)",
+				content: "var(--max-width-content)",
+			},
+			spacing: {
+				7.5: "1.875rem", // 30px
+			},
+			zIndex: {
+				"-1": "-1",
+				"1": "1",
+			},
+			boxShadow: {
+				nav: "0 2px 8px rgba(21, 11, 51, .08)",
 			},
 			screens: {
 				"xs": "360px",

@@ -1,0 +1,32 @@
+---
+import type { Service } from "@/sections/Services.astro"
+
+interface Props extends Service {
+	index: number
+}
+
+const { title, description, icon, index } = Astro.props
+---
+
+<article
+	class:list={[
+		"flex w-full max-w-[370px] flex-col items-center justify-center gap-y-1 rounded-[20px] border-[3px] border-solid border-secondary bg-bg-primary px-5 py-8 md:gap-y-4 md:px-11 md:pb-14 md:pt-11",
+		{
+			"shadow-card-1": index === 0,
+			"shadow-card-2": index === 1,
+			"shadow-card-3": index === 2,
+			"shadow-card-4": index === 3,
+			"shadow-card-5": index === 4,
+			"shadow-card-6": index === 5,
+		},
+	]}
+>
+	<img
+		src={icon}
+		loading="lazy"
+		class="mb-5 inline-block w-[4.375rem] max-w-full align-middle md:w-20"
+		alt="Ícono de servicio"
+	/>
+	<h4 class="my-0 font-title text-lg font-black md:text-xl">{title}</h4>
+	<p class="text-base font-normal">{description}</p>
+</article>

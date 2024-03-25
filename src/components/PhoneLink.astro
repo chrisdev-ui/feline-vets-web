@@ -1,0 +1,22 @@
+---
+import PhoneIcon from "@/icons/PhoneIcon.astro"
+
+interface Props {
+	phone: string
+}
+
+const { phone } = Astro.props
+
+const formatPhone = (phoneNumber: string) => {
+	const formatted = phoneNumber.replace(/\s/g, "")
+	return `(+57) ${formatted.slice(0, 3)} ${formatted.slice(3, 6)} ${formatted.slice(6)}`
+}
+---
+
+<a
+	href={`tel:+57${phone}`}
+	class="mb-5 flex max-w-full flex-wrap items-center gap-3 md:mb-0 lg:gap-5"
+>
+	<PhoneIcon class:list={"inline-block h-10 w-10 max-w-full align-middle text-primary"} />
+	<h6 class="font-subtitle text-xl font-extrabold lg:text-3xl">LLámanos: {formatPhone(phone)}</h6>
+</a>

@@ -2,6 +2,7 @@
 import type { Page } from "@/components/Header.astro"
 import HeaderLogo from "@/components/HeaderLogo.astro"
 import NavigationLink from "@/components/NavigationLink.astro"
+import PrimaryButton from "@/components/PrimaryButton.astro"
 
 interface Props {
 	pages: Page[]
@@ -38,12 +39,7 @@ const { pages } = Astro.props
 				}
 			</div>
 			<div class="flex items-center gap-x-5">
-				<a
-					href="#contact"
-					class="inline-block cursor-pointer rounded-[10px] border-0 bg-tertiary px-6 py-3.5 text-center font-title text-lg font-bold tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:bg-secondary hover:[outline:0] xs:leading-[1.875rem]"
-				>
-					Agenda una cita
-				</a>
+				<PrimaryButton href="#contact"> Agenda una cita </PrimaryButton>
 			</div>
 		</div>
 	</nav>

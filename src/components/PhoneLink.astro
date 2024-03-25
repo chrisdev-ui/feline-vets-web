@@ -1,11 +1,14 @@
 ---
 import PhoneIcon from "@/icons/PhoneIcon.astro"
 
+type PhoneLinkVariant = "hero" | "service"
+
 interface Props {
 	phone: string
+	variant?: PhoneLinkVariant
 }
 
-const { phone } = Astro.props
+const { phone, variant } = Astro.props
 
 const formatPhone = (phoneNumber: string) => {
 	const formatted = phoneNumber.replace(/\s/g, "")
@@ -15,8 +18,31 @@ const formatPhone = (phoneNumber: string) => {
 
 <a
 	href={`tel:+57${phone}`}
-	class="mb-5 flex max-w-full flex-wrap items-center gap-3 md:mb-0 lg:gap-5"
+	class:list={[
+		"mb-5 flex max-w-full flex-wrap items-center gap-1 sm:gap-3 md:mb-0 lg:gap-5",
+		{
+			"-order-1 justify-center": variant === "service",
+		},
+	]}
 >
-	<PhoneIcon class:list={"inline-block h-10 w-10 max-w-full align-middle text-primary"} />
-	<h6 class="font-subtitle text-xl font-extrabold lg:text-3xl">LLámanos: {formatPhone(phone)}</h6>
+	<PhoneIcon
+		class:list={[
+			"inline-block h-10 w-10 max-w-full align-middle",
+			{
+				"text-primary": variant === "hero",
+				"text-tertiary-light": variant === "service",
+			},
+		]}
+	/>
+	<h6
+		class:list={[
+			"font-subtitle font-extrabold",
+			{
+				"text-base xs:text-xl lg:text-3xl": variant === "hero",
+				"text-base xs:text-lg lg:text-2xl": variant === "service",
+			},
+		]}
+	>
+		LLámanos: {formatPhone(phone)}
+	</h6>
 </a>

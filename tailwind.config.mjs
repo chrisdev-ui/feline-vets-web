@@ -38,7 +38,14 @@ export default {
 				"1": "1",
 			},
 			boxShadow: {
-				nav: "0 2px 8px rgba(21, 11, 51, .08)",
+				"nav": "0 2px 8px rgba(21, 11, 51, .08)",
+				"about": "8px 9px theme('colors.tertiary.DEFAULT')",
+				"card-1": "8px 9px rgba(176, 158, 153, .5)",
+				"card-2": "8px 9px rgba(100, 182, 172, .5)",
+				"card-3": "8px 9px rgba(160, 106, 255, .5)",
+				"card-4": "8px 9px rgba(124, 161, 255, .8)",
+				"card-5": "8px 9px rgba(151, 245, 151, .5)",
+				"card-6": "8px 9px rgba(255, 118, 208, .6)",
 			},
 			screens: {
 				"xs": "360px",

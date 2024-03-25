@@ -1,0 +1,101 @@
+---
+import PhoneLink from "@/components/PhoneLink.astro"
+import PrimaryButton from "@/components/PrimaryButton.astro"
+import ServiceCard from "@/components/ServiceCard.astro"
+import ServicesDecorative from "@/icons/ServicesDecorative.astro"
+
+export interface Service {
+	title: string
+	description: string
+	icon: string
+}
+
+const services: Service[] = [
+	{
+		title: "Consulta felina especializada a domicilio",
+		description:
+			"Atención veterinaria experta directamente en tu hogar para la salud óptima de tu gato.",
+		icon: "/icons/services/first-aid-kit.png",
+	},
+	{
+		title: "Guardería en casa",
+		description:
+			"Cuidado amoroso y seguro para tu gato mientras estás fuera, en su entorno familiar.",
+		icon: "/icons/services/catsitter.png",
+	},
+	{
+		title: "Exámenes diagnósticos",
+		description: "Pruebas precisas para detectar y tratar cualquier problema de salud de tu gato.",
+		icon: "/icons/services/microscope.png",
+	},
+	{
+		title: "Vacunación y desparasitación",
+		description: "Protege a tu gato de enfermedades comunes con vacunas y desparasitación regular.",
+		icon: "/icons/services/vaccine.png",
+	},
+	{
+		title: "Certificados médicos",
+		description:
+			"Documentación oficial de salud para viajes, residencia y otros fines, garantizando el bienestar de tu gato.",
+		icon: "/icons/services/medical-report.png",
+	},
+	{
+		title: "Alianza con clínicas veterinarias",
+		description:
+			"Servicios adicionales con clínicas veterinarias de confianza para cubrir todas las necesidades de tu gato.",
+		icon: "/icons/services/clinic.png",
+	},
+]
+---
+
+<section class="relative z-1 w-full overflow-hidden bg-primary py-20 md:py-24 lg:py-36">
+	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+		<div
+			class="flex w-full flex-col items-center justify-center gap-y-11 text-center md:gap-y-16 lg:gap-y-20"
+		>
+			<div
+				class="relative z-1 flex max-w-3xl flex-col items-center justify-center gap-y-4 lg:gap-y-6"
+			>
+				<div class="rounded-[170px] bg-bg-primary px-6 py-2">
+					<h3 class="font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]">
+						Nuestros servicios
+					</h3>
+				</div>
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Nuestra solución integral para el cuidado premium de mascotas
+				</h2>
+				<ServicesDecorative
+					class="absolute -top-16 bottom-auto left-0 right-auto -z-1 w-14 text-tertiary md:left-8 md:w-20 lg:-left-20 xl:-left-44 xl:top-5"
+				/>
+			</div>
+			<div
+				class="flex w-full flex-wrap items-stretch justify-center gap-x-14 gap-y-11 md:gap-y-16 lg:gap-y-20"
+			>
+				{services.map((service, key) => <ServiceCard {...service} index={key} />)}
+			</div>
+			<div
+				class="flex flex-wrap items-center justify-center gap-x-0 gap-y-5 md:flex-nowrap md:justify-start md:gap-x-12"
+			>
+				<PrimaryButton href="#Services" variant="secondary">Agenda ahora</PrimaryButton>
+				<PhoneLink variant="service" phone="9999999999" />
+			</div>
+		</div>
+	</div>
+	<div
+		id="Services"
+		class="absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full [transform:translate(0,_-80px)]"
+	>
+	</div>
+</section>
+<style>
+	.w-container::before,
+	.w-container::after {
+		content: " ";
+		grid-area: 1 / 1 / 2 / 2;
+		display: table;
+	}
+
+	.w-container::after {
+		clear: both;
+	}
+</style>

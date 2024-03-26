@@ -1,0 +1,14 @@
+---
+import Checkmark from "@/icons/Checkmark.astro"
+
+import type { PointProps } from "@/sections/Care.astro"
+
+interface Props extends PointProps {}
+
+const { text } = Astro.props
+---
+
+<div class="flex items-start gap-x-4 sm:items-center md:gap-x-3">
+	<Checkmark class="mt-2 h-4 w-4 text-tertiary-light sm:mt-0" />
+	<div class="text-base">{text}</div>
+</div>

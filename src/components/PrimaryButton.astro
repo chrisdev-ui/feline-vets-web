@@ -1,5 +1,5 @@
 ---
-type ButtonType = "primary" | "secondary"
+type ButtonType = "primary" | "secondary" | "tertiary"
 
 interface Props {
 	href: string
@@ -16,6 +16,7 @@ const { href, variant = "primary" } = Astro.props
 		{
 			"bg-tertiary hover:bg-secondary": variant === "primary",
 			"bg-secondary hover:bg-bg-primary hover:text-secondary": variant === "secondary",
+			"mr-auto bg-secondary hover:bg-tertiary md:mr-0": variant === "tertiary",
 		},
 	]}
 >

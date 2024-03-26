@@ -1,0 +1,96 @@
+---
+import PhoneLink from "@/components/PhoneLink.astro"
+import Point from "@/components/Point.astro"
+import PointBlock from "@/components/PointBlock.astro"
+import PrimaryButton from "@/components/PrimaryButton.astro"
+import CareDecorative from "@/icons/CareDecorative.astro"
+
+export interface PointProps {
+	text: string
+}
+
+const firstBlock: PointProps[] = [
+	{
+		text: "Revisiones veterinarias regulares",
+	},
+	{
+		text: "Nutrición adecuada",
+	},
+	{
+		text: "Ejercicio y Estimulación Mental",
+	},
+]
+
+const secondBlock: PointProps[] = [
+	{
+		text: "Prácticas de Aseo Regular",
+	},
+	{
+		text: "Cuidado de Higiene Dental",
+	},
+	{
+		text: "Prevención de Parásitos",
+	},
+]
+
+const blocks: Array<PointProps[]> = [firstBlock, secondBlock]
+---
+
+<section class="py-20 md:py-24 lg:pb-36 lg:pt-44">
+	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+		<div
+			class="flex flex-col items-center justify-center gap-x-[5.625rem] gap-y-11 md:gap-y-14 lg:flex-row lg:gap-y-0"
+		>
+			<div class="relative w-full max-w-none flex-none lg:max-w-[545px]">
+				<img
+					src="/img/care/care-image.webp"
+					loading="lazy"
+					sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 77vw, 545px"
+					srcset="/img/care/care-image_500.webp 500w, /img/care/care-image_800.webp 800w, /img/care/care-image.webp 1096w"
+					alt="Imagen del área de cuidado"
+					class="inline-block max-w-full align-middle"
+				/>
+				<CareDecorative
+					class="absolute -right-5 -top-10 bottom-auto left-auto -z-1 inline-block w-14 max-w-full align-middle text-tertiary md:w-24"
+				/>
+			</div>
+			<div class="-order-1 flex flex-col items-start gap-y-4 lg:order-none lg:gap-y-6">
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Proporcionando el mejor cuidado médico para tus mininos.
+				</h2>
+				<p class="text-xl font-semibold leading-8">
+					Nos dedicamos a fomentar la salud, la felicidad y la armonía de tu gato contigo.
+				</p>
+				<div class="mb-7 mt-4 flex w-full flex-wrap gap-x-14 gap-y-2.5 md:gap-y-5 lg:mb-9 lg:mt-5">
+					{
+						blocks.map((block) => (
+							<PointBlock>
+								{block.map((point) => (
+									<Point {...point} />
+								))}
+							</PointBlock>
+						))
+					}
+				</div>
+				<div
+					class="flex flex-col items-center gap-x-12 md:flex-row md:justify-normal md:gap-y-10 lg:flex-col xl:flex-row xl:gap-y-0"
+				>
+					<PrimaryButton href="#Services" variant="tertiary">Agenda ahora</PrimaryButton>
+					<PhoneLink variant="care" phone="9999999999" />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<style>
+	.w-container::before,
+	.w-container::after {
+		content: " ";
+		grid-area: 1 / 1 / 2 / 2;
+		display: table;
+	}
+
+	.w-container::after {
+		clear: both;
+	}
+</style>

@@ -15,6 +15,7 @@
     "format:check": "prettier --check src"
   },
   "dependencies": {
+    "@astrojs/vercel": "^7.4.0",
     "@fontsource-variable/overpass": "5.0.18",
     "@fontsource/alegreya-sans": "5.0.12",
     "@fontsource/life-savers": "5.0.19",

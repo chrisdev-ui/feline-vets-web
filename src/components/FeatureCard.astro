@@ -1,0 +1,36 @@
+---
+import type { Feature } from "@/sections/Feature.astro"
+
+interface Props extends Feature {
+	key: number
+	className?: string
+}
+
+const { className, imageUrl, title, description, key } = Astro.props
+
+const shadows: Record<number, string> = {
+	0: "shadow-feature-1",
+	1: "shadow-feature-2",
+	2: "shadow-feature-3",
+	3: "shadow-feature-4",
+}
+---
+
+<div
+	class:list={[
+		"flex flex-col gap-x-0 gap-y-5 rounded-[20px] border-[3px] border-solid border-secondary bg-bg-primary px-5 pb-7.5 pt-5 sm:flex-row sm:gap-x-5 sm:gap-y-0 sm:py-9 sm:pl-7.5 sm:pr-[38px]",
+		shadows[key],
+		className,
+	]}
+>
+	<img
+		src={imageUrl}
+		alt="Ícono de beneficios"
+		loading="lazy"
+		class="mt-1 inline-block h-8 w-8 max-w-full flex-none align-middle"
+	/>
+	<div class="flex flex-col gap-y-1.5">
+		<h4 class="my-0 font-title text-lg font-black md:text-xl">{title}</h4>
+		<p class="text-base font-normal leading-7 text-neutral-700">{description}</p>
+	</div>
+</div>

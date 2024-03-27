@@ -1,4 +1,6 @@
 ---
+import Jumplink from "@/components/Jumplink.astro"
+import MainContainer from "@/components/MainContainer.astro"
 import TinyProfilePhoto from "@/components/TinyProfilePhoto.astro"
 import Plus from "@/icons/Plus.astro"
 
@@ -20,7 +22,7 @@ const profiles: Profile[] = [
 ---
 
 <section class="relative py-20 md:py-24 lg:pb-40 lg:pt-32">
-	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+	<MainContainer>
 		<div class="flex flex-col items-center justify-center gap-y-4 text-center lg:gap-y-5">
 			<h3 class="font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]">
 				Sobre nosotros
@@ -73,22 +75,6 @@ const profiles: Profile[] = [
 				</div>
 			</div>
 		</div>
-	</div>
-	<div
-		id="About-us"
-		class="absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full [transform:_translate(0,_-60px)] md:[transform:_translate(0,_-80px)]"
-	>
-	</div>
+	</MainContainer>
+	<Jumplink id="About-us" />
 </section>
-<style>
-	.w-container::before,
-	.w-container::after {
-		content: " ";
-		grid-area: 1 / 1 / 2 / 2;
-		display: table;
-	}
-
-	.w-container::after {
-		clear: both;
-	}
-</style>

@@ -1,4 +1,5 @@
 ---
+import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import Point from "@/components/Point.astro"
 import PointBlock from "@/components/PointBlock.astro"
@@ -37,7 +38,7 @@ const blocks: Array<PointProps[]> = [firstBlock, secondBlock]
 ---
 
 <section class="py-20 md:py-24 lg:pb-36 lg:pt-44">
-	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+	<MainContainer>
 		<div
 			class="flex flex-col items-center justify-center gap-x-[5.625rem] gap-y-11 md:gap-y-14 lg:flex-row lg:gap-y-0"
 		>
@@ -80,17 +81,5 @@ const blocks: Array<PointProps[]> = [firstBlock, secondBlock]
 				</div>
 			</div>
 		</div>
-	</div>
+	</MainContainer>
 </section>
-<style>
-	.w-container::before,
-	.w-container::after {
-		content: " ";
-		grid-area: 1 / 1 / 2 / 2;
-		display: table;
-	}
-
-	.w-container::after {
-		clear: both;
-	}
-</style>

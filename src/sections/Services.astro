@@ -1,4 +1,6 @@
 ---
+import Jumplink from "@/components/Jumplink.astro"
+import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
 import ServiceCard from "@/components/ServiceCard.astro"
@@ -49,7 +51,7 @@ const services: Service[] = [
 ---
 
 <section class="relative z-1 w-full overflow-hidden bg-primary py-20 md:py-24 lg:py-36">
-	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+	<MainContainer>
 		<div
 			class="flex w-full flex-col items-center justify-center gap-y-11 text-center md:gap-y-16 lg:gap-y-20"
 		>
@@ -80,22 +82,6 @@ const services: Service[] = [
 				<PhoneLink variant="service" phone="9999999999" />
 			</div>
 		</div>
-	</div>
-	<div
-		id="Services"
-		class="absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full [transform:translate(0,_-80px)]"
-	>
-	</div>
+	</MainContainer>
+	<Jumplink id="Services" />
 </section>
-<style>
-	.w-container::before,
-	.w-container::after {
-		content: " ";
-		grid-area: 1 / 1 / 2 / 2;
-		display: table;
-	}
-
-	.w-container::after {
-		clear: both;
-	}
-</style>

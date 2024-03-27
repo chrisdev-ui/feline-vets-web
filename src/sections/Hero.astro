@@ -1,4 +1,5 @@
 ---
+import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
 import Decorative from "@/icons/Decorative.astro"
@@ -7,7 +8,7 @@ import Decorative from "@/icons/Decorative.astro"
 <section
 	class="w-full overflow-hidden bg-[url(/img/hero/hero-asset.svg)] bg-[auto_85%] bg-[50%_0] bg-no-repeat pt-40 md:pt-48 lg:bg-cover lg:bg-[50%] lg:pt-56"
 >
-	<div class="w-container mx-auto block h-full w-full max-w-2xl px-7.5 lg:max-w-content">
+	<MainContainer>
 		<div class="flex flex-col items-center justify-start gap-x-[90px] lg:flex-row lg:items-start">
 			<div
 				class="relative z-1 flex w-full max-w-none flex-none flex-col items-start gap-y-5 md:gap-y-8 lg:max-w-2xl lg:gap-y-12"
@@ -37,17 +38,5 @@ import Decorative from "@/icons/Decorative.astro"
 				/>
 			</div>
 		</div>
-	</div>
+	</MainContainer>
 </section>
-<style>
-	.w-container::before,
-	.w-container::after {
-		content: " ";
-		grid-area: 1 / 1 / 2 / 2;
-		display: table;
-	}
-
-	.w-container::after {
-		clear: both;
-	}
-</style>

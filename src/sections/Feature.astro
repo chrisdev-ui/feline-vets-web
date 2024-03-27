@@ -1,0 +1,81 @@
+---
+import FeatureCard from "@/components/FeatureCard.astro"
+import Jumplink from "@/components/Jumplink.astro"
+import MainContainer from "@/components/MainContainer.astro"
+import FeatureDecorative from "@/icons/FeatureDecorative.astro"
+
+export interface Feature {
+	title: string
+	description: string
+	imageUrl: string
+}
+
+const features: Array<Feature[]> = [
+	[
+		{
+			title: "Antipulgas",
+			description: "Nuestros veterinarios expertos evaluará las necesidades de tu mascota",
+			imageUrl: "/img/features/feature-1.svg",
+		},
+		{
+			title: "Plantas dañinas",
+			description: "Te contaremos sobre aquellas plantas nocivas para proteger a tus mascotas",
+			imageUrl: "/img/features/feature-2.svg",
+		},
+	],
+	[
+		{
+			title: "Cuidado de su pelaje",
+			description: "Nuestros servicios especializados de cuidado del pelaje de tu gato",
+			imageUrl: "/img/features/feature-3.svg",
+		},
+		{
+			title: "Adiós a los gusanos",
+			description: "Nuestros veterinarios expertos evaluará las necesidades de tu mascota",
+			imageUrl: "/img/features/feature-4.svg",
+		},
+	],
+]
+---
+
+<section class="relative z-1 w-full overflow-hidden bg-tertiary-light pt-20 md:pt-24 lg:pt-36">
+	<MainContainer>
+		<div
+			class="flex flex-col items-center justify-center gap-y-11 text-center md:gap-y-[3.75rem] lg:gap-y-[5.625rem]"
+		>
+			<div class="relative z-1 flex w-full max-w-xl flex-col gap-y-2.5 lg:gap-y-5">
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Beneficios adicionales
+				</h2>
+				<p class="text-xl font-semibold leading-8 text-neutral-700">
+					Estas características adicionales están diseñadas para hacer que la experiencia de tu
+					mascota sea excepcional, adaptando el cuidado con tranquilidad y confianza.
+				</p>
+				<FeatureDecorative
+					class:list={"absolute -left-6 -top-[60px] bottom-auto right-auto -z-1 w-14 text-tertiary sm:-left-[60px] md:w-20 lg:-left-[205px] lg:-top-[30px]"}
+				/>
+			</div>
+			<div
+				class="flex w-full flex-col items-center justify-center gap-y-11 text-left lg:flex-row lg:items-end lg:gap-y-0"
+			>
+				<div class="flex w-full flex-col gap-y-11 pb-0 lg:gap-y-14 lg:pb-52">
+					{features[0].map((feature, idx) => <FeatureCard {...feature} key={idx} />)}
+				</div>
+				<div class="order-1 w-full max-w-[430px] flex-none sm:flex-auto lg:order-none">
+					<img
+						src="/img/features/feature-image.webp"
+						loading="lazy"
+						sizes="(max-width: 479px) 100vw, (max-width: 767px) 88vw, (max-width: 991px) 56vw, 32vw"
+						srcset="/img/features/feature-image_500.webp 500w, /img/features/feature-image_800.webp 800w, /img/features/feature-image.webp 907w"
+						alt="Imagen de beneficios adicionales"
+						class="inline-block h-full w-full max-w-full align-middle"
+					/>
+				</div>
+				<div class="flex w-full flex-col gap-y-11 pb-0 lg:gap-y-14 lg:pb-52">
+					{features[1].map((feature, idx) => <FeatureCard {...feature} key={idx + 2} />)}
+				</div>
+			</div>
+		</div>
+	</MainContainer>
+	<Jumplink id="Feature" />
+</section>

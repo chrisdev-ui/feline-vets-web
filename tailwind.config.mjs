@@ -50,6 +50,7 @@ export default {
 				"feature-2": "8px 9px #ffd15c",
 				"feature-3": "8px 9px #67e4ff",
 				"feature-4": "8px 9px #7ca1ff",
+				"testimonials": "14px 14px rgba(255, 255, 255, .4)",
 			},
 			screens: {
 				"xs": "360px",

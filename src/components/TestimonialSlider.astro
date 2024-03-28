@@ -1,0 +1,140 @@
+---
+import TestimonialSlide from "@/components/TestimonialSlide.astro"
+import ArrowLeft from "@/icons/ArrowLeft.astro"
+import ArrowRight from "@/icons/ArrowRight.astro"
+import type { Testimonial } from "@/sections/Testimonial.astro"
+
+interface Props {
+	testimonials: Testimonial[]
+}
+
+const { testimonials } = Astro.props
+---
+
+<div
+	class="testimonial-slider relative clear-both h-full w-full bg-transparent pb-16 text-center sm:h-auto sm:pb-20 md:pb-0"
+	role="region"
+	aria-label="carousel"
+>
+	<div
+		id="slider-mask"
+		class="relative left-0 right-0 z-1 block h-full w-full overflow-hidden whitespace-nowrap sm:h-auto"
+	>
+		{
+			testimonials.map((testimonial, idx) => (
+				<TestimonialSlide {...testimonial} id={idx} total={testimonials.length} />
+			))
+		}
+		<div
+			aria-live="off"
+			aria-atomic="true"
+			class="testimonial-aria-label absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0_0_0_0)]"
+		>
+		</div>
+	</div>
+	<div
+		role="button"
+		tabindex="0"
+		aria-controls="slider-mask"
+		aria-label="previous slide"
+		class="absolute bottom-0 left-0 right-32 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:bg-white hover:text-secondary md:bottom-[55px] md:left-auto md:top-auto md:border-white md:text-white lg:bottom-[70px]"
+	>
+		<div class="flex items-center justify-center">
+			<ArrowLeft />
+		</div>
+	</div>
+	<div
+		role="button"
+		tabindex="0"
+		aria-controls="slider-mask"
+		aria-label="next slide"
+		class="absolute -right-[120px] bottom-0 left-0 top-auto z-[4] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:bg-white hover:text-secondary sm:right-0 md:bottom-[55px] md:left-auto md:right-[70px] md:top-auto md:border-white md:text-white lg:bottom-[70px]"
+	>
+		<div class="flex items-center justify-center">
+			<ArrowRight />
+		</div>
+	</div>
+	<div
+		class="absolute bottom-0 left-0 right-0 top-auto z-[2] m-auto hidden h-10 pt-2.5 text-center [tap-highlight-color:transparent]"
+	>
+	</div>
+</div>
+<script>
+	import { $, $$ } from "@/lib/dom-selector"
+
+	function SliderAnimation() {
+		const $slides = $$(".testimonial-slide")
+		const $prevButton = $("[aria-label='previous slide']")
+		const $nextButton = $("[aria-label='next slide']")
+		const $testimonialAriaLabel = $(".testimonial-aria-label")
+		let currentSlide = 0
+		const zIndex = 0
+		let slideInterval: number
+
+		function updateButtonState() {
+			$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
+			$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
+		}
+
+		function showSlide(index: number) {
+			const slideWidth = $slides[0].clientWidth
+			const translation = -slideWidth * index
+
+			$slides.forEach((slide, slideIndex) => {
+				const $htmlSlide = slide as HTMLElement
+				$htmlSlide.style.transform = `translateX(${translation}px)`
+				$htmlSlide.style.opacity = "0"
+				$htmlSlide.style.zIndex = `${zIndex}`
+				$htmlSlide.style.transition = ""
+				$htmlSlide.style.visibility = "hidden"
+				$htmlSlide.setAttribute("aria-hidden", slideIndex !== index ? "true" : "false")
+			})
+			const $currentSlide = $slides[index] as HTMLElement
+			$currentSlide.style.opacity = "1"
+			$currentSlide.style.zIndex = `${zIndex + 1}`
+			$currentSlide.style.transition = "opacity 600ms ease 0s"
+			$currentSlide.style.visibility = ""
+			$currentSlide.setAttribute("aria-hidden", "false")
+
+			$testimonialAriaLabel.textContent = `Testimonio ${index + 1} de ${$slides.length}.`
+
+			updateButtonState()
+		}
+
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % $slides.length
+			showSlide(currentSlide)
+		}
+
+		function prevSlide() {
+			currentSlide = (currentSlide - 1 + $slides.length) % $slides.length
+			showSlide(currentSlide)
+		}
+
+		function startSlider() {
+			slideInterval = setInterval(nextSlide, 4000)
+		}
+
+		function stopSlider() {
+			clearInterval(slideInterval)
+		}
+
+		$prevButton.addEventListener("click", () => {
+			stopSlider()
+			prevSlide()
+			startSlider()
+		})
+
+		$nextButton.addEventListener("click", () => {
+			stopSlider()
+			nextSlide()
+			startSlider()
+		})
+
+		window.addEventListener("blur", () => stopSlider)
+		window.addEventListener("focus", () => startSlider)
+
+		startSlider()
+	}
+	document.addEventListener("DOMContentLoaded", SliderAnimation)
+</script>

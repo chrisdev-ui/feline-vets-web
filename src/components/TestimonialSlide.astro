@@ -1,0 +1,63 @@
+---
+import Stars from "@/icons/Stars.astro"
+import type { Testimonial } from "@/sections/Testimonial.astro"
+
+interface Props extends Testimonial {
+	id: number
+	total: number
+}
+
+const { id, image, image500, image783, quote, bigQuote, name, role, total } = Astro.props
+
+const randomStyles: Record<number, { container: string; star: string }> = {
+	0: { container: "bg-quaternary", star: "text-yellow-400" },
+	1: { container: "bg-tertiary text-white", star: "text-yellow-400" },
+	2: { container: "bg-[#B09E99] text-white", star: "text-yellow-400" },
+}
+---
+
+<div
+	aria-label={`${id + 1} de ${total} testimonios`}
+	role="group"
+	class="testimonial-slide relative inline-block h-full w-full whitespace-normal text-left align-top"
+>
+	<div
+		class:list={[
+			"flex flex-col items-center justify-between gap-y-14 rounded-[40px] px-7.5 py-10 sm:py-14 sm:pl-14 sm:pr-16 md:items-start lg:flex-row lg:items-center lg:gap-x-40 lg:gap-y-0",
+			randomStyles[id].container,
+		]}
+	>
+		<div class="relative flex flex-none flex-col items-center justify-center md:block">
+			<div
+				class="relative flex h-auto w-full max-w-[300px] flex-col items-center justify-center overflow-hidden rounded-[40px] shadow-testimonials md:block lg:max-w-[390px]"
+			>
+				<img
+					src={image}
+					loading="lazy"
+					sizes="(max-width: 479px) 100vw, (max-width: 767px) 61vw, (max-width: 991px) 39vw, 390px"
+					srcset={`${image500} 500w, ${image783 || image} 783w`}
+					alt={`Imagen del testimonio de ${name}`}
+					class="inline-block h-full w-full max-w-full object-contain align-middle"
+				/>
+			</div>
+			<div
+				class:list={[
+					"absolute -bottom-[30px] left-auto right-auto top-auto rounded-[20px] bg-white px-5 py-4 sm:px-7 sm:py-5 md:-right-[125px] md:bottom-auto md:left-auto md:top-[75px]",
+					randomStyles[id].star,
+				]}
+			>
+				<div class="flex w-[120px] items-center justify-center sm:w-auto">
+					<Stars class:list={"overflow-hidden"} />
+				</div>
+			</div>
+		</div>
+		<div class="flex max-w-[530px] flex-col gap-y-4">
+			<h4 class="font-title text-3xl font-black">{bigQuote}</h4>
+			<p>{quote}</p>
+			<div class="mt-2.5">
+				<h5 class="font-title text-2xl font-black">{name}</h5>
+				<div class="font-subtitle text-xl font-semibold leading-8">{role}</div>
+			</div>
+		</div>
+	</div>
+</div>

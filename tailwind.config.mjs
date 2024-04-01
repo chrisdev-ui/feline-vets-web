@@ -51,6 +51,9 @@ export default {
 				"feature-3": "8px 9px #67e4ff",
 				"feature-4": "8px 9px #7ca1ff",
 				"testimonials": "14px 14px rgba(255, 255, 255, .4)",
+				"team-1": "0px 16px #4921b9",
+				"team-2": "0px 16px #fc8864",
+				"team-3": "0px 16px #ffd15c",
 			},
 			screens: {
 				"xs": "360px",

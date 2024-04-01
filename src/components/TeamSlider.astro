@@ -1,0 +1,135 @@
+---
+import TeamSlide from "@/components/TeamSlide.astro"
+import ArrowLeft from "@/icons/ArrowLeft.astro"
+import ArrowRight from "@/icons/ArrowRight.astro"
+import type { TeamMember } from "@/sections/Team.astro"
+
+export interface Props {
+	team: TeamMember[]
+}
+
+const { team } = Astro.props
+---
+
+<div
+	class:list={[
+		"team-slider relative clear-both flex h-auto w-full max-w-[1065px] overflow-hidden bg-transparent pb-28 text-center",
+		{
+			"mx-auto max-w-[690px]": team.length === 2,
+		},
+	]}
+	role="region"
+	aria-label="carousel"
+>
+	<div
+		id="slider-mask-1"
+		class:list={[
+			"relative left-0 right-0 z-1 block h-auto w-full max-w-[315px] overflow-visible whitespace-nowrap",
+			{
+				"mx-auto": team.length === 1,
+			},
+		]}
+	>
+		{
+			team.map((member, index) => (
+				<TeamSlide
+					id={index}
+					total={team.length}
+					{...member}
+					ariaLabel={`${index + 1} de ${team.length}`}
+				/>
+			))
+		}
+		<div
+			aria-live="off"
+			aria-atomic="true"
+			class="team-aria-label absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0_0_0_0)]"
+		>
+		</div>
+	</div>
+	<div
+		role="button"
+		tabindex="0"
+		aria-controls="slider-mask-1"
+		aria-label="team previous slide"
+		class:list={[
+			"absolute -left-[58.5px] bottom-0 right-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
+			{
+				hidden: team.length <= 2,
+			},
+		]}
+	>
+		<div class="flex items-center justify-center">
+			<ArrowLeft />
+		</div>
+	</div>
+	<div
+		role="button"
+		tabindex="0"
+		aria-controls="slider-mask-1"
+		aria-label="team next slide"
+		class:list={[
+			"absolute -right-[58.5px] bottom-0 left-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
+			{
+				hidden: team.length <= 2,
+			},
+		]}
+	>
+		<div class="flex items-center justify-center">
+			<ArrowRight />
+		</div>
+	</div>
+</div>
+<script>
+	import { $, $$ } from "@/lib/dom-selector"
+
+	function TeamSliderAnimation() {
+		const $slides = $$(".team-slide")
+		const $prevButton = $("[aria-label='team previous slide']")
+		const $nextButton = $("[aria-label='team next slide']")
+		const $teamAriaLabel = $(".team-aria-label")
+		const isValidSlider = $slides.length > 2
+		let currentSlide = 0
+
+		function updateButtonState() {
+			if (isValidSlider) {
+				$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
+				$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
+			}
+		}
+
+		function showSlide(index: number) {
+			const $currentSlide = $slides[index] as HTMLElement
+			const slideWidth = $slides[0].clientWidth
+			const marginRight = Number.parseFloat(getComputedStyle($currentSlide).marginRight)
+			const slideSpace = slideWidth + marginRight
+			const translation = -slideSpace * index
+			if (isValidSlider) {
+				$slides.forEach((slide, idx) => {
+					const $htmlSlide = slide as HTMLElement
+					$htmlSlide.style.transform = `translateX(${translation}px)`
+					$htmlSlide.setAttribute("aria-hidden", idx !== index ? "true" : "false")
+				})
+
+				$teamAriaLabel.textContent = `Miembro ${index + 1} de ${$slides.length}`
+
+				updateButtonState()
+			}
+		}
+
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % $slides.length
+			showSlide(currentSlide)
+		}
+
+		function prevSlide() {
+			currentSlide = (currentSlide - 1 + $slides.length) % $slides.length
+			showSlide(currentSlide)
+		}
+
+		$prevButton.addEventListener("click", prevSlide)
+		$nextButton.addEventListener("click", nextSlide)
+	}
+
+	document.addEventListener("DOMContentLoaded", TeamSliderAnimation)
+</script>

@@ -1,0 +1,110 @@
+---
+import TeamInstagram from "@/icons/TeamInstagram.astro"
+import TeamMail from "@/icons/TeamMail.astro"
+import TeamPhone from "@/icons/TeamPhone.astro"
+import type { TeamMember } from "@/sections/Team.astro"
+
+interface Props extends TeamMember {
+	id: number
+	total: number
+	ariaLabel?: string
+}
+
+const { id, total, ariaLabel, name, role, image, phone, email, instagram, customStyle } =
+	Astro.props
+
+const getPhone = (phone: string | undefined) => {
+	if (phone) {
+		return `tel:+57${phone}`
+	}
+	return ""
+}
+
+const getEmail = (email: string | undefined) => {
+	if (email) {
+		return `mailto:${email}`
+	}
+	return ""
+}
+
+const getInstagram = (instagram: string | undefined) => {
+	if (instagram) {
+		return `https://instagram.com/_u/${instagram}`
+	}
+	return ""
+}
+
+const getCustomStyle = (customStyle: string | undefined) => {
+	if (customStyle) {
+		return customStyle
+	}
+	return ""
+}
+
+const phoneUrl = getPhone(phone)
+const emailUrl = getEmail(email)
+const instagramUrl = getInstagram(instagram)
+---
+
+<div
+	aria-label={ariaLabel}
+	role="group"
+	class="team-slide relative mr-[60px] inline-block h-full w-full whitespace-normal text-left align-top"
+	style="transform: translateX(0); opacity: 1; transition: transform 500ms ease 0s;"
+>
+	<div
+		class:list={[
+			"flex flex-col items-center justify-center gap-y-4 rounded-[30px] border-[3px] border-solid border-secondary bg-white p-10",
+			getCustomStyle(customStyle),
+		]}
+	>
+		<img
+			src={image}
+			loading="lazy"
+			alt="Team Member"
+			class="inline-block h-56 w-56 max-w-full rounded-full object-cover align-middle"
+		/>
+		<div class="flex flex-col items-center justify-center gap-y-0.5 text-center">
+			<h5 class="font-title text-2xl font-black">{name}</h5>
+			<p class="text-neutral-700">{role}</p>
+		</div>
+		<div class="flex items-center justify-center gap-x-3">
+			{
+				phoneUrl && (
+					<a
+						href={phoneUrl}
+						class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+					>
+						<div class="flex items-center justify-center">
+							<TeamPhone />
+						</div>
+					</a>
+				)
+			}
+			{
+				emailUrl && (
+					<a
+						href={getEmail(email)}
+						class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+					>
+						<div class="flex items-center justify-center">
+							<TeamMail />
+						</div>
+					</a>
+				)
+			}
+			{
+				instagramUrl && (
+					<a
+						href={getInstagram(instagram)}
+						class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+					>
+						<div class="flex items-center justify-center">
+							<TeamInstagram />
+						</div>
+					</a>
+				)
+			}
+		</div>
+	</div>
+</div>

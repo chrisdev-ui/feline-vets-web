@@ -4,6 +4,7 @@ import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
 import ServiceCard from "@/components/ServiceCard.astro"
+import Tag from "@/components/Tag.astro"
 import ServicesDecorative from "@/icons/ServicesDecorative.astro"
 
 export interface Service {
@@ -58,11 +59,7 @@ const services: Service[] = [
 			<div
 				class="relative z-1 flex max-w-3xl flex-col items-center justify-center gap-y-4 lg:gap-y-6"
 			>
-				<div class="rounded-[170px] bg-bg-primary px-6 py-2">
-					<h3 class="font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]">
-						Nuestros servicios
-					</h3>
-				</div>
+				<Tag text="Nuestros servicios" />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
 					Nuestra solución integral para el cuidado premium de mascotas
 				</h2>

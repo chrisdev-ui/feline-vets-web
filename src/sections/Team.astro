@@ -1,0 +1,56 @@
+---
+import Jumplink from "@/components/Jumplink.astro"
+import MainContainer from "@/components/MainContainer.astro"
+import Tag from "@/components/Tag.astro"
+import TeamSlider from "@/components/TeamSlider.astro"
+import TeamDecorative from "@/icons/TeamDecorative.astro"
+
+export interface TeamMember {
+	name: string
+	role: string
+	image: string
+	phone?: string
+	email?: string
+	instagram?: string
+	customStyle?: string
+}
+
+const teamMembers: TeamMember[] = [
+	{
+		name: "Dra. Paula Morales",
+		role: "Médica Veterinaria",
+		image: "/img/team/paula-morales.png",
+		phone: "+579999999999",
+		email: "+579999999999",
+		instagram: "paumoralesr",
+		customStyle: "shadow-team-1",
+	},
+	{
+		name: "Dra. Paula Morales",
+		role: "Médica Veterinaria",
+		image: "/img/team/paula-morales.png",
+		phone: "+579999999999",
+		email: "+579999999999",
+		instagram: "paumoralesr",
+		customStyle: "shadow-team-2",
+	},
+]
+---
+
+<section class="relative block w-full overflow-hidden bg-tertiary-light py-36">
+	<MainContainer>
+		<div class="flex flex-col items-center justify-center gap-y-20 text-center">
+			<div class="relative z-1 flex flex-col items-center justify-center gap-y-6">
+				<Tag text="Nuestro equipo" />
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Conoce a nuestro equipo de veterinarias
+				</h2>
+				<TeamDecorative
+					class="absolute -left-[200px] -top-2.5 bottom-auto right-auto -z-1 w-14 rotate-45 text-tertiary md:w-20"
+				/>
+			</div>
+			<TeamSlider team={teamMembers} />
+		</div>
+	</MainContainer>
+	<Jumplink id="Our-Team" />
+</section>

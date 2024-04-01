@@ -2,7 +2,7 @@
 import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import TestimonialSlider from "@/components/TestimonialSlider.astro"
-import TestimonialsDecorative from "@/icons/TestimonialsDecorative.astro"
+import Decorative from "@/icons/Decorative.astro"
 
 export interface Testimonial {
 	name: string
@@ -55,7 +55,7 @@ const testimonials: Testimonial[] = [
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
 					...que reflejan nuestro compromiso
 				</h2>
-				<TestimonialsDecorative
+				<Decorative
 					class:list={"absolute -right-7 -top-5 bottom-auto left-auto -z-1 w-14 -rotate-45 text-tertiary md:-right-[100px] md:w-20"}
 				/>
 			</div>

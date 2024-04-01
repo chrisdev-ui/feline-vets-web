@@ -1,0 +1,15 @@
+---
+interface Props {
+	text: string
+	containerClasses?: string
+	h3Classes?: string
+}
+
+const { text, containerClasses, h3Classes } = Astro.props
+---
+
+<div class:list={["rounded-[170px] bg-bg-primary px-6 py-2", containerClasses]}>
+	<h3 class:list={["font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]", h3Classes]}>
+		{text}
+	</h3>
+</div>

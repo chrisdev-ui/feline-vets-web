@@ -51,9 +51,9 @@ const { team } = Astro.props
 		aria-controls="slider-mask-1"
 		aria-label="team previous slide"
 		class:list={[
-			"absolute -left-[58.5px] bottom-0 right-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
+			"absolute -left-[58.5px] bottom-0 right-0 top-auto z-[3] m-auto h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
-				"md:hidden": team.length <= 2,
+				"flex md:hidden": team.length <= 2,
 			},
 		]}
 	>
@@ -67,9 +67,9 @@ const { team } = Astro.props
 		aria-controls="slider-mask-1"
 		aria-label="team next slide"
 		class:list={[
-			"absolute -right-[58.5px] bottom-0 left-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
+			"absolute -right-[58.5px] bottom-0 left-0 top-auto z-[3] m-auto h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
-				"md:hidden": team.length <= 2,
+				"flex md:hidden": team.length <= 2,
 			},
 		]}
 	>
@@ -87,10 +87,15 @@ const { team } = Astro.props
 		const $nextButton = $("[aria-label='team next slide']")
 		const $teamAriaLabel = $(".team-aria-label")
 		let currentSlide = 0
+		let sliderInterval = 0
+
+		const isMobile = window.matchMedia("(max-width: 425px)").matches
 
 		function updateButtonState() {
-			$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
-			$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
+			if ($slides.length > 2 || isMobile) {
+				$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
+				$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
+			}
 		}
 
 		function showSlide(index: number) {
@@ -121,10 +126,34 @@ const { team } = Astro.props
 			showSlide(currentSlide)
 		}
 
-		$prevButton.addEventListener("click", prevSlide)
-		$nextButton.addEventListener("click", nextSlide)
+		function startSlider() {
+			if (isMobile) {
+				sliderInterval = setInterval(nextSlide, 6000)
+			}
+		}
+
+		function stopSlider() {
+			if (isMobile && sliderInterval) {
+				clearInterval(sliderInterval)
+			}
+		}
+
+		$prevButton.addEventListener("click", () => {
+			stopSlider()
+			prevSlide()
+			startSlider()
+		})
+		$nextButton.addEventListener("click", () => {
+			stopSlider()
+			nextSlide()
+			startSlider()
+		})
+
+		window.addEventListener("blur", () => stopSlider)
+		window.addEventListener("focus", () => startSlider)
 
 		updateButtonState()
+		startSlider()
 	}
 
 	document.addEventListener("DOMContentLoaded", TeamSliderAnimation)

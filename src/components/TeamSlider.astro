@@ -129,13 +129,22 @@ const { team } = Astro.props
 		function startSlider() {
 			if (isMobile) {
 				sliderInterval = setInterval(nextSlide, 6000)
+			} else {
+				stopSlider()
 			}
 		}
 
 		function stopSlider() {
-			if (isMobile && sliderInterval) {
+			if (sliderInterval) {
 				clearInterval(sliderInterval)
 			}
+		}
+
+		function handleResize() {
+			if (isMobile) {
+				startSlider()
+			}
+			updateButtonState()
 		}
 
 		$prevButton.addEventListener("click", () => {
@@ -151,9 +160,9 @@ const { team } = Astro.props
 
 		window.addEventListener("blur", () => stopSlider)
 		window.addEventListener("focus", () => startSlider)
+		window.addEventListener("resize", handleResize)
 
-		updateButtonState()
-		startSlider()
+		handleResize()
 	}
 
 	document.addEventListener("DOMContentLoaded", TeamSliderAnimation)

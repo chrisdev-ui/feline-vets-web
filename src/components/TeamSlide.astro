@@ -5,13 +5,10 @@ import TeamPhone from "@/icons/TeamPhone.astro"
 import type { TeamMember } from "@/sections/Team.astro"
 
 interface Props extends TeamMember {
-	id: number
-	total: number
 	ariaLabel?: string
 }
 
-const { id, total, ariaLabel, name, role, image, phone, email, instagram, customStyle } =
-	Astro.props
+const { ariaLabel, name, role, image, phone, email, instagram, customStyle } = Astro.props
 
 const getPhone = (phone: string | undefined) => {
 	if (phone) {
@@ -49,12 +46,12 @@ const instagramUrl = getInstagram(instagram)
 <div
 	aria-label={ariaLabel}
 	role="group"
-	class="team-slide relative mr-[60px] inline-block h-full w-full whitespace-normal text-left align-top"
+	class="team-slide relative mr-7.5 inline-block h-full w-full whitespace-normal text-left align-top lg:mr-[60px]"
 	style="transform: translateX(0); opacity: 1; transition: transform 500ms ease 0s;"
 >
 	<div
 		class:list={[
-			"flex flex-col items-center justify-center gap-y-4 rounded-[30px] border-[3px] border-solid border-secondary bg-white p-10",
+			"flex flex-col items-center justify-center gap-y-4 rounded-[30px] border-[3px] border-solid border-secondary bg-white p-[2.188rem] lg:p-10",
 			getCustomStyle(customStyle),
 		]}
 	>
@@ -62,10 +59,10 @@ const instagramUrl = getInstagram(instagram)
 			src={image}
 			loading="lazy"
 			alt="Team Member"
-			class="inline-block h-56 w-56 max-w-full rounded-full object-cover align-middle"
+			class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
 		/>
 		<div class="flex flex-col items-center justify-center gap-y-0.5 text-center">
-			<h5 class="font-title text-2xl font-black">{name}</h5>
+			<h5 class="font-title text-xl font-black md:text-2xl">{name}</h5>
 			<p class="text-neutral-700">{role}</p>
 		</div>
 		<div class="flex items-center justify-center gap-x-3">
@@ -84,7 +81,7 @@ const instagramUrl = getInstagram(instagram)
 			{
 				emailUrl && (
 					<a
-						href={getEmail(email)}
+						href={emailUrl}
 						class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
 					>
 						<div class="flex items-center justify-center">
@@ -96,7 +93,7 @@ const instagramUrl = getInstagram(instagram)
 			{
 				instagramUrl && (
 					<a
-						href={getInstagram(instagram)}
+						href={instagramUrl}
 						class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
 					>
 						<div class="flex items-center justify-center">

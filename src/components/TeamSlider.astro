@@ -13,8 +13,9 @@ const { team } = Astro.props
 
 <div
 	class:list={[
-		"team-slider relative clear-both flex h-auto w-full max-w-[1065px] overflow-hidden bg-transparent pb-28 text-center",
+		"team-slider relative clear-both flex h-auto w-full max-w-[1065px] overflow-hidden bg-transparent pb-[5.625rem] text-center md:pb-28",
 		{
+			"mx-auto max-w-[315px]": team.length === 1,
 			"mx-auto max-w-[690px]": team.length === 2,
 		},
 	]}
@@ -24,26 +25,23 @@ const { team } = Astro.props
 	<div
 		id="slider-mask-1"
 		class:list={[
-			"relative left-0 right-0 z-1 block h-auto w-full max-w-[315px] overflow-visible whitespace-nowrap",
-			{
-				"mx-auto": team.length === 1,
-			},
+			"relative left-0 right-0 z-1 block h-full w-full max-w-none overflow-visible whitespace-nowrap md:w-[47%] lg:h-auto lg:w-full lg:max-w-[315px]",
 		]}
 	>
 		{
 			team.map((member, index) => (
-				<TeamSlide
-					id={index}
-					total={team.length}
-					{...member}
-					ariaLabel={`${index + 1} de ${team.length}`}
-				/>
+				<TeamSlide {...member} ariaLabel={`${index + 1} de ${team.length}`} />
 			))
 		}
 		<div
 			aria-live="off"
 			aria-atomic="true"
-			class="team-aria-label absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0_0_0_0)]"
+			class:list={[
+				"team-aria-label absolute -m-px h-px w-px overflow-hidden border-0 p-0 [clip:rect(0_0_0_0)]",
+				{
+					"md:hidden": team.length <= 2,
+				},
+			]}
 		>
 		</div>
 	</div>
@@ -55,7 +53,7 @@ const { team } = Astro.props
 		class:list={[
 			"absolute -left-[58.5px] bottom-0 right-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
-				hidden: team.length <= 2,
+				"md:hidden": team.length <= 2,
 			},
 		]}
 	>
@@ -71,7 +69,7 @@ const { team } = Astro.props
 		class:list={[
 			"absolute -right-[58.5px] bottom-0 left-0 top-auto z-[3] m-auto flex h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
-				hidden: team.length <= 2,
+				"md:hidden": team.length <= 2,
 			},
 		]}
 	>
@@ -88,14 +86,11 @@ const { team } = Astro.props
 		const $prevButton = $("[aria-label='team previous slide']")
 		const $nextButton = $("[aria-label='team next slide']")
 		const $teamAriaLabel = $(".team-aria-label")
-		const isValidSlider = $slides.length > 2
 		let currentSlide = 0
 
 		function updateButtonState() {
-			if (isValidSlider) {
-				$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
-				$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
-			}
+			$prevButton.style.display = currentSlide === 0 ? "none" : "flex"
+			$nextButton.style.display = currentSlide === $slides.length - 1 ? "none" : "flex"
 		}
 
 		function showSlide(index: number) {
@@ -104,17 +99,16 @@ const { team } = Astro.props
 			const marginRight = Number.parseFloat(getComputedStyle($currentSlide).marginRight)
 			const slideSpace = slideWidth + marginRight
 			const translation = -slideSpace * index
-			if (isValidSlider) {
-				$slides.forEach((slide, idx) => {
-					const $htmlSlide = slide as HTMLElement
-					$htmlSlide.style.transform = `translateX(${translation}px)`
-					$htmlSlide.setAttribute("aria-hidden", idx !== index ? "true" : "false")
-				})
 
-				$teamAriaLabel.textContent = `Miembro ${index + 1} de ${$slides.length}`
+			$slides.forEach((slide, idx) => {
+				const $htmlSlide = slide as HTMLElement
+				$htmlSlide.style.transform = `translateX(${translation}px)`
+				$htmlSlide.setAttribute("aria-hidden", idx !== index ? "true" : "false")
+			})
 
-				updateButtonState()
-			}
+			$teamAriaLabel.textContent = `Miembro ${index + 1} de ${$slides.length}`
+
+			updateButtonState()
 		}
 
 		function nextSlide() {
@@ -129,6 +123,8 @@ const { team } = Astro.props
 
 		$prevButton.addEventListener("click", prevSlide)
 		$nextButton.addEventListener("click", nextSlide)
+
+		updateButtonState()
 	}
 
 	document.addEventListener("DOMContentLoaded", TeamSliderAnimation)

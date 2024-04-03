@@ -1,0 +1,47 @@
+---
+import Play from "@/icons/Play.astro"
+import type { VideoPlayer } from "@/sections/Pet.astro"
+
+interface Props extends VideoPlayer {}
+
+const { id, title, poster, customStyles } = Astro.props
+---
+
+<button
+	onclick={`window.${id}.showModal()`}
+	class:list={[
+		"relative flex h-[10.938rem] w-full max-w-[15.625rem] items-end justify-start rounded-[20px] border-[3px] border-solid border-secondary bg-transparent p-7.5",
+		customStyles?.[0],
+	]}
+	aria-label="Abrir Vídeo"
+>
+	<div
+		class="flex h-full w-full max-w-[6.25rem] flex-col items-start justify-center gap-y-4 text-left"
+	>
+		<h5
+			class:list={[
+				"z-10 font-title text-xl font-black text-tertiary md:text-2xl",
+				customStyles?.[2],
+			]}
+		>
+			{title}
+		</h5>
+		<Play class:list={[customStyles?.[1]]} />
+	</div>
+	<img
+		src={poster}
+		loading="lazy"
+		alt="Poster del vídeo"
+		class="absolute bottom-0 left-auto right-0 top-auto inline-block h-[13.438rem] max-w-full align-middle"
+	/>
+</button>
+
+<dialog
+	id={id}
+	class="fixed backdrop:fixed backdrop:bottom-0 backdrop:left-0 backdrop:right-0 backdrop:top-0 backdrop:bg-black/80"
+>
+	<slot name="main" />
+	<form method="dialog" class="fixed bottom-0 left-0 right-0 top-0 -z-10">
+		<slot name="close" />
+	</form>
+</dialog>

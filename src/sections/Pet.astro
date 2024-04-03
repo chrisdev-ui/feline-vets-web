@@ -1,0 +1,89 @@
+---
+import CloseModal from "@/components/CloseModal.astro"
+import MainContainer from "@/components/MainContainer.astro"
+import ModalVideoCard from "@/components/ModalVideoCard.astro"
+
+export interface VideoPlayer {
+	id: string
+	src: string
+	srcset?: string
+	poster: string
+	title: string
+	customStyles?: string[]
+}
+
+const videos: VideoPlayer[] = [
+	{
+		id: "petvideo1",
+		src: "https://res.cloudinary.com/dsogxa0hj/video/upload/f_auto:video,q_auto/ts3zoti2e8h4xqk1yn1t",
+		srcset:
+			"https://res.cloudinary.com/dsogxa0hj/video/upload/f_webm,vc_vp9,q_auto/v1712110108/ts3zoti2e8h4xqk1yn1t",
+		poster: "/img/pet/pet-poster-1.webp",
+		title: "Guardería",
+		customStyles: ["shadow-[9px_10px_#a06aff]", "text-[#a06aff]", "text-tertiary"],
+	},
+	{
+		id: "petvideo2",
+		src: "https://res.cloudinary.com/dsogxa0hj/video/upload/f_auto:video,q_auto/ts3zoti2e8h4xqk1yn1t",
+		srcset:
+			"https://res.cloudinary.com/dsogxa0hj/video/upload/f_webm,vc_vp9,q_auto/v1712110108/ts3zoti2e8h4xqk1yn1t",
+		poster: "/img/pet/pet-poster-1.webp",
+		title: "Otros",
+		customStyles: ["shadow-[9px_10px_#58cfcb]", "text-[#58cfcb]", "text-[#58cfcb]"],
+	},
+]
+---
+
+<section class="block pb-[11.563rem] pt-[8.75rem]">
+	<MainContainer>
+		<div class="flex items-center justify-center gap-x-[6.563rem]">
+			<div class="w-full max-w-[545px]">
+				<img
+					src="/img/pet/pet-bg-image.webp"
+					loading="lazy"
+					sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 71vw, 49vw"
+					srcset="/img/pet/pet-bg-image_500.webp 500w, /img/pet/pet-bg-image_800.webp 800w, /img/pet/pet-bg-image.webp 1096w"
+					alt="Imagen de la sección de mascotas"
+					class="inline-block h-full w-full max-w-full object-contain align-middle"
+				/>
+			</div>
+			<div class="flex flex-col gap-y-5">
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Tu mascota es lo más importante para nosotros
+				</h2>
+				<p class="text-xl font-semibold leading-8 text-neutral-700">
+					Al elegir nuestros servicios, escoges un equipo comprometido con la salud y felicidad de
+					tu gato.
+				</p>
+				<div class="mt-[4.5rem] flex gap-x-12">
+					{
+						videos.map((video) => (
+							<ModalVideoCard {...video}>
+								<main slot="main">
+									<video width="640" height="360" controls>
+										<source src={video.src} type="video/mp4" />
+										<source src={video.srcset} type="video/webm" />
+										<track
+											src="captions_en.vtt"
+											kind="captions"
+											srclang="en"
+											label="english_captions"
+										/>
+										<track
+											src="captions_es.vtt"
+											kind="captions"
+											srclang="es"
+											label="spanish_captions"
+										/>
+										Your browser does not support the video tag.
+									</video>
+								</main>
+								<CloseModal slot="close" />
+							</ModalVideoCard>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</MainContainer>
+</section>

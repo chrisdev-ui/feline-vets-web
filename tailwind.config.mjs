@@ -54,6 +54,9 @@ export default {
 				"team-1": "0px 16px #4921b9",
 				"team-2": "0px 16px #fc8864",
 				"team-3": "0px 16px #ffd15c",
+				"pricing-regular": "9px 10px rgba(176, 158, 153, .5)",
+				"pricing-medium": "9px 10px rgba(88, 207, 203, .5)",
+				"pricing-premium": "9px 10px rgba(160, 106, 255, .5)",
 			},
 			screens: {
 				"xs": "360px",

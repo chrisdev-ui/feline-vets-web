@@ -1,0 +1,116 @@
+---
+import type { InstagramMedia } from "./InstagramFeed.astro"
+
+interface Props {
+	posts: InstagramMedia[]
+}
+
+const { posts } = Astro.props
+---
+
+<main
+	class="relative z-50 m-auto flex max-w-[1000px] items-center justify-center bg-transparent px-[4em]"
+	id="slider"
+>
+	<div class="block w-full">
+		{
+			posts.map((post, index) => (
+				<div
+					class:list={[
+						"slide w-full animate-blurred-fade-in",
+						{
+							hidden: index !== 0,
+						},
+					]}
+					id={post.id}
+				>
+					{(post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") && (
+						<img
+							class="h-full w-full rounded-[30px] object-cover"
+							src={post.media_url}
+							alt={post.caption || "Imagen de Instagram"}
+						/>
+					)}
+					{post.media_type === "VIDEO" && (
+						<video
+							class="h-full w-full rounded-[30px] object-cover"
+							poster={post.thumbnail_url}
+							autoplay
+							loop
+							muted
+						>
+							<source src={post.media_url} type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					)}
+				</div>
+			))
+		}
+	</div>
+	<div
+		class="absolute bottom-0 left-0 top-0 block w-[4em] cursor-pointer bg-[url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0yMCAwIDI0IDQwIiB3aWR0aD0iMjQiIGhlaWdodD0iNDAiPjxnIHRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0ibTAgMGg1djIzaDIzdjVoLTI4eiIgb3BhY2l0eT0iLjQiLz48cGF0aCBkPSJtMSAxaDN2MjNoMjN2M2gtMjZ6IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==)] bg-[length:24px] bg-center bg-no-repeat opacity-50 transition-all duration-300 hover:opacity-100"
+		id="prev"
+	>
+	</div>
+	<div
+		class="absolute bottom-0 right-0 top-0 block w-[4em] cursor-pointer bg-[url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii00IDAgMjQgNDAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0MCI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJtMC0waDI4djI4aC01di0yM2gtMjN6IiBvcGFjaXR5PSIuNCIvPjxwYXRoIGQ9Im0xIDFoMjZ2MjZoLTN2LTIzaC0yM3oiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+)] bg-[length:24px] bg-center bg-no-repeat opacity-50 transition-all duration-300 hover:opacity-100"
+		id="next"
+	>
+	</div>
+</main>
+
+<script>
+	import { $, $$ } from "@/lib/dom-selector"
+
+	const $slider = $("#slider")
+	let activeSlideId = $(".slide")?.id
+	const $slides = Array.from($$(".slide")) as HTMLElement[]
+	const $prevButton = $("#prev")
+	const $nextButton = $("#next")
+	const $dialog = $("#instagram_carousel") as HTMLDialogElement
+
+	function showCurrentSlide() {
+		const currentSlide = $slider?.getAttribute("data-current-slide-id") as string
+		if (currentSlide != null) {
+			showSlide(currentSlide)
+		} else {
+			showSlide(activeSlideId as string)
+		}
+	}
+
+	function showSlide(id: string) {
+		$slides.forEach((slide) => {
+			slide.style.display = slide.id === id ? "block" : "none"
+		})
+		activeSlideId = id
+		$slider?.setAttribute("data-current-slide-id", activeSlideId)
+	}
+
+	$prevButton?.addEventListener("click", () => {
+		const currentIndex = $slides.findIndex((slide) => slide.id === activeSlideId)
+		const prevIndex = currentIndex === 0 ? $slides.length - 1 : currentIndex - 1
+		showSlide($slides[prevIndex].id)
+	})
+
+	$nextButton?.addEventListener("click", () => {
+		const currentIndex = $slides.findIndex((slide) => slide.id === activeSlideId)
+		const nextIndex = (currentIndex + 1) % $slides.length
+		showSlide($slides[nextIndex].id)
+	})
+
+	const observer = new MutationObserver((mutationsList) => {
+		for (const mutation of mutationsList) {
+			if (mutation.type === "attributes" && mutation.attributeName === "open") {
+				showCurrentSlide()
+			}
+		}
+	})
+
+	function cleanup() {
+		observer.disconnect()
+	}
+
+	observer.observe($dialog, { attributes: true })
+
+	$dialog?.addEventListener("close", cleanup)
+</script>

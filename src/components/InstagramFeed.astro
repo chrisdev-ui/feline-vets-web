@@ -1,0 +1,124 @@
+---
+import CloseModal from "@/components/CloseModal.astro"
+import InstagramCarousel from "@/components/InstagramCarousel.astro"
+import ModalImagesCarousel from "@/components/ModalImagesCarousel.astro"
+
+const MAX_POSTS_PER_PAGE = 7
+const isDevelopment = import.meta.env.DEV
+const getUrl = (mediaId?: string) =>
+	mediaId != null
+		? `https://graph.instagram.com/${mediaId}?fields=id,media_url,media_type,username,timestamp&access_token=${import.meta.env.INSTAGRAM_ACCESS_TOKEN}`
+		: `https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type,timestamp,username,thumbnail_url,permalink,children&access_token=${import.meta.env.INSTAGRAM_ACCESS_TOKEN}`
+
+type MediaType = "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM"
+
+interface InstagramMediaBase {
+	id: string
+	caption: string
+	media_url: string
+	media_type: MediaType
+	timestamp: string
+	username: string
+	permalink: string
+}
+
+interface CarouselMedia {
+	data: {
+		id: string
+	}[]
+}
+
+export interface CarouselChild {
+	id: string
+	media_url: string
+	media_type: MediaType
+	username: string
+	timestamp: string
+}
+
+interface InstagramMediaImage extends InstagramMediaBase {
+	media_type: "IMAGE"
+}
+
+interface InstagramMediaVideo extends InstagramMediaBase {
+	media_type: "VIDEO"
+	thumbnail_url: string
+}
+
+interface InstagramMediaCarousel extends InstagramMediaBase {
+	media_type: "CAROUSEL_ALBUM"
+	children: CarouselMedia
+}
+
+export type InstagramMedia = InstagramMediaImage | InstagramMediaVideo | InstagramMediaCarousel
+
+interface InstagramResponse {
+	data: InstagramMedia[]
+}
+
+const getSlicedArray = (array: InstagramMedia[], start: number, end: number) =>
+	array.slice(start, end)
+
+let posts: InstagramMedia[] = []
+const dialogId = "instagram_carousel"
+
+if (isDevelopment) {
+	posts = Array.from({ length: MAX_POSTS_PER_PAGE }, (_, i) => ({
+		id: `placeholder${i + 1}`,
+		caption: "Placeholder caption",
+		media_url: "/img/instagram/instagram-placeholder.webp",
+		media_type: "IMAGE",
+		timestamp: new Date().toISOString(),
+		username: "placeholder",
+		permalink: "#",
+	}))
+} else {
+	const url = getUrl()
+	const response = await fetch(url)
+	const data: InstagramResponse = await response.json()
+	posts = getSlicedArray(data.data, 0, MAX_POSTS_PER_PAGE)
+}
+---
+
+<div class="grid w-full auto-cols-fr grid-cols-4 grid-rows-[245px_162px_245px] gap-[27px]">
+	{
+		posts.map((post) => (
+			<div class="instagram-feed-block h-full w-full">
+				<ModalImagesCarousel {...post} modalId={dialogId} />
+			</div>
+		))
+	}
+	<dialog
+		id={dialogId}
+		class="fixed bg-transparent backdrop:fixed backdrop:bottom-0 backdrop:left-0 backdrop:right-0 backdrop:top-0 backdrop:-z-50 backdrop:bg-black/80"
+	>
+		<InstagramCarousel posts={posts} />
+		<form method="dialog" class="fixed bottom-0 left-0 right-0 top-0 -z-10">
+			<CloseModal />
+		</form>
+	</dialog>
+</div>
+
+<style>
+	.instagram-feed-block:nth-child(1) {
+		grid-area: span 2 / span 2 / span 2 / span 2;
+	}
+	.instagram-feed-block:nth-child(2) {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+	}
+	.instagram-feed-block:nth-child(3) {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+	}
+	.instagram-feed-block:nth-child(4) {
+		grid-area: span 2 / span 1 / span 2 / span 1;
+	}
+	.instagram-feed-block:nth-child(5) {
+		grid-area: span 2 / span 1 / span 2 / span 1;
+	}
+	.instagram-feed-block:nth-child(6) {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+	}
+	.instagram-feed-block:nth-child(7) {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+	}
+</style>

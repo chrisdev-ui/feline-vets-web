@@ -1,0 +1,40 @@
+---
+import type { InstagramMedia } from "./InstagramFeed.astro"
+
+type Props = InstagramMedia & {
+	modalId: string
+}
+
+const { id, modalId, media_url, media_type, caption } = Astro.props
+---
+
+<button
+	class:list={["instagram-card inline-block h-full w-full max-w-full"]}
+	onclick={`document.getElementById('slider').setAttribute('data-current-slide-id', '${id}');window.${modalId}.showModal()`}
+	aria-label="Abrir Carrusel de Imágenes de Instagram"
+	aria-haspopup="dialog"
+>
+	{
+		(media_type === "IMAGE" || media_type === "CAROUSEL_ALBUM") && (
+			<img
+				class="h-full w-full rounded-[30px] object-cover"
+				src={media_url}
+				alt={caption || "Imagen de Instagram"}
+			/>
+		)
+	}
+	{
+		media_type === "VIDEO" && (
+			<video
+				class="h-full w-full rounded-[30px] object-cover"
+				poster={Astro.props.thumbnail_url}
+				autoplay
+				loop
+				muted
+			>
+				<source src={media_url} type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+		)
+	}
+</button>

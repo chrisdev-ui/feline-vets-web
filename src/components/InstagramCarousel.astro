@@ -9,15 +9,15 @@ const { posts } = Astro.props
 ---
 
 <main
-	class="relative z-50 m-auto flex max-h-screen max-w-[1000px] items-center justify-center bg-transparent px-[4em]"
+	class="relative z-50 m-auto flex max-h-[84vh] max-w-[1000px] items-center justify-center bg-transparent px-[4em]"
 	id="slider"
 >
-	<div class="block w-full">
+	<div class="block h-full w-full">
 		{
 			posts.map((post, index) => (
 				<a
 					class:list={[
-						"slide w-full animate-blurred-fade-in",
+						"slide h-full w-full animate-blurred-fade-in",
 						{
 							hidden: index !== 0,
 						},
@@ -28,14 +28,14 @@ const { posts } = Astro.props
 				>
 					{(post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") && (
 						<img
-							class="h-full w-full rounded-[30px] object-cover"
+							class="h-full w-full rounded-[30px] object-contain"
 							src={post.media_url}
 							alt={post.caption || "Imagen de Instagram"}
 						/>
 					)}
 					{post.media_type === "VIDEO" && (
 						<video
-							class="h-full w-full rounded-[30px] object-cover"
+							class="h-full w-full rounded-[30px] object-contain"
 							poster={post.thumbnail_url}
 							autoplay
 							loop

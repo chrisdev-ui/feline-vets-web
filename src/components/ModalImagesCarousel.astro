@@ -18,6 +18,7 @@ const { id, modalId, media_url, media_type, caption } = Astro.props
 		(media_type === "IMAGE" || media_type === "CAROUSEL_ALBUM") && (
 			<img
 				class="h-full w-full rounded-[30px] object-cover"
+				loading="lazy"
 				src={media_url}
 				alt={caption || "Imagen de Instagram"}
 			/>
@@ -28,6 +29,7 @@ const { id, modalId, media_url, media_type, caption } = Astro.props
 			<video
 				class="h-full w-full rounded-[30px] object-cover"
 				poster={Astro.props.thumbnail_url}
+				preload="auto"
 				autoplay
 				loop
 				muted

@@ -79,11 +79,13 @@ const { posts } = Astro.props
 	}
 
 	function showSlide(id: string) {
-		$slides.forEach((slide) => {
-			slide.style.display = slide.id === id ? "block" : "none"
+		requestAnimationFrame(() => {
+			$slides.forEach((slide) => {
+				slide.style.display = slide.id === id ? "block" : "none"
+			})
+			activeSlideId = id
+			$slider?.setAttribute("data-current-slide-id", activeSlideId)
 		})
-		activeSlideId = id
-		$slider?.setAttribute("data-current-slide-id", activeSlideId)
 	}
 
 	$prevButton?.addEventListener("click", () => {

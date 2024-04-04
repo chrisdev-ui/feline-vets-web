@@ -80,10 +80,12 @@ if (isDevelopment) {
 }
 ---
 
-<div class="grid w-full auto-cols-fr grid-cols-4 grid-rows-[245px_162px_245px] gap-[27px]">
+<div
+	class="flex w-full auto-cols-fr grid-cols-4 grid-rows-[245px_162px_245px] flex-col gap-[27px] sm:grid"
+>
 	{
 		posts.map((post) => (
-			<div class="instagram-feed-block h-full w-full">
+			<div class="instagram-feed-block h-[300px] w-full sm:h-full">
 				<ModalImagesCarousel {...post} modalId={dialogId} />
 			</div>
 		))
@@ -101,24 +103,48 @@ if (isDevelopment) {
 
 <style>
 	.instagram-feed-block:nth-child(1) {
-		grid-area: span 2 / span 2 / span 2 / span 2;
+		grid-area: span 2 / span 4 / span 2 / span 4;
 	}
 	.instagram-feed-block:nth-child(2) {
-		grid-area: span 1 / span 1 / span 1 / span 1;
+		grid-area: span 1 / span 2 / span 1 / span 2;
 	}
 	.instagram-feed-block:nth-child(3) {
-		grid-area: span 1 / span 1 / span 1 / span 1;
+		grid-area: span 1 / span 2 / span 1 / span 2;
 	}
 	.instagram-feed-block:nth-child(4) {
-		grid-area: span 2 / span 1 / span 2 / span 1;
+		grid-area: span 2 / span 2 / span 2 / span 2;
 	}
 	.instagram-feed-block:nth-child(5) {
-		grid-area: span 2 / span 1 / span 2 / span 1;
+		grid-area: span 2 / span 2 / span 2 / span 2;
 	}
 	.instagram-feed-block:nth-child(6) {
-		grid-area: span 1 / span 1 / span 1 / span 1;
+		grid-area: span 1 / span 2 / span 1 / span 2;
 	}
 	.instagram-feed-block:nth-child(7) {
-		grid-area: span 1 / span 1 / span 1 / span 1;
+		grid-area: span 1 / span 2 / span 1 / span 2;
+	}
+
+	@media screen and (min-width: 1024px) {
+		.instagram-feed-block:nth-child(1) {
+			grid-area: span 2 / span 2 / span 2 / span 2;
+		}
+		.instagram-feed-block:nth-child(2) {
+			grid-area: span 1 / span 1 / span 1 / span 1;
+		}
+		.instagram-feed-block:nth-child(3) {
+			grid-area: span 1 / span 1 / span 1 / span 1;
+		}
+		.instagram-feed-block:nth-child(4) {
+			grid-area: span 2 / span 1 / span 2 / span 1;
+		}
+		.instagram-feed-block:nth-child(5) {
+			grid-area: span 2 / span 1 / span 2 / span 1;
+		}
+		.instagram-feed-block:nth-child(6) {
+			grid-area: span 1 / span 1 / span 1 / span 1;
+		}
+		.instagram-feed-block:nth-child(7) {
+			grid-area: span 1 / span 1 / span 1 / span 1;
+		}
 	}
 </style>

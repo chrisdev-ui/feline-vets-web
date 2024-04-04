@@ -41,8 +41,7 @@ const pricingCards: PricingCard[] = [
 			text: service,
 			included: index + 1 <= Plan.BASIC,
 		})),
-		img: "https://assets.website-files.com/64c6509af4f1dbee2c40401e/64c75aec845988b3d1fbc877_Pricing%20Image.webp",
-		// img: "/img/pricing/regular.webp",
+		img: "/img/pricing/regular.webp",
 	},
 	{
 		price: 200000,
@@ -51,32 +50,34 @@ const pricingCards: PricingCard[] = [
 			text: service,
 			included: index + 1 <= Plan.INTERMEDIATE,
 		})),
-		img: "https://assets.website-files.com/64c6509af4f1dbee2c40401e/64c75aec845988b3d1fbc877_Pricing%20Image.webp",
-		// img: "/img/pricing/medium.webp",
+		img: "/img/pricing/medium.webp",
 	},
 	{
 		price: 300000,
 		serviceName: "Plan Premium",
 		points: services.map((service) => ({ text: service, included: true })),
-		img: "https://assets.website-files.com/64c6509af4f1dbee2c40401e/64c75aec845988b3d1fbc877_Pricing%20Image.webp",
-		// img: "/img/pricing/premium.webp",
+		img: "/img/pricing/premium.webp",
 	},
 ]
 ---
 
-<section class="relative block bg-primary py-36">
+<section class="relative block bg-primary py-20 md:py-24 lg:py-36">
 	<MainContainer>
-		<div class="flex flex-col items-center justify-center gap-y-20">
-			<div class="relative z-1 flex flex-col items-center justify-center gap-y-7.5 text-center">
+		<div class="flex flex-col items-center justify-center gap-y-14 lg:gap-y-20">
+			<div
+				class="relative z-1 flex flex-col items-center justify-center gap-y-3.5 text-center lg:gap-y-7.5"
+			>
 				<Tag text="Nuestros planes" />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
 					Servicios de calidad a tu alcance para tu mascota
 				</h2>
 				<FeatureDecorative
-					class="absolute -left-[200px] -top-2.5 bottom-auto right-auto -z-1 w-20 text-tertiary"
+					class="absolute -left-3.5 -top-7.5 bottom-auto right-auto -z-1 w-14 text-tertiary md:-left-16 md:w-20 lg:-left-12 lg:-top-2.5 xl:-left-[75px]"
 				/>
 			</div>
-			<div class="flex w-full items-start justify-center gap-x-14">
+			<div
+				class="flex w-full flex-wrap items-center justify-center gap-x-14 gap-y-14 lg:flex-nowrap lg:items-start lg:gap-y-0"
+			>
 				{pricingCards.map((pricingCard, key) => <Card {...pricingCard} key={key} />)}
 			</div>
 		</div>

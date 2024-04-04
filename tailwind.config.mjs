@@ -20,6 +20,7 @@ export default {
 				quaternary: "hsl(var(--color-quaternary) / <alpha-value>)",
 				bg: {
 					primary: "hsl(var(--color-bg-primary) / <alpha-value>)",
+					secondary: "hsl(var(--color-bg-secondary) / <alpha-value>)",
 				},
 			},
 			height: {

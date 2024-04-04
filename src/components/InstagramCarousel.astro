@@ -9,46 +9,44 @@ const { posts } = Astro.props
 ---
 
 <main
-	class="relative z-50 m-auto flex max-h-[84vh] max-w-[1000px] items-center justify-center bg-transparent px-[4em]"
+	class="relative z-50 m-auto flex items-center justify-center bg-transparent px-[4em]"
 	id="slider"
 >
-	<div class="block h-full w-full">
-		{
-			posts.map((post, index) => (
-				<a
-					class:list={[
-						"slide max-h-[84vh] max-w-full animate-blurred-fade-in overflow-hidden",
-						{
-							hidden: index !== 0,
-						},
-					]}
-					href={post.permalink}
-					target="_blank"
-					id={post.id}
-				>
-					{(post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") && (
-						<img
-							class="h-full w-full rounded-[30px] object-cover"
-							src={post.media_url}
-							alt={post.caption || "Imagen de Instagram"}
-						/>
-					)}
-					{post.media_type === "VIDEO" && (
-						<video
-							class="h-full w-full rounded-[30px] object-cover"
-							poster={post.thumbnail_url}
-							autoplay
-							loop
-							muted
-						>
-							<source src={post.media_url} type="video/mp4" />
-							Your browser does not support the video tag.
-						</video>
-					)}
-				</a>
-			))
-		}
-	</div>
+	{
+		posts.map((post, index) => (
+			<a
+				class:list={[
+					"slide animate-blurred-fade-in overflow-hidden",
+					{
+						hidden: index !== 0,
+					},
+				]}
+				href={post.permalink}
+				target="_blank"
+				id={post.id}
+			>
+				{(post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") && (
+					<img
+						class="h-auto w-full max-w-3xl rounded-[30px] object-cover"
+						src={post.media_url}
+						alt={post.caption || "Imagen de Instagram"}
+					/>
+				)}
+				{post.media_type === "VIDEO" && (
+					<video
+						class="h-auto w-full max-w-3xl rounded-[30px] object-cover"
+						poster={post.thumbnail_url}
+						autoplay
+						loop
+						muted
+					>
+						<source src={post.media_url} type="video/mp4" />
+						Your browser does not support the video tag.
+					</video>
+				)}
+			</a>
+		))
+	}
 	<div
 		class="absolute bottom-0 left-0 top-0 block w-[4em] cursor-pointer bg-[url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0yMCAwIDI0IDQwIiB3aWR0aD0iMjQiIGhlaWdodD0iNDAiPjxnIHRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0ibTAgMGg1djIzaDIzdjVoLTI4eiIgb3BhY2l0eT0iLjQiLz48cGF0aCBkPSJtMSAxaDN2MjNoMjN2M2gtMjZ6IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==)] bg-[length:24px] bg-center bg-no-repeat opacity-50 transition-all duration-300 hover:opacity-100"
 		id="prev"

@@ -28,14 +28,14 @@ const { posts } = Astro.props
 				>
 					{(post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") && (
 						<img
-							class="h-full w-full rounded-[30px] object-contain"
+							class="h-auto w-full rounded-[30px]"
 							src={post.media_url}
 							alt={post.caption || "Imagen de Instagram"}
 						/>
 					)}
 					{post.media_type === "VIDEO" && (
 						<video
-							class="h-full w-full rounded-[30px] object-contain"
+							class="h-auto w-full rounded-[30px]"
 							poster={post.thumbnail_url}
 							autoplay
 							loop

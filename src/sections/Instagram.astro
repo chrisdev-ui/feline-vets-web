@@ -1,0 +1,20 @@
+---
+import InstagramFeed from "@/components/InstagramFeed.astro"
+import MainContainer from "@/components/MainContainer.astro"
+import OutlineButton from "@/components/OutlineButton.astro"
+import InstagramIcon from "@/icons/InstagramIcon.astro"
+---
+
+<section class="block bg-bg-secondary py-36">
+	<MainContainer>
+		<div class="flex flex-col items-center justify-center gap-y-16 text-center">
+			<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+				Síguenos en Instagram
+			</h2>
+			<InstagramFeed />
+			<OutlineButton target="_blank" href="https://www.instagram.com/felinevets">
+				Síguenos en Instagram <InstagramIcon class:list={"inline-block h-8 w-8"} />
+			</OutlineButton>
+		</div>
+	</MainContainer>
+</section>

@@ -34,7 +34,7 @@ const { posts } = Astro.props
 				)}
 				{post.media_type === "VIDEO" && (
 					<video
-						class="h-auto w-full max-w-3xl rounded-[30px] object-cover"
+						class="aspect-square h-auto w-full max-w-3xl rounded-[30px]"
 						poster={post.thumbnail_url}
 						autoplay
 						loop

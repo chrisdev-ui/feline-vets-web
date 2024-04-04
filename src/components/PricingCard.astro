@@ -22,7 +22,7 @@ const formatPrice = (price: number) => {
 
 <div
 	class:list={[
-		"relative flex w-full flex-col items-start gap-y-5 rounded-[20px] border-[3px] border-solid border-secondary bg-bg-primary px-[2.875rem] py-11",
+		"relative z-1 flex w-full max-w-[400px] flex-col items-start gap-y-5 rounded-[20px] border-[3px] border-solid border-secondary bg-bg-primary p-7.5 sm:z-auto sm:px-[2.875rem] sm:py-11 lg:max-w-none",
 		cardShadows[key]?.[0],
 	]}
 >
@@ -59,13 +59,13 @@ const formatPrice = (price: number) => {
 			))
 		}
 	</div>
-	<div class="mt-11">
+	<div class="mt-7.5 sm:mt-11">
 		<OutlineButton href="#Contact">Contáctanos</OutlineButton>
 	</div>
 	<img
 		src={img}
 		alt="Imagen de servicio"
 		loading="lazy"
-		class="absolute bottom-0 left-auto right-7 top-auto inline-block max-w-full align-middle"
+		class="absolute bottom-0 left-auto right-0 top-auto inline-block w-[40%] max-w-full align-middle sm:w-auto xl:right-4"
 	/>
 </div>

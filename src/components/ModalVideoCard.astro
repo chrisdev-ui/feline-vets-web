@@ -10,23 +10,18 @@ const { id, title, poster, customStyles } = Astro.props
 <button
 	onclick={`window.${id}.showModal()`}
 	class:list={[
-		"relative flex h-[10.938rem] w-full max-w-[15.625rem] items-end justify-start rounded-[20px] border-[3px] border-solid border-secondary bg-transparent p-7.5",
+		"relative flex h-[10.938rem] w-full max-w-[290px] items-end justify-start rounded-[20px] border-[3px] border-solid border-secondary bg-transparent p-7.5 sm:max-w-[15.625rem]",
 		customStyles?.[0],
 	]}
 	aria-label="Abrir Vídeo"
 >
 	<div
-		class="flex h-full w-full max-w-[6.25rem] flex-col items-start justify-center gap-y-4 text-left"
+		class="flex h-full w-1/2 max-w-[6.25rem] flex-col items-start justify-center gap-y-3.5 text-left sm:w-full sm:gap-y-4"
 	>
-		<h5
-			class:list={[
-				"z-10 font-title text-xl font-black text-tertiary md:text-2xl",
-				customStyles?.[2],
-			]}
-		>
+		<h5 class:list={["z-10 font-title text-xl font-black md:text-2xl", customStyles?.[2]]}>
 			{title}
 		</h5>
-		<Play class:list={[customStyles?.[1]]} />
+		<Play class:list={["h-10 w-10 sm:h-12 sm:w-12", [customStyles?.[1]]]} />
 	</div>
 	<img
 		src={poster}

@@ -1,7 +1,7 @@
 ---
 import PhoneIcon from "@/icons/PhoneIcon.astro"
 
-type PhoneLinkVariant = "hero" | "service" | "care"
+type PhoneLinkVariant = "hero" | "service" | "care" | "faq"
 
 interface Props {
 	phone: string
@@ -24,6 +24,7 @@ const formatPhone = (phoneNumber: string) => {
 			"-order-1 justify-center sm:order-none sm:justify-normal": variant === "service",
 			"-order-1 justify-center md:order-none lg:-order-1 xl:order-none xl:justify-normal":
 				variant === "care",
+			"sm:gap-2.5": variant === "faq",
 		},
 	]}
 >
@@ -32,7 +33,8 @@ const formatPhone = (phoneNumber: string) => {
 			"inline-block h-10 w-10 max-w-full align-middle",
 			{
 				"text-primary": variant === "hero",
-				"text-tertiary-light": variant === "service" || variant === "care",
+				"text-tertiary-light": variant === "service" || variant === "care" || variant === "faq",
+				"hidden h-9 w-9 sm:inline-block": variant === "faq",
 			},
 		]}
 	/>
@@ -42,6 +44,7 @@ const formatPhone = (phoneNumber: string) => {
 			{
 				"text-base xs:text-xl lg:text-3xl": variant === "hero",
 				"text-base xs:text-lg lg:text-2xl": variant === "service" || variant === "care",
+				"text-sm xs:text-base lg:text-xl": variant === "faq",
 			},
 		]}
 	>

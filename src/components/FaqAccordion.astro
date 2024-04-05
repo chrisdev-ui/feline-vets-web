@@ -1,0 +1,88 @@
+---
+import HorizontalDivider from "@/components/HorizontalDivider.astro"
+import HorizontalLine from "@/icons/HorizontalLine.astro"
+import VerticalLine from "@/icons/VerticalLine.astro"
+import type { FaqItem } from "@/sections/Faq.astro"
+
+interface Props {
+	faqs: FaqItem[]
+}
+
+const { faqs } = Astro.props
+---
+
+<div
+	class="-order-1 mt-0 flex max-w-none flex-col gap-y-7.5 lg:order-none lg:mt-7.5 lg:max-w-[680px]"
+>
+	{
+		faqs.map(({ question, answer }) => (
+			<>
+				<div class="accordion-block cursor-pointer p-0">
+					<div class="accordion-row flex items-center justify-between gap-x-2.5 pb-0 text-left transition-colors duration-300 animate-ease">
+						<h6 class="my-0 font-title text-xl font-bold md:text-2xl">{question}</h6>
+						<div class="relative flex h-[13px] w-[13px] flex-none items-center justify-center">
+							<div
+								style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);transform-style: preserve-3d;opacity: 1;"
+								class="horizontal-line absolute -mt-[1.5px] flex items-center justify-center transition-transform duration-200 ease-linear"
+							>
+								<HorizontalLine />
+							</div>
+							<div
+								style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);transform-style: preserve-3d;"
+								class="vertical-line absolute left-1 flex items-center justify-center transition-transform duration-200 ease-linear"
+							>
+								<VerticalLine />
+							</div>
+						</div>
+					</div>
+					<div
+						class="accordion-para-wrapper overflow-hidden pr-5 text-left lg:pr-3.5"
+						style="width: 100%; height:0px; will-change: auto; transition: height 0.3s ease;"
+					>
+						<div class="h-2 w-full md:h-1.5" />
+						<p class="text-base font-normal leading-7 text-neutral-700">{answer}</p>
+					</div>
+				</div>
+				<HorizontalDivider />
+			</>
+		))
+	}
+</div>
+
+<script>
+	import { $$ } from "@/lib/dom-selector"
+
+	const accordionBlocks = Array.from($$(".accordion-block")) as HTMLElement[]
+
+	accordionBlocks.forEach((accordionBlock) => {
+		const accordionRow = accordionBlock.querySelector(".accordion-row") as HTMLElement
+		const accordionParaWrapper = accordionBlock.querySelector(
+			".accordion-para-wrapper"
+		) as HTMLElement
+		const horizontalLine = accordionRow.querySelector(".horizontal-line") as HTMLElement
+		const verticalLine = accordionRow.querySelector(".vertical-line") as HTMLElement
+
+		accordionBlock.addEventListener("click", () => {
+			const isExpanded = accordionParaWrapper.style.height === "0px"
+
+			accordionRow.style.willChange = "color"
+			accordionRow.style.color = isExpanded ? "rgb(160, 106, 255)" : ""
+
+			horizontalLine.style.willChange = "transform opacity"
+			horizontalLine.style.transform = isExpanded
+				? "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-90deg) skew(0deg, 0deg)"
+				: "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
+			horizontalLine.style.opacity = isExpanded ? "0" : "1"
+
+			verticalLine.style.willChange = "transform"
+			verticalLine.style.transform = isExpanded
+				? "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-90deg) skew(0deg, 0deg)"
+				: "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)"
+
+			accordionParaWrapper.style.willChange = isExpanded ? "height" : "auto"
+			accordionParaWrapper.style.height = isExpanded
+				? `${accordionParaWrapper.scrollHeight}px`
+				: "0px"
+		})
+	})
+</script>

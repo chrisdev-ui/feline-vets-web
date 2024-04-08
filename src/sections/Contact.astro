@@ -1,0 +1,101 @@
+---
+import ContactForm from "@/components/ContactForm.astro"
+import Jumplink from "@/components/Jumplink.astro"
+import MainContainer from "@/components/MainContainer.astro"
+import { formatPhone } from "@/components/PhoneLink.astro"
+import Tag from "@/components/Tag.astro"
+import Calendar from "@/icons/Calendar.astro"
+import FeatureDecorative from "@/icons/FeatureDecorative.astro"
+import Location from "@/icons/Location.astro"
+import Mail from "@/icons/Mail.astro"
+import Phone from "@/icons/Phone.astro"
+
+interface ContactData {
+	city: string
+	phone: string
+	email: string
+	schedule: string
+}
+
+const contactData: ContactData = {
+	city: "Medellín, Colombia",
+	phone: "9999999999",
+	email: "email@yourdomain.com",
+	schedule: "Lunes a Sábado de 8am a 5pm",
+}
+---
+
+<section class="relative block w-full overflow-hidden bg-tertiary-light pt-20 md:pt-24 lg:pt-36">
+	<MainContainer>
+		<div class="flex flex-col gap-y-11 md:gap-y-20">
+			<div
+				class="relative z-1 flex flex-col items-center justify-center gap-y-4 text-center lg:gap-y-7.5"
+			>
+				<Tag text="¡Conéctate con nosotros!" />
+				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+					Rellena nuestro formulario de contacto
+				</h2>
+			</div>
+			<div
+				class="relative flex flex-col items-center justify-center gap-x-0 gap-y-16 pb-[70%] sm:items-start sm:pb-[6.25rem] lg:flex-row lg:gap-x-[8.375rem] lg:gap-y-0 lg:pb-36"
+			>
+				<div
+					class="relative z-1 order-1 flex w-full flex-col items-start justify-center gap-y-8 pt-11 sm:w-auto lg:order-none"
+				>
+					<h4 class="font-title text-xl font-black md:text-2xl">Conéctate con nosotros</h4>
+					<div class="flex max-w-[288px] flex-col gap-y-5">
+						<div class="flex items-center gap-x-5">
+							<Location class="mt-2 h-7 w-7 text-tertiary" />
+							<p class="text-xl font-semibold leading-8 text-neutral-700">
+								{contactData.city}
+							</p>
+						</div>
+						<a href={`tel:+57${contactData.phone}`} class="flex items-center gap-x-5">
+							<Phone class="mt-2 h-7 w-7 text-tertiary" />
+							<p class="text-xl font-semibold leading-8 text-neutral-700">
+								{formatPhone(contactData.phone)}
+							</p>
+						</a>
+						<a href={`mailto:${contactData.email}`} class="flex items-center gap-x-5">
+							<Mail class="mt-2 h-7 w-7 text-tertiary" />
+							<p class="text-xl font-semibold leading-8 text-neutral-700">
+								{contactData.email}
+							</p>
+						</a>
+						<div class="flex items-center gap-x-5">
+							<Calendar class="mt-2 h-7 w-7 text-tertiary" />
+							<p class="text-xl font-semibold leading-8 text-neutral-700">
+								{contactData.schedule}
+							</p>
+						</div>
+					</div>
+					<FeatureDecorative
+						class:list={"absolute -top-5 bottom-auto left-auto right-0 -z-1 w-14 text-tertiary md:w-20"}
+					/>
+				</div>
+				<div
+					class="mb-0 w-full max-w-[735px] rounded-[30px] border-[3px] border-solid border-secondary bg-bg-primary px-7.5 py-12 shadow-faq sm:px-14 sm:py-16"
+				>
+					<ContactForm />
+				</div>
+				<img
+					src="/img/contact/contact-image.webp"
+					loading="lazy"
+					sizes="(max-width: 479px) 100vw, (max-width: 767px) 54vw, (max-width: 991px) 46vw, 38vw"
+					srcset="/img/contact/contact-image_500.webp 500w, /img/contact/contact-image_800.webp 800w, /img/contact/contact-image_1080.webp 1080w, /img/contact/contact-image.webp 1277w"
+					alt="Imagen del formulario de contacto"
+					class="contact-img absolute bottom-0 left-auto right-auto top-auto mx-auto inline-block w-full max-w-[90%] align-middle [transform-style:_preserve-3d] sm:right-0 sm:-mr-[50px] sm:ml-0 sm:max-w-[60%] lg:left-0 lg:right-auto lg:-ml-[50px] lg:mr-0 lg:max-w-[40%]"
+				/>
+			</div>
+		</div>
+	</MainContainer>
+	<Jumplink id="Contact" />
+</section>
+
+<style>
+	@media screen and (max-width: 1024px) {
+		.contact-img {
+			transform: rotateX(0) rotateY(180deg) rotateZ(0);
+		}
+	}
+</style>

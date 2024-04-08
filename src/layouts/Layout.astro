@@ -4,6 +4,7 @@ import { ViewTransitions } from "astro:transitions"
 import Header from "@/components/Header.astro"
 import type { Preload } from "@/components/SEO.astro"
 import SEO from "@/components/SEO.astro"
+import Toast from "@/components/ui/Toast.astro"
 
 // Overpass
 import "@fontsource-variable/overpass"
@@ -58,6 +59,7 @@ const { title, description, preload, canonical, image } = Astro.props
 		<!-- Footer -->
 		<!-- KonamiCode -->
 		<!-- ButtonUp -->
+		<Toast />
 		<style is:global>
 			:root {
 				--color-primary: 183 55% 92%;
@@ -70,6 +72,7 @@ const { title, description, preload, canonical, image } = Astro.props
 
 				--background-color: hsl(var(--color-bg-primary) / 1);
 				--text-color: hsl(var(--color-secondary) / 1);
+				--checkbox-color: hsl(var(--color-tertiary) / 1);
 
 				--height-initial-navbar: 160px;
 				--height-final-navbar: 130px;

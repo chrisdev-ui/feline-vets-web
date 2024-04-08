@@ -68,6 +68,7 @@ module.exports = {
 				"astro/prefer-class-list-directive": "warn",
 				"astro/semi": ["warn", "never"],
 				"astro/jsx-a11y/anchor-is-valid": "warn",
+				"astro/jsx-a11y/label-has-associated-control": "off",
 				"@stylistic/ts/indent": "off",
 			},
 		},

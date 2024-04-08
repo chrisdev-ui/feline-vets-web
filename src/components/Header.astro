@@ -131,7 +131,7 @@ const pages: Page[] = [
 		lastScrollTop = st <= 0 ? 0 : st
 	}
 
-	document.addEventListener("DOMContentLoaded", () => {
+	document.addEventListener("astro:page-load", () => {
 		const mobileMenuButton = document.querySelector(".w-nav-button") as Element
 		const overlay = document.getElementById("mobile-menu-overlay") as HTMLElement
 		const navbarOverlayWrapper = document.getElementById("w-nav-overlay-0") as HTMLElement

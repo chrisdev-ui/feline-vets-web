@@ -10,7 +10,7 @@ interface Props {
 
 const { phone, variant } = Astro.props
 
-const formatPhone = (phoneNumber: string) => {
+export const formatPhone = (phoneNumber: string) => {
 	const formatted = phoneNumber.replace(/\s/g, "")
 	return `(+57) ${formatted.slice(0, 3)} ${formatted.slice(3, 6)} ${formatted.slice(6)}`
 }

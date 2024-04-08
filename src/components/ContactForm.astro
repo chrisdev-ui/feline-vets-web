@@ -1,0 +1,182 @@
+---
+import sendgridMail from "@sendgrid/mail"
+
+import { htmlGenerator, textGenerator } from "@/components/emails/template"
+import Checkbox from "@/components/ui/Checkbox.astro"
+import Input from "@/components/ui/Input.astro"
+import type { Option } from "@/components/ui/Select.astro"
+import Select from "@/components/ui/Select.astro"
+
+const options: Record<string, string> = {
+	check: "Consulta",
+	petcare: "Guardería",
+	exams: "Exámenes",
+	other: "Otros",
+}
+
+const choices: Option[] = Object.entries(options).map(([key, value]) => ({
+	value: key,
+	label: value,
+}))
+
+sendgridMail.setApiKey(import.meta.env.SENDGRID_API_KEY)
+
+const formSubmittedResponse = {
+	success: false,
+	error: false,
+}
+
+if (Astro.request.method === "POST") {
+	try {
+		const formData = await Astro.request.formData()
+		const username = formData.get("username") as string
+		const email = formData.get("email") as string
+		const phone = formData.get("phone") as string
+		const serviceKey = formData.get("service") as string
+		const service = options[serviceKey] ?? "No se ha especificado un servicio"
+		const catName = formData.get("petname") as string
+		const catAge = formData.get("petage") as string
+		const message = formData.get("message") as string
+		const needVideoCall = Boolean(formData.get("checkbox"))
+
+		if (!username || !email || !phone) {
+			formSubmittedResponse.error = true
+			return
+		}
+
+		const msg: sendgridMail.MailDataRequired | sendgridMail.MailDataRequired[] = {
+			from: {
+				name: "Contacto",
+				email: "web.christian.dev@gmail.com",
+			},
+			to: ["felinevetsco@gmail.com", "web.christian.dev@gmail.com"],
+			subject: "¡Nueva consulta desde el formulario de contacto!",
+			html: htmlGenerator({
+				username,
+				email,
+				phone,
+				service,
+				catName,
+				catAge,
+				message,
+				videoCall: needVideoCall,
+			}),
+			text: textGenerator({
+				username,
+				email,
+				phone,
+				service,
+				catName,
+				catAge,
+				message,
+				videoCall: needVideoCall,
+			}),
+		}
+
+		await sendgridMail.send(msg)
+
+		formSubmittedResponse.success = true
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error(error.message)
+			formSubmittedResponse.error = true
+		}
+	}
+}
+---
+
+<form
+	method="POST"
+	class="contact flex flex-col gap-y-3.5 md:gap-y-5"
+	aria-label="Formulario de contacto"
+>
+	<div class="flex flex-col gap-x-0 gap-y-3.5 md:gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
+		<Input
+			type="text"
+			maxlength="256"
+			minlength="1"
+			name="username"
+			id="username"
+			placeholder="Tu nombre"
+			required
+			oninvalid="this.setCustomValidity('Por favor, escribe tu nombre')"
+			oninput="this.setCustomValidity('')"
+		/>
+		<Input
+			type="email"
+			maxlength="256"
+			minlength="1"
+			name="email"
+			id="email"
+			placeholder="Correo electrónico"
+			required
+			oninvalid="this.setCustomValidity('Por favor, escribe tu correo electrónico')"
+			oninput="this.setCustomValidity('')"
+		/>
+	</div>
+	<div class="flex flex-col gap-x-0 gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
+		<Input
+			type="tel"
+			minlength="7"
+			maxlength="15"
+			name="phone"
+			id="phone"
+			placeholder="Teléfono"
+			required
+			oninvalid="this.setCustomValidity('Por favor, escribe tu número de teléfono')"
+			oninput="this.setCustomValidity('')"
+		/>
+		<Select options={choices} id="service" name="service" placeholder="¿Qué servicio necesitas?" />
+	</div>
+	<div class="flex flex-col gap-x-0 gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
+		<Input
+			type="text"
+			maxlength="256"
+			name="petname"
+			id="petname"
+			placeholder="Nombre de tu gato"
+		/>
+		<Input type="text" maxlength="256" name="petage" id="petage" placeholder="Edad de tu gato" />
+	</div>
+	<div class="flex flex-col gap-x-0 gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
+		<textarea
+			class="my-0 h-auto min-h-48 w-full rounded-[14px] border-[1.5px] border-solid border-secondary bg-transparent px-3.5 py-2.5 text-base font-semibold transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus:border-tertiary focus:outline-0 disabled:cursor-not-allowed disabled:opacity-50 sm:px-6 md:text-lg md:leading-8"
+			name="message"
+			id="message"
+			maxlength="5000"
+			placeholder="Mensaje"
+			required></textarea>
+	</div>
+	<div
+		class="mt-0 flex flex-col items-stretch justify-center gap-y-6 md:mt-5 md:flex-row md:items-center md:justify-between"
+	>
+		<div class="flex items-center justify-center gap-x-3.5 md:justify-start">
+			<Checkbox id="checkbox" name="checkbox" />
+			<span class="text-base font-normal leading-7 text-neutral-700">Hacer una videollamada</span>
+		</div>
+		<input
+			type="submit"
+			class="inline-block cursor-pointer rounded-[10px] border-0 bg-tertiary px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:bg-secondary hover:[outline:0]"
+			value="Agendar una cita"
+		/>
+	</div>
+</form>
+<script is:inline define:vars={{ formSubmittedResponse }}>
+	if (formSubmittedResponse.success) {
+		window.toast({
+			title: "¡Gracias por tu mensaje!",
+			location: "bottom-center",
+			dismissible: false,
+			type: "success",
+			icon: true,
+		})
+	} else if (formSubmittedResponse.error) {
+		window.toast({
+			title: "¡Hubo un error al enviar tu mensaje!",
+			location: "bottom-center",
+			dismissible: false,
+			type: "error",
+			icon: true,
+		})
+	}
+</script>

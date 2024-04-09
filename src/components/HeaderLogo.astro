@@ -24,7 +24,13 @@ const {
 } = Astro.props
 ---
 
-<a href={href} aria-label={ariaLabel} aria-current={ariaCurrent} class:list={[anchorClassNames]}>
+<a
+	data-astro-reload
+	href={href}
+	aria-label={ariaLabel}
+	aria-current={ariaCurrent}
+	class:list={[anchorClassNames]}
+>
 	<Logo class:list={["h-20 w-auto", logoClassNames]} />
 	<span
 		class:list={[

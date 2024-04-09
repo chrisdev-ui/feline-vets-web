@@ -3,7 +3,7 @@ import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import Point from "@/components/Point.astro"
 import PointBlock from "@/components/PointBlock.astro"
-import PrimaryButton from "@/components/PrimaryButton.astro"
+import Button from "@/components/ui/Button.astro"
 import CareDecorative from "@/icons/CareDecorative.astro"
 
 export interface PointProps {
@@ -76,10 +76,24 @@ const blocks: Array<PointProps[]> = [firstBlock, secondBlock]
 				<div
 					class="flex flex-col items-center gap-x-12 md:flex-row md:justify-normal md:gap-y-10 lg:flex-col xl:flex-row xl:gap-y-0"
 				>
-					<PrimaryButton href="#Services" variant="tertiary">Agenda ahora</PrimaryButton>
+					<Button class="care-button" data-id="#Contact" variant="tertiary">Agenda ahora</Button>
 					<PhoneLink variant="care" phone="9999999999" />
 				</div>
 			</div>
 		</div>
 	</MainContainer>
 </section>
+
+<script>
+	import { $ } from "@/lib/dom-selector"
+
+	const $careButton = $(".care-button")
+
+	$careButton.addEventListener("click", () => {
+		const { id } = $careButton.dataset
+		const $target = $(id ?? "#Contact")
+		if ($target) {
+			$target.scrollIntoView({ behavior: "smooth" })
+		}
+	})
+</script>

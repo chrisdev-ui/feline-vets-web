@@ -63,15 +63,16 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 										firstColum.map((section, index) =>
 											index !== 0 ? (
 												<a
-													class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+													class="footer-link inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
 													href={section.href}
 												>
 													{section.name}
 												</a>
 											) : (
 												<a
-													class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+													class="footer-link inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
 													href={section.href}
+													data-astro-reload
 													aria-current="page"
 												>
 													{section.name}
@@ -84,7 +85,7 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 									{
 										secondColum.map((section) => (
 											<a
-												class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+												class="footer-link inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
 												href={section.href}
 											>
 												{section.name}

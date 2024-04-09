@@ -34,12 +34,12 @@ const { pages } = Astro.props
 			<div class="flex w-full flex-col items-start justify-start gap-y-5">
 				{
 					pages.map(({ name, href }, key) => (
-						<NavigationLink href={href} name={name} id={`mobile-navigation-link-${key}`} />
+						<NavigationLink href={href} name={name} id={`mobile-navigation-link-${key}`} isMobile />
 					))
 				}
 			</div>
 			<div class="flex items-center gap-x-5">
-				<PrimaryButton href="#contact"> Agenda una cita </PrimaryButton>
+				<PrimaryButton href="#Contact"> Agenda una cita </PrimaryButton>
 			</div>
 		</div>
 	</nav>

@@ -3,15 +3,14 @@ import type { HTMLAttributes } from "astro/types"
 
 type ButtonType = "primary" | "secondary" | "tertiary"
 
-interface Props extends HTMLAttributes<"a"> {
+interface Props extends HTMLAttributes<"button"> {
 	variant?: ButtonType
 }
 
-const { href, variant = "primary", class: classes } = Astro.props
+const { class: classes, variant = "primary", ...attrs } = Astro.props
 ---
 
-<a
-	href={href}
+<button
 	class:list={[
 		"inline-block cursor-pointer rounded-[10px] border-0 px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:[outline:0]",
 		{
@@ -21,6 +20,7 @@ const { href, variant = "primary", class: classes } = Astro.props
 		},
 		classes,
 	]}
+	{...attrs}
 >
 	<slot />
-</a>
+</button>

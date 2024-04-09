@@ -7,11 +7,5 @@ interface Props {
 const { id, className } = Astro.props
 ---
 
-<div
-	id={id}
-	class:list={[
-		"absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full [transform:_translate(0,_-60px)] md:[transform:_translate(0,_-80px)]",
-		className,
-	]}
->
+<div id={id} class:list={["absolute bottom-0 left-0 right-0 top-0 -z-1 h-full w-full", className]}>
 </div>

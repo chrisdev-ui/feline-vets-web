@@ -1,5 +1,4 @@
 ---
-import OutlineButton from "@/components/OutlineButton.astro"
 import Point from "@/icons/Point.astro"
 import type { PricingCard } from "@/sections/Pricing.astro"
 
@@ -60,7 +59,10 @@ const formatPrice = (price: number) => {
 		}
 	</div>
 	<div class="mt-7.5 sm:mt-11">
-		<OutlineButton href="#Contact">Contáctanos</OutlineButton>
+		<button
+			class="pricing-button inline-block rounded-[14px] border-[3px] border-solid border-secondary bg-transparent px-6 py-2.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] transition-all duration-300 ease-in-out hover:bg-secondary hover:text-bg-primary hover:[outline:0]"
+			data-id="#Contact">Contáctanos</button
+		>
 	</div>
 	<img
 		src={img}
@@ -69,3 +71,19 @@ const formatPrice = (price: number) => {
 		class="absolute bottom-0 left-auto right-0 top-auto inline-block w-[40%] max-w-full align-middle sm:w-auto xl:right-4"
 	/>
 </div>
+
+<script>
+	import { $, $$ } from "@/lib/dom-selector"
+
+	const $pricingButtons = $$(".pricing-button") as NodeListOf<HTMLButtonElement>
+
+	$pricingButtons.forEach((button) => {
+		button.addEventListener("click", () => {
+			const { id } = button.dataset
+			const $target = $(id ?? "#Contact")
+			if ($target) {
+				$target.scrollIntoView({ behavior: "smooth" })
+			}
+		})
+	})
+</script>

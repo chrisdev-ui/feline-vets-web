@@ -1,0 +1,23 @@
+---
+import Input from "@/components/ui/Input.astro"
+---
+
+<form class="flex flex-col items-stretch gap-y-3.5 sm:items-start md:gap-y-5">
+	<Input
+		type="email"
+		maxlength="256"
+		minlength="1"
+		name="newsletter"
+		id="newsletter"
+		placeholder="Correo electrónico"
+		required
+		oninvalid="this.setCustomValidity('Por favor, escribe tu correo electrónico')"
+		oninput="this.setCustomValidity('')"
+		variant="newsletter"
+	/>
+	<input
+		type="submit"
+		class="inline-block cursor-pointer rounded-[10px] border-0 bg-secondary px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-bg-primary transition-all duration-300 ease-in-out hover:bg-secondary/60 hover:[outline:0]"
+		value="Suscribirme"
+	/>
+</form>

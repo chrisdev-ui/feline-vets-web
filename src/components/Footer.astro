@@ -1,0 +1,175 @@
+---
+import MainContainer from "@/components/MainContainer.astro"
+import NewsletterForm from "@/components/NewsletterForm.astro"
+import FooterFacebook from "@/icons/FooterFacebook.astro"
+import FooterInstagram from "@/icons/FooterInstagram.astro"
+import FooterTiktok from "@/icons/FooterTiktok.astro"
+import FooterTwitter from "@/icons/FooterTwitter.astro"
+import FooterYoutube from "@/icons/FooterYoutube.astro"
+
+type SocialName = "Facebook" | "Twitter" | "Instagram" | "Youtube" | "Tiktok"
+
+interface Sections {
+	ariaCurrent?: string
+	href: string
+	name: string
+}
+
+interface Social {
+	href: string
+	name: SocialName
+}
+
+const socials: Social[] = [
+	{ href: "#", name: "Facebook" },
+	{ href: "#", name: "Instagram" },
+	{ href: "#", name: "Tiktok" },
+	{ href: "#", name: "Youtube" },
+]
+
+const allSection: Sections[] = [
+	{ href: "/", name: "Inicio" },
+	{ href: "#About-us", name: "Nosotros" },
+	{ href: "#Services", name: "Servicios" },
+	{ href: "#Testimonial", name: "Testimonios" },
+	{ href: "#Our-Team", name: "Equipo" },
+	{ href: "#Pricing", name: "Planes" },
+	{ href: "#Contact", name: "Contacto" },
+]
+
+const firstColum: Sections[] = allSection.slice(0, 4)
+const secondColum: Sections[] = allSection.slice(4, 7)
+---
+
+<footer
+	class="block bg-[url(/img/footer/footer.svg)] bg-cover bg-[30%] bg-no-repeat pb-11 pt-24 lg:bg-[50%] lg:pt-28"
+>
+	<MainContainer>
+		<div class="mx-auto w-full max-w-none">
+			<div
+				class="flex w-full flex-col flex-wrap items-start justify-start gap-y-11 text-bg-primary sm:flex-row sm:items-stretch lg:flex-nowrap lg:items-start lg:justify-between lg:gap-y-0"
+			>
+				<div
+					class="flex w-full flex-col items-start justify-start gap-y-7 md:w-[45%] md:gap-y-6 lg:w-auto"
+				>
+					<div class="flex w-full flex-wrap gap-x-8 gap-y-4 sm:flex-nowrap sm:gap-y-0">
+						<div class="flex w-full max-w-[375px] flex-col gap-x-0">
+							<div class="mb-3.5 md:mb-6">
+								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">Accesos directos</h6>
+							</div>
+							<div class="flex flex-wrap gap-x-[70px] sm:flex-nowrap">
+								<div class="flex flex-col">
+									{
+										firstColum.map((section, index) =>
+											index !== 0 ? (
+												<a
+													class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+													href={section.href}
+												>
+													{section.name}
+												</a>
+											) : (
+												<a
+													class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+													href={section.href}
+													aria-current="page"
+												>
+													{section.name}
+												</a>
+											)
+										)
+									}
+								</div>
+								<div class="flex flex-col">
+									{
+										secondColum.map((section) => (
+											<a
+												class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+												href={section.href}
+											>
+												{section.name}
+											</a>
+										))
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="flex w-full max-w-[375px] flex-col items-start justify-start gap-y-7 md:gap-y-6"
+				>
+					<div class="flex w-full flex-wrap gap-x-8 gap-y-4 sm:flex-nowrap sm:gap-y-0">
+						<div class="flex w-full max-w-[375px] flex-col gap-x-0">
+							<div class="mb-3.5 md:mb-6">
+								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">
+									Suscríbete a nuestro boletín
+								</h6>
+							</div>
+							<div class="mx-0 mb-0 mt-3">
+								<NewsletterForm />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="flex w-full flex-col items-start justify-start gap-y-7 md:w-[45%] md:gap-y-6 lg:w-auto"
+				>
+					<div class="flex w-full flex-wrap gap-x-8 gap-y-4 sm:flex-nowrap sm:gap-y-0">
+						<div class="flex flex-col gap-x-0 gap-y-5">
+							<div class="mb-3.5 md:mb-6">
+								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">Redes sociales</h6>
+							</div>
+							<div class="flex gap-x-5">
+								{
+									socials.map((social) => (
+										<a
+											href={social.href}
+											target="_blank"
+											class="flex max-w-full flex-col items-center justify-center text-bg-primary hover:text-secondary"
+										>
+											<div class="flex h-5 w-5 items-center justify-center">
+												{social.name === "Facebook" && <FooterFacebook />}
+												{social.name === "Instagram" && <FooterInstagram />}
+												{social.name === "Twitter" && <FooterTwitter />}
+												{social.name === "Tiktok" && <FooterTiktok />}
+												{social.name === "Youtube" && <FooterYoutube />}
+											</div>
+										</a>
+									))
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mb-12 mt-12 h-px w-full bg-bg-primary/60 lg:mb-7.5"></div>
+			<div
+				class="flex flex-col items-start justify-start gap-y-3.5 text-bg-primary md:justify-between lg:flex-row lg:items-center lg:gap-y-0"
+			>
+				<div class="flex items-center">
+					<img
+						src="/favicon.svg"
+						loading="lazy"
+						alt="Logo de pie de página"
+						class="inline-block h-12 w-fit max-w-full align-middle"
+					/>
+					<span class="font-title text-lg font-black text-secondary">Feline Vets</span>
+				</div>
+				<div class="inline-block text-base font-normal leading-9 text-bg-primary">
+					Copyright © Feline Vets. Todos los derechos reservados.
+				</div>
+				<div class="flex flex-wrap gap-x-5 sm:flex-nowrap">
+					<a
+						href="https://github.com/chrisdev-ui"
+						target="_blank"
+						class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:text-secondary"
+					>
+						Desarrollado por @chrisdev-ui
+						<br />
+					</a>
+				</div>
+			</div>
+		</div>
+	</MainContainer>
+</footer>

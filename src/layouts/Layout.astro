@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions"
 
+import Footer from "@/components/Footer.astro"
 import Header from "@/components/Header.astro"
 import type { Preload } from "@/components/SEO.astro"
 import SEO from "@/components/SEO.astro"
@@ -56,7 +57,7 @@ const { title, description, preload, canonical, image } = Astro.props
 		<!-- NoiseBackground or LightsBackground -->
 		<Header />
 		<slot />
-		<!-- Footer -->
+		<Footer />
 		<!-- KonamiCode -->
 		<!-- ButtonUp -->
 		<Toast />

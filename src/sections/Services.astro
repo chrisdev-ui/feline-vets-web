@@ -2,9 +2,9 @@
 import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
+import PrimaryButton from "@/components/PrimaryButton.astro"
 import ServiceCard from "@/components/ServiceCard.astro"
 import Tag from "@/components/Tag.astro"
-import Button from "@/components/ui/Button.astro"
 import ServicesDecorative from "@/icons/ServicesDecorative.astro"
 
 export interface Service {
@@ -75,24 +75,10 @@ const services: Service[] = [
 			<div
 				class="flex flex-wrap items-center justify-center gap-x-0 gap-y-5 md:flex-nowrap md:justify-start md:gap-x-12"
 			>
-				<Button class="service-button" data-id="#Contact" variant="secondary">Agenda ahora</Button>
+				<PrimaryButton href="#Contact" variant="secondary">Agenda ahora</PrimaryButton>
 				<PhoneLink variant="service" phone="9999999999" />
 			</div>
 		</div>
 	</MainContainer>
 	<Jumplink id="Services" />
 </section>
-
-<script>
-	import { $ } from "@/lib/dom-selector"
-
-	const $serviceButton = $(".service-button")
-
-	$serviceButton.addEventListener("click", () => {
-		const { id } = $serviceButton.dataset
-		const $target = $(id ?? "#Contact")
-		if ($target) {
-			$target.scrollIntoView({ behavior: "smooth" })
-		}
-	})
-</script>

@@ -53,13 +53,13 @@ const pages: Page[] = [
 									href={href}
 									name={name}
 									id={`navigation-link-${key}`}
-									className="mx-auto"
+									className="nav-link mx-auto"
 								/>
 							))
 						}
 					</div>
 					<div class="flex items-center gap-x-5">
-						<PrimaryButton href="#Contact"> Agenda una cita </PrimaryButton>
+						<PrimaryButton class="nav-link" href="#Contact"> Agenda una cita </PrimaryButton>
 					</div>
 				</div>
 			</nav>
@@ -87,7 +87,7 @@ const pages: Page[] = [
 		transition: opacity 0.5s ease;
 	}
 </style>
-<script>
+<script is:inline data-astro-rerun>
 	let lastScrollTop = 0
 	const minNavbarHeight = 130
 	const maxNavbarHeight = 160
@@ -95,7 +95,7 @@ const pages: Page[] = [
 	function handleScroll() {
 		const navbar = document.getElementById("navbar")
 		const shadowNav = document.getElementById("shadow-nav")
-		const initialNavbarHeight = navbar?.offsetHeight as number
+		const initialNavbarHeight = navbar?.offsetHeight
 
 		const st = document.body.scrollTop || document.documentElement.scrollTop
 
@@ -132,10 +132,10 @@ const pages: Page[] = [
 	}
 
 	document.addEventListener("astro:page-load", () => {
-		const mobileMenuButton = document.querySelector(".w-nav-button") as Element
-		const overlay = document.getElementById("mobile-menu-overlay") as HTMLElement
-		const navbarOverlayWrapper = document.getElementById("w-nav-overlay-0") as HTMLElement
-		const navbarOverlayInner = document.getElementById("w-nav-inner-0") as HTMLElement
+		const mobileMenuButton = document.querySelector(".w-nav-button")
+		const overlay = document.getElementById("mobile-menu-overlay")
+		const navbarOverlayWrapper = document.getElementById("w-nav-overlay-0")
+		const navbarOverlayInner = document.getElementById("w-nav-inner-0")
 		document.body.addEventListener("scroll", handleScroll)
 		mobileMenuButton.addEventListener("click", () => {
 			if (overlay.style.display === "none") {
@@ -175,5 +175,29 @@ const pages: Page[] = [
 
 	window.addEventListener("unload", () => {
 		document.body.removeEventListener("scroll", handleScroll)
+	})
+</script>
+
+<script>
+	import { $$ } from "@/lib/dom-selector"
+
+	document.addEventListener("astro:page-load", () => {
+		const isRootPage = window.location.pathname === "/"
+		const $navlinks = $$(".nav-link") as NodeListOf<HTMLAnchorElement>
+		const $footerlinks = $$(".footer-link") as NodeListOf<HTMLAnchorElement>
+
+		$navlinks.forEach(($navlink) => {
+			const href = $navlink.getAttribute("href") as string
+			if (!isRootPage) {
+				$navlink.setAttribute("href", `/#${href.substring(1)}`)
+			}
+		})
+
+		$footerlinks.forEach(($footerlink) => {
+			const href = $footerlink.getAttribute("href") as string
+			if (!isRootPage) {
+				$footerlink.setAttribute("href", `/#${href.substring(1)}`)
+			}
+		})
 	})
 </script>

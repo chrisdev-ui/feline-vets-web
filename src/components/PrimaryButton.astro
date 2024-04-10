@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<"a"> {
 	variant?: ButtonType
 }
 
-const { href, variant = "primary", class: classes } = Astro.props
+const { href, variant = "primary", class: classes, ...attrs } = Astro.props
 ---
 
 <a
@@ -21,6 +21,7 @@ const { href, variant = "primary", class: classes } = Astro.props
 		},
 		classes,
 	]}
+	{...attrs}
 >
 	<slot />
 </a>

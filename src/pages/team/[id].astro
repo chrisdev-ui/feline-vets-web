@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro"
+import Contact from "@/sections/Contact.astro"
 import { teamMembers } from "@/sections/Team.astro"
 import TeamAbout from "@/sections/TeamAbout.astro"
 import TeamHero from "@/sections/TeamHero.astro"
@@ -24,6 +25,7 @@ export const prerender = true
 >
 	<TeamHero {...member} />
 	<main>
-		<TeamAbout />
+		<TeamAbout {...member} />
+		<Contact />
 	</main>
 </Layout>

@@ -2,23 +2,76 @@
 import { slide } from "astro:transitions"
 
 import MainContainer from "@/components/MainContainer.astro"
+import TeamInstagram from "@/icons/TeamInstagram.astro"
+import TeamMail from "@/icons/TeamMail.astro"
+import TeamPhone from "@/icons/TeamPhone.astro"
 import type { TeamMember } from "@/sections/Team.astro"
 
 interface Props extends TeamMember {}
 
-const { name, image, id, role } = Astro.props
+const { name, image, id, role, phone, email, instagram, years } = Astro.props
+
+const phoneUrl = phone ? `tel:+57${phone}` : null
+const emailUrl = email ? `mailto:${email}` : null
+const instagramUrl = instagram ? `https://instagram.com/_u/${instagram}` : null
+
+const showSocialIcons = phoneUrl || emailUrl || instagramUrl
 ---
 
 <section class="block bg-[url(/img/team/hero.svg)] bg-cover bg-[50%_100%] py-40 md:py-48 lg:py-56">
 	<MainContainer>
 		<div class="flex max-w-full items-center justify-center gap-x-32">
 			<div class="flex flex-col items-start justify-start gap-y-2.5">
-				<h1 class="font-title text-5xl font-black leading-10" transition:animate="slide">
+				<h1
+					class="font-title text-4xl font-black leading-10 -tracking-[.0625rem] md:text-6xl"
+					transition:animate="slide"
+				>
 					{name}
 				</h1>
-				<p class="text-xl" transition:animate={slide({ duration: "1s" })}>{role}</p>
+				<div
+					class="flex items-center justify-start gap-x-3"
+					transition:animate={slide({ duration: "1s" })}
+				>
+					<p class="text-xl">{role}</p>
+					{
+						showSocialIcons && (
+							<div class="flex items-center justify-center gap-x-3">
+								{phoneUrl && (
+									<a
+										href={phoneUrl}
+										class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+									>
+										<div class="flex items-center justify-center">
+											<TeamPhone />
+										</div>
+									</a>
+								)}
+								{emailUrl && (
+									<a
+										href={emailUrl}
+										class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+									>
+										<div class="flex items-center justify-center">
+											<TeamMail />
+										</div>
+									</a>
+								)}
+								{instagramUrl && (
+									<a
+										href={instagramUrl}
+										class="inline-block max-w-full text-secondary transition-colors duration-200 ease-in-out hover:animate-tada hover:text-tertiary"
+									>
+										<div class="flex items-center justify-center">
+											<TeamInstagram />
+										</div>
+									</a>
+								)}
+							</div>
+						)
+					}
+				</div>
 			</div>
-			<picture class="vet-photo" transition:name={`team-photo-${id}`}>
+			<picture class="vet-photo relative" transition:name={`team-photo-${id}`}>
 				<img
 					decoding="async"
 					src={image}
@@ -26,7 +79,57 @@ const { name, image, id, role } = Astro.props
 					alt="Miembro del equipo"
 					class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
 				/>
+				<div
+					class="absolute -bottom-10 -left-11 flex h-32 w-32 flex-col items-center justify-center gap-1 rounded-full border-8 border-solid border-bg-primary bg-tertiary text-center"
+					transition:animate={slide({ duration: "1.5s" })}
+				>
+					<span class="text-4xl font-bold text-bg-primary">{years}</span>
+					<span class="text-sm text-bg-primary">años de experiencia</span>
+				</div>
 			</picture>
 		</div>
 	</MainContainer>
 </section>
+
+<style>
+	.vet-photo::after,
+	.vet-photo::before {
+		content: "";
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background-color: hsl(var(--color-tertiary) / 1);
+		opacity: 1;
+		position: absolute;
+		right: 0;
+		bottom: 1.5rem;
+		z-index: 10;
+		animation-name: floatAnimation;
+		animation-duration: 6s;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		animation-iteration-count: infinite;
+	}
+
+	.vet-photo::before {
+		width: 3.5rem;
+		height: 3.5rem;
+		right: auto;
+		bottom: auto;
+		left: 0;
+		top: 1.5rem;
+		z-index: -10;
+	}
+
+	@keyframes floatAnimation {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-2em);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+</style>

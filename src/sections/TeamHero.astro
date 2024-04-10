@@ -1,0 +1,32 @@
+---
+import { slide } from "astro:transitions"
+
+import MainContainer from "@/components/MainContainer.astro"
+import type { TeamMember } from "@/sections/Team.astro"
+
+interface Props extends TeamMember {}
+
+const { name, image, id, role } = Astro.props
+---
+
+<section class="block bg-[url(/img/team/hero.svg)] bg-cover bg-[50%_100%] py-40 md:py-48 lg:py-56">
+	<MainContainer>
+		<div class="flex max-w-full items-center justify-center gap-x-32">
+			<div class="flex flex-col items-start justify-start gap-y-2.5">
+				<h1 class="font-title text-5xl font-black leading-10" transition:animate="slide">
+					{name}
+				</h1>
+				<p class="text-xl" transition:animate={slide({ duration: "1s" })}>{role}</p>
+			</div>
+			<picture class="vet-photo" transition:name={`team-photo-${id}`}>
+				<img
+					decoding="async"
+					src={image}
+					loading="lazy"
+					alt="Miembro del equipo"
+					class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
+				/>
+			</picture>
+		</div>
+	</MainContainer>
+</section>

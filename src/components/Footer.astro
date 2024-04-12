@@ -1,4 +1,5 @@
 ---
+import LanguageSelector from "@/components/LanguageSelector.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import NewsletterForm from "@/components/NewsletterForm.astro"
 import { SOCIALS } from "@/consts/socials"
@@ -144,6 +145,7 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 					</div>
 				</div>
 			</div>
+			<LanguageSelector />
 			<div class="mb-12 mt-12 h-px w-full bg-bg-primary/60 lg:mb-7.5"></div>
 			<div
 				class="flex flex-col items-start justify-start gap-y-3.5 text-bg-primary md:justify-between lg:flex-row lg:items-center lg:gap-y-0"

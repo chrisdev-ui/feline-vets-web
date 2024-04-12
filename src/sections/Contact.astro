@@ -4,6 +4,8 @@ import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import { formatPhone } from "@/components/PhoneLink.astro"
 import Tag from "@/components/Tag.astro"
+import { BASIC_DATA } from "@/consts/basic"
+import { getI18N } from "@/i18n"
 import Calendar from "@/icons/Calendar.astro"
 import FeatureDecorative from "@/icons/FeatureDecorative.astro"
 import Location from "@/icons/Location.astro"
@@ -17,11 +19,14 @@ interface ContactData {
 	schedule: string
 }
 
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
 const contactData: ContactData = {
-	city: "Medellín, Colombia",
-	phone: "9999999999",
-	email: "email@yourdomain.com",
-	schedule: "Lunes a Sábado de 8am a 5pm",
+	city: BASIC_DATA.city,
+	phone: BASIC_DATA.phone,
+	email: BASIC_DATA.email,
+	schedule: i18n.CONTACT.DATA.SCHEDULE,
 }
 ---
 
@@ -31,9 +36,9 @@ const contactData: ContactData = {
 			<div
 				class="relative z-1 flex flex-col items-center justify-center gap-y-4 text-center lg:gap-y-7.5"
 			>
-				<Tag text="¡Conéctate con nosotros!" />
+				<Tag text={i18n.CONTACT.TAG} />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					Rellena nuestro formulario de contacto
+					{i18n.CONTACT.TITLE}
 				</h2>
 			</div>
 			<div
@@ -42,7 +47,7 @@ const contactData: ContactData = {
 				<div
 					class="relative z-1 order-1 flex w-full flex-col items-start justify-center gap-y-8 pt-11 sm:w-auto lg:order-none"
 				>
-					<h4 class="font-title text-xl font-black md:text-2xl">Conéctate con nosotros</h4>
+					<h4 class="font-title text-xl font-black md:text-2xl">{i18n.CONTACT.DATA.TITLE}</h4>
 					<div class="flex max-w-[288px] flex-col gap-y-5">
 						<div class="flex items-center gap-x-5">
 							<Location class="mt-2 h-7 w-7 text-tertiary" />
@@ -83,7 +88,7 @@ const contactData: ContactData = {
 					loading="lazy"
 					sizes="(max-width: 479px) 100vw, (max-width: 767px) 54vw, (max-width: 991px) 46vw, 38vw"
 					srcset="/img/contact/contact-image_500.webp 500w, /img/contact/contact-image_800.webp 800w, /img/contact/contact-image_1080.webp 1080w, /img/contact/contact-image.webp 1277w"
-					alt="Imagen del formulario de contacto"
+					alt={i18n.CONTACT.IMG_ALT}
 					class="contact-img absolute bottom-0 left-auto right-auto top-auto mx-auto inline-block w-full max-w-[90%] align-middle [transform-style:_preserve-3d] sm:right-0 sm:-mr-[50px] sm:ml-0 sm:max-w-[60%] lg:left-0 lg:right-auto lg:-ml-[50px] lg:mr-0 lg:max-w-[40%]"
 				/>
 			</div>

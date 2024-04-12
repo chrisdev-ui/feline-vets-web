@@ -2,6 +2,7 @@
 import { slide } from "astro:transitions"
 
 import MainContainer from "@/components/MainContainer.astro"
+import { getI18N } from "@/i18n"
 import TeamInstagram from "@/icons/TeamInstagram.astro"
 import TeamMail from "@/icons/TeamMail.astro"
 import TeamPhone from "@/icons/TeamPhone.astro"
@@ -9,7 +10,10 @@ import type { TeamMember } from "@/sections/Team.astro"
 
 interface Props extends TeamMember {}
 
-const { name, image, id, role, phone, email, instagram, years } = Astro.props
+const { name, image, id, role, phone, email, instagram, years, imgAlt } = Astro.props
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 
 const phoneUrl = phone ? `tel:+57${phone}` : null
 const emailUrl = email ? `mailto:${email}` : null
@@ -76,7 +80,7 @@ const showSocialIcons = phoneUrl || emailUrl || instagramUrl
 					decoding="async"
 					src={image}
 					loading="lazy"
-					alt="Miembro del equipo"
+					alt={imgAlt}
 					class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
 				/>
 				<div
@@ -84,7 +88,7 @@ const showSocialIcons = phoneUrl || emailUrl || instagramUrl
 					transition:animate={slide({ duration: "1.5s" })}
 				>
 					<span class="text-4xl font-bold text-bg-primary">{years}</span>
-					<span class="text-sm text-bg-primary">años de experiencia</span>
+					<span class="text-sm text-bg-primary">{i18n.TEAM_HERO.EXPERIENCE}</span>
 				</div>
 			</picture>
 		</div>

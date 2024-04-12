@@ -1,0 +1,310 @@
+{
+  "SEO_TITLE": "Feline Vets - Expertas en Medicina Felina | Sitio Cat Friendly",
+  "SEO_DESCRIPTION": "Veterinarias especializadas en medicina felina que brindan atención de la más alta calidad. Este es el lugar cat-friendly donde encontrarás todo lo relacionado con la salud felina. ¡Agenda tu cita hoy mismo!",
+  "SEO": {
+    "TEAM_TITLE": "Felina Vets | Sitio Cat Friendly",
+    "TEAM_DESCRIPTION": "Conoce el perfil profesional de {name} una de nuestras veterinarias especializadas en medicina felina. ¡Descubre cómo cuidamos de la salud de tu gato!"
+  },
+  "HEADER": {
+    "LOGO": "Volver a la página de inicio de Feline Vets",
+    "MOBILE_MENU_ICON": {
+      "LABEL": "Abrir menú de navegación",
+      "ALT": "Ícono para el menú de navegación"
+    }
+  },
+  "HERO": {
+    "TITLE": "Salud y felicidad para tus queridos felinos",
+    "SUBTITLE": "Pasa tiempo de calidad con tu mascota, brindándole afecto, atención y refuerzo positivo.",
+    "BUTTON_TEXT": "Nuestros servicios",
+    "PHONE_LINK_TEXT": "Llámanos"
+  },
+  "ABOUT": {
+    "TAB": "Sobre nosotros",
+    "TITLE": "La historia detrás de este proyecto",
+    "IMG_ALT": "Imagen de la sección sobre nosotros",
+    "PARAGRAPH": "Somos un equipo de Médicas Veterinarias apasionadas por la Medicina Felina, que buscan proporcionar una atención médica adecuada y bienestar a tu gatico en la comodidad de sus hogares, brindado un ambiente tranquilo y familiar para cada consulta. Con nuestra amplia experiencia y dedicación, nos comprometemos a cuidar de la salud de tu querido felino.",
+    "MESSAGE": "Brindando nuestros servicios en Medellín desde 2024",
+    "TINY_PHOTO_ALT": "Foto de perfil de uno de nuestros clientes"
+  },
+  "SERVICES": {
+    "TAG": "Nuestros servicios",
+    "TITLE": "Nuestra solución integral para el cuidado premium de mascotas",
+    "BUTTON_TEXT": "Agenda ahora",
+    "LINK_TEXT": "Llámanos",
+    "ITEMS": [
+      {
+        "TITLE": "Consulta felina especializada a domicilio",
+        "DESCRIPTION": "Atención veterinaria experta directamente en tu hogar para la salud óptima de tu gato."
+      },
+      {
+        "TITLE": "Guardería en casa",
+        "DESCRIPTION": "Cuidado amoroso y seguro para tu gato mientras estás fuera, en su entorno familiar."
+      },
+      {
+        "TITLE": "Exámenes diagnósticos",
+        "DESCRIPTION": "Pruebas precisas para detectar y tratar cualquier problema de salud de tu gato."
+      },
+      {
+        "TITLE": "Vacunación y desparasitación",
+        "DESCRIPTION": "Protege a tu gato de enfermedades comunes con vacunas y desparasitación regular."
+      },
+      {
+        "TITLE": "Certificados médicos",
+        "DESCRIPTION": "Documentación oficial de salud para viajes, residencia y otros fines, garantizando el bienestar de tu gato."
+      },
+      {
+        "TITLE": "Alianza con clínicas veterinarias",
+        "DESCRIPTION": "Servicios adicionales con clínicas veterinarias de confianza para cubrir todas las necesidades de tu gato."
+      }
+    ]
+  },
+  "CARE": {
+    "IMG_ALT": "Imagen de la sección de cuidados",
+    "TITLE": "Proporcionando el mejor cuidado médico para tus mininos.",
+    "DESCRIPTION": "Nos dedicamos a fomentar la salud, la felicidad y la armonía de tu gato contigo.",
+    "BUTTON_TEXT": "Agenda ahora",
+    "LINK_TEXT": "Llámanos",
+    "ITEMS": [
+      "Revisiones veterinarias regulares",
+      "Nutrición adecuada",
+      "Ejercicio y Estimulación Mental",
+      "Prácticas de Aseo Regular",
+      "Cuidado de Higiene Dental",
+      "Prevención de Parásitos"
+    ]
+  },
+  "FEATURES": {
+    "TITLE": "Beneficios adicionales",
+    "DESCRIPTION": "Estas características adicionales están diseñadas para hacer que la experiencia de tu mascota sea excepcional, adaptando el cuidado con tranquilidad y confianza.",
+    "IMG_ALT": "Imagen de la sección de beneficios adicionales",
+    "ITEMS": [
+      {
+        "TITLE": "Antipulgas",
+        "DESCRIPTION": "Nuestros veterinarios expertos evaluará las necesidades de tu mascota"
+      },
+      {
+        "TITLE": "Plantas dañinas",
+        "DESCRIPTION": "Te contaremos sobre aquellas plantas nocivas para proteger a tus mascotas"
+      },
+      {
+        "TITLE": "Cuidado de su pelaje",
+        "DESCRIPTION": "Nuestros servicios especializados de cuidado del pelaje de tu gato"
+      },
+      {
+        "TITLE": "Adiós a los parásitos",
+        "DESCRIPTION": "Nuestros veterinarios expertos evaluará las necesidades de tu mascota"
+      }
+    ]
+  },
+  "TESTIMONIAL": {
+    "TAG": "Testimonios",
+    "TITLE": "...que reflejan nuestro compromiso",
+    "SLIDER": {
+      "ARIA_LABEL": "Carrusel de testimonios de nuestros clientes",
+      "LEFT_BUTTON_LABEL": "Ver testimonio anterior",
+      "RIGHT_BUTTON_LABEL": "Ver siguiente testimonio",
+      "SLIDE": {
+        "ARIA_LABEL": "{number} de {total} testimonios",
+        "IMG_ALT": "Imagen del testimonio de {name}"
+      }
+    },
+    "ITEMS": [
+      {
+        "BIG_QUOTE": "“Atención veterinaria de confianza”",
+        "QUOTE": "Mi gato recibió servicios excepcionales, garantizando su comodidad y tranquilidad en todo momento. Las doctoras fueron pacientes, hábiles y obtuvieron resultados fantásticos. Recomiendo encarecidamente sus servicios para cualquiera que busque una veterinaria cuidadosa y talentosa.",
+        "ROLE": "Amante de los gatos"
+      },
+      {
+        "BIG_QUOTE": "“Una experiencia extraordinaria”",
+        "QUOTE": "Las cuidadoras eran atentas, cariñosas y proporcionaban actualizaciones regulares sobre las actividades de mi gato. Estaba claro que trataba a mis gatos con el mismo amor que si fueran parte de su propia familia. ¡No dudaría en confiar nuevamente en ellas para cuidar de mis pequeños!",
+        "ROLE": "Amante de los gatos"
+      },
+      {
+        "BIG_QUOTE": "“Un equipo apasionado por los animales”",
+        "QUOTE": "El equipo realmente va más allá por sus pacientes. Desde el momento en que las vi trabajar, pude sentir el calor y el amor genuino que tienen por los animales. Me sentí tranquilizado y confiado en su experiencia. Mi mascota recibió atención médica de primera clase, y estoy agradecido por su compasión y dedicación.",
+        "ROLE": "Amante de los gatos"
+      }
+    ]
+  },
+  "TEAM": {
+    "TAG": "Nuestro equipo",
+    "TITLE": "Conoce a nuestro equipo de veterinarias",
+    "SLIDER": {
+      "ARIA_LABEL": "Carrusel de miembros de nuestro equipo",
+      "LEFT_BUTTON_LABEL": "Ver miembro anterior",
+      "RIGHT_BUTTON_LABEL": "Ver siguiente miembro",
+      "SLIDE": {
+        "ARIA_LABEL": "{number} de {total} miembros",
+        "IMG_ALT": "Foto de perfil de {name}"
+      }
+    },
+    "MEMBERS": [
+      {
+        "NAME": "Dra. Paula Morales",
+        "ROLE": "Médica Veterinaria",
+        "IMG_ALT": "Foto de perfil de la Dra. Paula Morales",
+        "ABOUT": "<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href='#' class='text-tertiary underline' target='_blank'>Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>",
+        "EXPERIENCE": "<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href='#' class='text-tertiary underline' target='_blank'>Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>"
+      },
+      {
+        "NAME": "Dra. Vanessa Bonilla",
+        "ROLE": "Médica Veterinaria",
+        "IMG_ALT": "Foto de perfil de la Dra. Vanessa Bonilla",
+        "ABOUT": "<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href='#' class='text-tertiary underline' target='_blank'>Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>",
+        "EXPERIENCE": "<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href='#' class='text-tertiary underline' target='_blank'>Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p><p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>"
+      }
+    ]
+  },
+  "PET": {
+    "TITLE": "Tu mascota es lo más importante para nosotros",
+    "DESCRIPTION": "Al elegir nuestros servicios, escoges un equipo comprometido con la salud y felicidad de tu gato.",
+    "VIDEO_WARNING": "Tu navegador no soporta la etiqueta de video.",
+    "IMG_ALT": "Imagen de la sección de mascotas",
+    "VIDEO": {
+      "LABEL": "Abrir modal de video",
+      "POSTER_ALT": "Vista previa del video de mascotas"
+    },
+    "VIDEOS": [
+      {
+        "TITLE": "Guardería"
+      },
+      {
+        "TITLE": "Otros"
+      }
+    ]
+  },
+  "PRICING": {
+    "TAG": "Nuestros planes",
+    "TITLE": "Servicios de calidad a tu alcance para tu mascota",
+    "IMG_ALT": "Imagen de la sección de precios",
+    "BUTTON_TEXT": "Contáctanos",
+    "SERVICES": [
+      "Baño",
+      "Chequeo de estado físico",
+      "Aseo",
+      "Cuidado de pelo y uñas",
+      "Cepillado y secado",
+      "Control de caída de pelo"
+    ],
+    "CARDS": [
+      {
+        "SERVICE_TITLE": "Plan Básico"
+      },
+      {
+        "SERVICE_TITLE": "Plan Intermedio"
+      },
+      {
+        "SERVICE_TITLE": "Plan Premium"
+      }
+    ]
+  },
+  "INSTAGRAM": {
+    "FOLLOW_US": "Síguenos en Instagram",
+    "MODAL_IMAGE_LABEL": "Abrir Carrusel de Imágenes de Instagram",
+    "MODAL_IMAGE_ALT": "Imagen de Instagram",
+    "MODAL_VIDEO_WARNING": "Tu navegador no soporta la etiqueta de video.",
+    "CAROUSEL": {
+      "PREV_BUTTON_LABEL": "Ver imagen anterior",
+      "NEXT_BUTTON_LABEL": "Ver siguiente imagen"
+    }
+  },
+  "FAQ": {
+    "TITLE": "Preguntas frecuentes",
+    "TEXT": "¿Tienes dudas?",
+    "LINK_TEXT": "Llámanos",
+    "IMAGE_ALT": "Imagen de la sección de preguntas frecuentes",
+    "QUESTIONS": [
+      {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      },
+      {
+        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      }
+    ]
+  },
+  "CONTACT": {
+    "TAG": "¡Conéctate con nosotros!",
+    "TITLE": "Rellena nuestro formulario de contacto",
+    "IMG_ALT": "Imagen de la sección de contacto",
+    "DATA": {
+      "TITLE": "Conéctate con nosotros",
+      "SCHEDULE": "Lunes a Sábado de 8am a 5pm"
+    },
+    "FORM": {
+      "ARIA_LABEL": "Formulario de contacto",
+      "SERVICE_CHOICES": {
+        "CHECK": "Consulta",
+        "PET_CARE": "Guardería",
+        "EXAMS": "Exámenes",
+        "OTHERS": "Otros"
+      },
+      "USERNAME": {
+        "PLACEHOLDER": "Tu nombre",
+        "ERROR": "Por favor, escribe tu nombre"
+      },
+      "EMAIL": {
+        "PLACEHOLDER": "Correo electrónico",
+        "ERROR": "Por favor, escribe tu correo electrónico"
+      },
+      "PHONE": {
+        "PLACEHOLDER": "Teléfono",
+        "ERROR": "Por favor, escribe tu número de teléfono"
+      },
+      "SERVICE": {
+        "PLACEHOLDER": "¿Qué servicio necesitas?"
+      },
+      "PET_NAME": {
+        "PLACEHOLDER": "Nombre de tu gato"
+      },
+      "PET_AGE": {
+        "PLACEHOLDER": "Edad de tu gato"
+      },
+      "MESSAGE": {
+        "PLACEHOLDER": "Mensaje",
+        "ERROR": "Por favor, escribe tu mensaje"
+      },
+      "CHECKBOX": "Hacer una videollamada",
+      "SUBMIT": "Enviar mensaje",
+      "SUCCESS": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo lo antes posible.",
+      "ERROR": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo."
+    }
+  },
+  "TEAM_HERO": {
+    "EXPERIENCE": "años de experiencia"
+  },
+  "MEMBER": {
+    "ABOUT_TITLE": "Sobre mí",
+    "EXPERIENCE_TITLE": "Experiencia de {name}"
+  },
+  "FOOTER": {
+    "COLUMN_1": {
+      "TITLE": "Accesos directos"
+    },
+    "COLUMN_2": {
+      "TITLE": "Suscríbete a nuestro boletín",
+      "EMAIL_PLACEHOLDER": "Correo electrónico",
+      "EMAIL_INVALID": "Por favor, ingresa un correo electrónico válido",
+      "SUBMIT": "Suscribirme"
+    },
+    "COLUMN_3": {
+      "TITLE": "Redes sociales"
+    },
+    "LOGO_ALT": "Logo de Feline Vets",
+    "ALL_RIGHTS": "Todos los derechos reservados.",
+    "POWERED": "Desarrollado por"
+  }
+}

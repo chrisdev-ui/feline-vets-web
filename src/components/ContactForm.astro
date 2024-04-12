@@ -6,12 +6,16 @@ import Checkbox from "@/components/ui/Checkbox.astro"
 import Input from "@/components/ui/Input.astro"
 import type { Option } from "@/components/ui/Select.astro"
 import Select from "@/components/ui/Select.astro"
+import { getI18N } from "@/i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 
 const options: Record<string, string> = {
-	check: "Consulta",
-	petcare: "Guardería",
-	exams: "Exámenes",
-	other: "Otros",
+	check: i18n.CONTACT.FORM.SERVICE_CHOICES.CHECK,
+	petcare: i18n.CONTACT.FORM.SERVICE_CHOICES.PET_CARE,
+	exams: i18n.CONTACT.FORM.SERVICE_CHOICES.EXAMS,
+	other: i18n.CONTACT.FORM.SERVICE_CHOICES.OTHERS,
 }
 
 const choices: Option[] = Object.entries(options).map(([key, value]) => ({
@@ -88,7 +92,7 @@ if (Astro.request.method === "POST") {
 <form
 	method="POST"
 	class="contact flex flex-col gap-y-3.5 md:gap-y-5"
-	aria-label="Formulario de contacto"
+	aria-label={i18n.CONTACT.FORM.ARIA_LABEL}
 >
 	<div class="flex flex-col gap-x-0 gap-y-3.5 md:gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
 		<Input
@@ -97,9 +101,9 @@ if (Astro.request.method === "POST") {
 			minlength="1"
 			name="username"
 			id="username"
-			placeholder="Tu nombre"
+			placeholder={i18n.CONTACT.FORM.USERNAME.PLACEHOLDER}
 			required
-			oninvalid="this.setCustomValidity('Por favor, escribe tu nombre')"
+			oninvalid={`this.setCustomValidity("${i18n.CONTACT.FORM.USERNAME.ERROR}")`}
 			oninput="this.setCustomValidity('')"
 		/>
 		<Input
@@ -108,9 +112,9 @@ if (Astro.request.method === "POST") {
 			minlength="1"
 			name="email"
 			id="email"
-			placeholder="Correo electrónico"
+			placeholder={i18n.CONTACT.FORM.EMAIL.PLACEHOLDER}
 			required
-			oninvalid="this.setCustomValidity('Por favor, escribe tu correo electrónico')"
+			oninvalid={`this.setCustomValidity("${i18n.CONTACT.FORM.EMAIL.ERROR}")`}
 			oninput="this.setCustomValidity('')"
 		/>
 	</div>
@@ -121,12 +125,17 @@ if (Astro.request.method === "POST") {
 			maxlength="15"
 			name="phone"
 			id="phone"
-			placeholder="Teléfono"
+			placeholder={i18n.CONTACT.FORM.PHONE.PLACEHOLDER}
 			required
-			oninvalid="this.setCustomValidity('Por favor, escribe tu número de teléfono')"
+			oninvalid={`this.setCustomValidity("${i18n.CONTACT.FORM.PHONE.ERROR}")`}
 			oninput="this.setCustomValidity('')"
 		/>
-		<Select options={choices} id="service" name="service" placeholder="¿Qué servicio necesitas?" />
+		<Select
+			options={choices}
+			id="service"
+			name="service"
+			placeholder={i18n.CONTACT.FORM.SERVICE.PLACEHOLDER}
+		/>
 	</div>
 	<div class="flex flex-col gap-x-0 gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
 		<Input
@@ -134,37 +143,50 @@ if (Astro.request.method === "POST") {
 			maxlength="256"
 			name="petname"
 			id="petname"
-			placeholder="Nombre de tu gato"
+			placeholder={i18n.CONTACT.FORM.PET_NAME.PLACEHOLDER}
 		/>
-		<Input type="text" maxlength="256" name="petage" id="petage" placeholder="Edad de tu gato" />
+		<Input
+			type="text"
+			maxlength="256"
+			name="petage"
+			id="petage"
+			placeholder={i18n.CONTACT.FORM.PET_AGE.PLACEHOLDER}
+		/>
 	</div>
 	<div class="flex flex-col gap-x-0 gap-y-5 lg:flex-row lg:gap-x-5 lg:gap-y-0">
 		<textarea
 			class="my-0 h-auto min-h-48 w-full rounded-[14px] border-[1.5px] border-solid border-secondary bg-transparent px-3.5 py-2.5 text-base font-semibold transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-500 focus:border-tertiary focus:outline-0 disabled:cursor-not-allowed disabled:opacity-50 sm:px-6 md:text-lg md:leading-8"
+			minlength="1"
 			name="message"
 			id="message"
 			maxlength="5000"
-			placeholder="Mensaje"
-			required></textarea>
+			placeholder={i18n.CONTACT.FORM.MESSAGE.PLACEHOLDER}
+			required
+			oninvalid={`this.setCustomValidity("${i18n.CONTACT.FORM.MESSAGE.ERROR}")`}
+			oninput="this.setCustomValidity('')"
+		>
+		</textarea>
 	</div>
 	<div
 		class="mt-0 flex flex-col items-stretch justify-center gap-y-6 md:mt-5 md:flex-row md:items-center md:justify-between"
 	>
 		<div class="flex items-center justify-center gap-x-3.5 md:justify-start">
 			<Checkbox id="checkbox" name="checkbox" />
-			<span class="text-base font-normal leading-7 text-neutral-700">Hacer una videollamada</span>
+			<span class="text-base font-normal leading-7 text-neutral-700"
+				>{i18n.CONTACT.FORM.CHECKBOX}</span
+			>
 		</div>
 		<input
 			type="submit"
 			class="inline-block cursor-pointer rounded-[10px] border-0 bg-tertiary px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-white transition-all duration-300 ease-in-out hover:bg-secondary hover:[outline:0]"
-			value="Agendar una cita"
+			value={i18n.CONTACT.FORM.SUBMIT}
 		/>
 	</div>
 </form>
-<script is:inline define:vars={{ formSubmittedResponse }}>
+<script is:inline define:vars={{ formSubmittedResponse, i18n }}>
 	if (formSubmittedResponse.success) {
 		window.toast({
-			title: "¡Gracias por tu mensaje!",
+			title: i18n.CONTACT.FORM.SUCCESS,
 			location: "bottom-center",
 			dismissible: false,
 			type: "success",
@@ -172,7 +194,7 @@ if (Astro.request.method === "POST") {
 		})
 	} else if (formSubmittedResponse.error) {
 		window.toast({
-			title: "¡Hubo un error al enviar tu mensaje!",
+			title: i18n.CONTACT.FORM.ERROR,
 			location: "bottom-center",
 			dismissible: false,
 			type: "error",

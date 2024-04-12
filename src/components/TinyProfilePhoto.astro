@@ -1,14 +1,14 @@
 ---
-interface Props {
-	url: string
-}
+import type { HTMLAttributes } from "astro/types"
 
-const { url } = Astro.props
+interface Props extends HTMLAttributes<"img"> {}
+
+const { alt, ...props } = Astro.props
 ---
 
 <img
-	src={url}
+	alt={alt}
 	class="-mr-4 flex h-11 w-11 max-w-full items-center justify-center rounded-full border-4 border-solid border-bg-primary object-cover align-middle"
-	alt="Imagen de perfil de cliente"
 	loading="lazy"
+	{...props}
 />

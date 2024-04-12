@@ -1,11 +1,15 @@
 ---
-import type { InstagramMedia } from "./InstagramFeed.astro"
+import type { InstagramMedia } from "@/components/InstagramFeed.astro"
+import { getI18N } from "@/i18n"
 
 interface Props {
 	posts: InstagramMedia[]
 }
 
 const { posts } = Astro.props
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <main
@@ -29,7 +33,7 @@ const { posts } = Astro.props
 					<img
 						class="h-auto w-full max-w-3xl rounded-[30px] object-cover"
 						src={post.media_url}
-						alt={post.caption || "Imagen de Instagram"}
+						alt={post.caption || i18n.INSTAGRAM.MODAL_IMAGE_ALT}
 					/>
 				)}
 				{post.media_type === "VIDEO" && (
@@ -41,7 +45,7 @@ const { posts } = Astro.props
 						muted
 					>
 						<source src={post.media_url} type="video/mp4" />
-						Your browser does not support the video tag.
+						{i18n.INSTAGRAM.MODAL_VIDEO_WARNING}
 					</video>
 				)}
 			</a>
@@ -49,12 +53,14 @@ const { posts } = Astro.props
 	}
 	<div
 		class="absolute bottom-0 left-0 top-0 block w-[4em] cursor-pointer bg-[url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0yMCAwIDI0IDQwIiB3aWR0aD0iMjQiIGhlaWdodD0iNDAiPjxnIHRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0ibTAgMGg1djIzaDIzdjVoLTI4eiIgb3BhY2l0eT0iLjQiLz48cGF0aCBkPSJtMSAxaDN2MjNoMjN2M2gtMjZ6IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==)] bg-[length:24px] bg-center bg-no-repeat opacity-50 transition-all duration-300 hover:opacity-100"
-		id="prev"
+		aria-label={i18n.INSTAGRAM.CAROUSEL.PREV_BUTTON_LABEL}
+		id="instagram-prev-button"
 	>
 	</div>
 	<div
 		class="absolute bottom-0 right-0 top-0 block w-[4em] cursor-pointer bg-[url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii00IDAgMjQgNDAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0MCI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIj48cGF0aCBkPSJtMC0waDI4djI4aC01di0yM2gtMjN6IiBvcGFjaXR5PSIuNCIvPjxwYXRoIGQ9Im0xIDFoMjZ2MjZoLTN2LTIzaC0yM3oiIGZpbGw9IiNmZmYiLz48L2c+PC9zdmc+)] bg-[length:24px] bg-center bg-no-repeat opacity-50 transition-all duration-300 hover:opacity-100"
-		id="next"
+		aria-label={i18n.INSTAGRAM.CAROUSEL.NEXT_BUTTON_LABEL}
+		id="instagram-next-button"
 	>
 	</div>
 </main>
@@ -65,8 +71,8 @@ const { posts } = Astro.props
 	const $slider = $("#slider")
 	let activeSlideId = $(".slide")?.id
 	const $slides = Array.from($$(".slide")) as HTMLElement[]
-	const $prevButton = $("#prev")
-	const $nextButton = $("#next")
+	const $prevButton = $("#instagram-prev-button") as HTMLDivElement
+	const $nextButton = $("#instagram-next-button") as HTMLDivElement
 	const $dialog = $("#instagram_carousel") as HTMLDialogElement
 
 	function showCurrentSlide() {

@@ -1,12 +1,8 @@
 ---
 import { ViewTransitions } from "astro:transitions"
 
-import Footer from "@/components/Footer.astro"
-import Header from "@/components/Header.astro"
-import type { Alternate, Preload } from "@/components/SEO.astro"
+import type { Preload } from "@/components/SEO.astro"
 import SEO from "@/components/SEO.astro"
-import Toast from "@/components/ui/Toast.astro"
-import { getLangFromUrl } from "@/i18n/utils"
 
 // Overpass
 import "@fontsource-variable/overpass"
@@ -30,41 +26,32 @@ interface Props {
 	title: string
 	description: string
 	preload?: Array<Preload>
-	alternate?: Array<Alternate>
 	canonical?: string
 	image?: string
 }
 
-const { title, description, preload, canonical, image, alternate } = Astro.props
-const lang = getLangFromUrl(Astro.url)
+const { title, description, preload, canonical, image } = Astro.props
+const { currentLocale } = Astro
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={currentLocale}>
 	<head>
 		<SEO
-			canonical={canonical}
-			description={description}
-			image={image}
-			preload={preload}
 			title={title}
-			alternate={alternate}
+			description={description}
+			preload={preload}
+			canonical={canonical}
+			image={image}
 		/>
 		<ViewTransitions />
-		<!-- <script is:inline src="/js/register-service-worker.js"></script> -->
 	</head>
 	<body
 		class="h-full w-full overflow-y-auto overflow-x-hidden selection:bg-primary selection:text-secondary [&_:focus-visible]:outline-none [&_:focus-visible]:ring-2 [&_:focus-visible]:ring-primary"
 	>
-		<!-- AnyHiddenContent -->
-		<!-- Anchor to go to the main content -->
-		<!-- NoiseBackground or LightsBackground -->
-		<Header />
-		<slot />
-		<Footer />
-		<!-- KonamiCode -->
-		<!-- ButtonUp -->
-		<Toast />
+		<main>
+			<slot />
+		</main>
 		<style is:global>
 			:root {
 				--color-primary: 183 55% 92%;

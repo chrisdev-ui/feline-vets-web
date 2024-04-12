@@ -1,0 +1,38 @@
+---
+import VeterinarianProfile from "@/components/pages/VeterinarianProfile.astro"
+import { allMembers } from "@/consts/team"
+import { getI18N } from "@/i18n"
+import type { TeamMember } from "@/sections/Team.astro"
+
+export function getStaticPaths() {
+	return allMembers.map(({ id }) => {
+		return { params: { id } }
+	})
+}
+
+const { id } = Astro.params
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const teamMembers: TeamMember[] = allMembers.map((member, idx) => ({
+	id: member.id,
+	name: i18n.TEAM.MEMBERS[idx].NAME,
+	role: i18n.TEAM.MEMBERS[idx].ROLE,
+	image: member.image,
+	phone: member.phone,
+	email: member.email,
+	instagram: member.instagram,
+	customStyle: member.customStyle,
+	about: i18n.TEAM.MEMBERS[idx].ABOUT,
+	years: member.years,
+	experience: i18n.TEAM.MEMBERS[idx].EXPERIENCE,
+	imgAlt: i18n.TEAM.MEMBERS[idx].IMG_ALT,
+}))
+
+const [member] = teamMembers.filter((teamMember) => teamMember.id === id)
+
+export const prerender = true
+---
+
+<VeterinarianProfile member={member} />

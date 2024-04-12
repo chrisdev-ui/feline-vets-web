@@ -1,13 +1,14 @@
 ---
 import MainContainer from "@/components/MainContainer.astro"
 import NewsletterForm from "@/components/NewsletterForm.astro"
+import { SOCIALS } from "@/consts/socials"
+import { getI18N } from "@/i18n"
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@/i18n/utils"
 import FooterFacebook from "@/icons/FooterFacebook.astro"
 import FooterInstagram from "@/icons/FooterInstagram.astro"
 import FooterTiktok from "@/icons/FooterTiktok.astro"
 import FooterTwitter from "@/icons/FooterTwitter.astro"
 import FooterYoutube from "@/icons/FooterYoutube.astro"
-
-type SocialName = "Facebook" | "Twitter" | "Instagram" | "Youtube" | "Tiktok"
 
 interface Sections {
 	ariaCurrent?: string
@@ -15,26 +16,21 @@ interface Sections {
 	name: string
 }
 
-interface Social {
-	href: string
-	name: SocialName
-}
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 
-const socials: Social[] = [
-	{ href: "#", name: "Facebook" },
-	{ href: "#", name: "Instagram" },
-	{ href: "#", name: "Tiktok" },
-	{ href: "#", name: "Youtube" },
-]
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const translatePath = useTranslatedPath(lang)
 
 const allSection: Sections[] = [
-	{ href: "/", name: "Inicio" },
-	{ href: "#About-us", name: "Nosotros" },
-	{ href: "#Services", name: "Servicios" },
-	{ href: "#Testimonial", name: "Testimonios" },
-	{ href: "#Our-Team", name: "Equipo" },
-	{ href: "#Pricing", name: "Planes" },
-	{ href: "#Contact", name: "Contacto" },
+	{ href: translatePath("/"), name: t("nav.home") },
+	{ href: "#About-us", name: t("nav.about") },
+	{ href: "#Services", name: t("nav.services") },
+	{ href: "#Testimonial", name: t("nav.testimonials") },
+	{ href: "#Our-Team", name: t("nav.team") },
+	{ href: "#Pricing", name: t("nav.pricing") },
+	{ href: "#Contact", name: t("footer.contact") },
 ]
 
 const firstColum: Sections[] = allSection.slice(0, 4)
@@ -55,7 +51,9 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 					<div class="flex w-full flex-wrap gap-x-8 gap-y-4 sm:flex-nowrap sm:gap-y-0">
 						<div class="flex w-full max-w-[375px] flex-col gap-x-0">
 							<div class="mb-3.5 md:mb-6">
-								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">Accesos directos</h6>
+								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">
+									{i18n.FOOTER.COLUMN_1.TITLE}
+								</h6>
 							</div>
 							<div class="flex flex-wrap gap-x-[70px] sm:flex-nowrap">
 								<div class="flex flex-col">
@@ -70,7 +68,7 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 												</a>
 											) : (
 												<a
-													class="footer-link inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
+													class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:translate-x-3 hover:text-secondary hover:[outline:0]"
 													href={section.href}
 													data-astro-reload
 													aria-current="page"
@@ -104,7 +102,7 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 						<div class="flex w-full max-w-[375px] flex-col gap-x-0">
 							<div class="mb-3.5 md:mb-6">
 								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">
-									Suscríbete a nuestro boletín
+									{i18n.FOOTER.COLUMN_2.TITLE}
 								</h6>
 							</div>
 							<div class="mx-0 mb-0 mt-3">
@@ -119,11 +117,13 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 					<div class="flex w-full flex-wrap gap-x-8 gap-y-4 sm:flex-nowrap sm:gap-y-0">
 						<div class="flex flex-col gap-x-0 gap-y-5">
 							<div class="mb-3.5 md:mb-6">
-								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">Redes sociales</h6>
+								<h6 class="my-0 font-title text-xl font-bold md:text-2xl">
+									{i18n.FOOTER.COLUMN_3.TITLE}
+								</h6>
 							</div>
 							<div class="flex gap-x-5">
 								{
-									socials.map((social) => (
+									SOCIALS.map((social) => (
 										<a
 											href={social.href}
 											target="_blank"
@@ -152,13 +152,13 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 					<img
 						src="/favicon.svg"
 						loading="lazy"
-						alt="Logo de pie de página"
+						alt={i18n.FOOTER.LOGO_ALT}
 						class="inline-block h-12 w-fit max-w-full align-middle"
 					/>
 					<span class="font-title text-lg font-black text-secondary">Feline Vets</span>
 				</div>
 				<div class="inline-block text-base font-normal leading-9 text-bg-primary">
-					Copyright © Feline Vets. Todos los derechos reservados.
+					Copyright © Feline Vets. {i18n.FOOTER.ALL_RIGHTS}
 				</div>
 				<div class="flex flex-wrap gap-x-5 sm:flex-nowrap">
 					<a
@@ -166,7 +166,7 @@ const secondColum: Sections[] = allSection.slice(4, 7)
 						target="_blank"
 						class="inline-block text-base font-normal leading-9 text-bg-primary transition-all duration-300 hover:text-secondary"
 					>
-						Desarrollado por @chrisdev-ui
+						{i18n.FOOTER.POWERED} @chrisdev-ui
 						<br />
 					</a>
 				</div>

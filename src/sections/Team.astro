@@ -3,65 +3,45 @@ import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import Tag from "@/components/Tag.astro"
 import TeamSlider from "@/components/TeamSlider.astro"
+import type { Member } from "@/consts/team"
+import { allMembers } from "@/consts/team"
+import { getI18N } from "@/i18n"
 import TeamDecorative from "@/icons/TeamDecorative.astro"
 
-export interface TeamMember {
-	id: string
+export interface TeamMember extends Member {
 	name: string
 	role: string
-	image: string
-	phone?: string
-	email?: string
-	instagram?: string
-	customStyle?: string
 	about?: string
-	years?: number
+	imgAlt?: string
 	experience?: string
 }
 
-export const teamMembers: TeamMember[] = [
-	{
-		id: "paula-morales",
-		name: "Dra. Paula Morales",
-		role: "Médica Veterinaria",
-		image: "/img/team/paula-morales.png",
-		customStyle: "shadow-team-1",
-		about: `<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href="#" class="text-tertiary underline" target="_blank">Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			`,
-		years: 5,
-		experience: `<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href="#" class="text-tertiary underline" target="_blank">Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			`,
-	},
-	{
-		id: "vanessa-bonilla",
-		name: "Dra. Vanessa Bonilla",
-		role: "Médica Veterinaria",
-		image: "/img/team/vanessa-bonilla.png",
-		customStyle: "shadow-team-2",
-		about: `<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href="#" class="text-tertiary underline" target="_blank">Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			`,
-		years: 5,
-		experience: `<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <strong>Sagittis quis</strong>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper nulla elementum, lobortis feugiat cras rhoncus, sem est molestie. Quam nisi, purus adipiscing dictumst fringilla. Lorem iaculis imperdiet nisi auctor. <a href="#" class="text-tertiary underline" target="_blank">Sagittis quis</a>  curabitur morbi tincidunt. Scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			<p class='mb-6 text-xl font-semibold leading-8 text-neutral-700'>Sed arcu, et ipsum elementum scelerisque nisi, odio. Bibendum fringilla interdum placerat elit consectetur arcu. Auctor nisi.</p>
-			`,
-	},
-]
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const teamMembers: TeamMember[] = allMembers.map((member, idx) => ({
+	id: member.id,
+	name: i18n.TEAM.MEMBERS[idx].NAME,
+	role: i18n.TEAM.MEMBERS[idx].ROLE,
+	image: member.image,
+	phone: member.phone,
+	email: member.email,
+	instagram: member.instagram,
+	customStyle: member.customStyle,
+	about: i18n.TEAM.MEMBERS[idx].ABOUT,
+	years: member.years,
+	experience: i18n.TEAM.MEMBERS[idx].EXPERIENCE,
+	imgAlt: i18n.TEAM.MEMBERS[idx].IMG_ALT,
+}))
 ---
 
 <section class="relative block w-full overflow-hidden bg-tertiary-light py-20 md:py-24 lg:py-36">
 	<MainContainer>
 		<div class="flex flex-col items-center justify-center gap-y-20 text-center">
 			<div class="relative z-1 flex flex-col items-center justify-center gap-y-4 lg:gap-y-6">
-				<Tag text="Nuestro equipo" />
+				<Tag text={i18n.TEAM.TAG} />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					Conoce a nuestro equipo de veterinarias
+					{i18n.TEAM.TITLE}
 				</h2>
 				<TeamDecorative
 					class="absolute -left-[200px] -top-2.5 bottom-auto right-auto -z-1 w-14 rotate-45 text-tertiary md:w-20"

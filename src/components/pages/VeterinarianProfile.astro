@@ -1,0 +1,43 @@
+---
+import { getI18N } from "@/i18n"
+import { dynamicTranslate } from "@/i18n/utils"
+import Layout from "@/layouts/Layout.astro"
+import Contact from "@/sections/Contact.astro"
+import type { TeamMember } from "@/sections/Team.astro"
+import TeamAbout from "@/sections/TeamAbout.astro"
+import TeamHero from "@/sections/TeamHero.astro"
+
+interface Props {
+	member: TeamMember
+}
+
+const { member } = Astro.props
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const toTitleCase = (str: string) =>
+	str
+		.replace(/-/g, " ")
+		.toLocaleLowerCase()
+		.split(" ")
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ")
+---
+
+<Layout
+	title={`${member.name} - ${i18n.SEO.TEAM_TITLE}`}
+	description={dynamicTranslate(i18n.SEO.TEAM_DESCRIPTION, { name: member.name })}
+>
+	<TeamHero {...member} />
+	<main>
+		<TeamAbout
+			{...member}
+			aboutTitle={i18n.MEMBER.ABOUT_TITLE}
+			experienceTitle={dynamicTranslate(i18n.MEMBER.EXPERIENCE_TITLE, {
+				name: toTitleCase(member.id),
+			})}
+		/>
+		<Contact />
+	</main>
+</Layout>

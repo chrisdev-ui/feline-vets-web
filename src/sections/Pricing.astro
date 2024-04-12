@@ -3,6 +3,7 @@ import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import Card from "@/components/PricingCard.astro"
 import Tag from "@/components/Tag.astro"
+import { getI18N } from "@/i18n"
 import FeatureDecorative from "@/icons/FeatureDecorative.astro"
 
 interface Point {
@@ -24,19 +25,15 @@ enum Plan {
 	INTERMEDIATE = 5,
 }
 
-const services: Array<Service> = [
-	"Baño",
-	"Chequeo de estado físico",
-	"Aseo",
-	"Cuidado de pelo y uñas",
-	"Cepillado y secado",
-	"Control de caída de pelo",
-]
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const services: Array<Service> = i18n.PRICING.SERVICES
 
 const pricingCards: PricingCard[] = [
 	{
 		price: 100000,
-		serviceName: "Plan Básico",
+		serviceName: i18n.PRICING.CARDS[0].SERVICE_TITLE,
 		points: services.map((service, index) => ({
 			text: service,
 			included: index + 1 <= Plan.BASIC,
@@ -45,7 +42,7 @@ const pricingCards: PricingCard[] = [
 	},
 	{
 		price: 200000,
-		serviceName: "Plan Intermedio",
+		serviceName: i18n.PRICING.CARDS[1].SERVICE_TITLE,
 		points: services.map((service, index) => ({
 			text: service,
 			included: index + 1 <= Plan.INTERMEDIATE,
@@ -54,7 +51,7 @@ const pricingCards: PricingCard[] = [
 	},
 	{
 		price: 300000,
-		serviceName: "Plan Premium",
+		serviceName: i18n.PRICING.CARDS[2].SERVICE_TITLE,
 		points: services.map((service) => ({ text: service, included: true })),
 		img: "/img/pricing/premium.webp",
 	},
@@ -67,9 +64,9 @@ const pricingCards: PricingCard[] = [
 			<div
 				class="relative z-1 flex flex-col items-center justify-center gap-y-3.5 text-center lg:gap-y-7.5"
 			>
-				<Tag text="Nuestros planes" />
+				<Tag text={i18n.PRICING.TAG} />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					Servicios de calidad a tu alcance para tu mascota
+					{i18n.PRICING.TITLE}
 				</h2>
 				<FeatureDecorative
 					class="absolute -left-3.5 -top-7.5 bottom-auto right-auto -z-1 w-14 text-tertiary md:-left-16 md:w-20 lg:-left-12 lg:-top-2.5 xl:-left-[75px]"

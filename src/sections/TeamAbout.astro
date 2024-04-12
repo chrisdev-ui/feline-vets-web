@@ -2,17 +2,12 @@
 import MainContainer from "@/components/MainContainer.astro"
 import type { TeamMember } from "@/sections/Team.astro"
 
-type Props = Pick<TeamMember, "about" | "id" | "experience">
+type Props = Pick<TeamMember, "about" | "experience"> & {
+	aboutTitle: string
+	experienceTitle: string
+}
 
-const { about, id, experience } = Astro.props
-
-export const toTitleCase = (str: string) =>
-	str
-		.replace(/-/g, " ")
-		.toLocaleLowerCase()
-		.split(" ")
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(" ")
+const { about, experience, aboutTitle, experienceTitle } = Astro.props
 ---
 
 <section class="block pb-36">
@@ -21,11 +16,11 @@ export const toTitleCase = (str: string) =>
 			<h2
 				class="absolute -top-32 bottom-auto left-0 right-auto my-0 font-title text-3xl font-black -tracking-[.0625rem] md:text-5xl"
 			>
-				Sobre mí
+				{aboutTitle}
 			</h2>
 			<Fragment set:html={about} />
 			<h3 class="mb-8 font-title text-2xl font-black -tracking-[.0625rem] md:text-4xl">
-				{`Experiencia de ${toTitleCase(id)}`}
+				{experienceTitle}
 			</h3>
 			<Fragment set:html={experience} />
 		</div>

@@ -2,13 +2,17 @@
 import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import TinyProfilePhoto from "@/components/TinyProfilePhoto.astro"
+import { getI18N } from "@/i18n"
 import Plus from "@/icons/Plus.astro"
 
 interface Profile {
 	avatarUrl: string
 }
 
-const profiles: Profile[] = [
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const fakeProfiles: Profile[] = [
 	{
 		avatarUrl: "/img/about/profile-1.webp",
 	},
@@ -25,11 +29,11 @@ const profiles: Profile[] = [
 	<MainContainer>
 		<div class="flex flex-col items-center justify-center gap-y-4 text-center lg:gap-y-5">
 			<h3 class="font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]">
-				Sobre nosotros
+				{i18n.ABOUT.TAB}
 			</h3>
 			<div class="max-w-2xl">
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					La historia detrás de este proyecto
+					{i18n.ABOUT.TITLE}
 				</h2>
 			</div>
 			<div
@@ -41,7 +45,7 @@ const profiles: Profile[] = [
 						loading="lazy"
 						sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, 530px"
 						srcset="/img/about/about-image_500.webp 500w, /img/about/about-image_800.webp 800w, /img/about/about-image.webp 1060w"
-						alt="Imagen de la sección sobre nosotros"
+						alt={i18n.ABOUT.IMG_ALT}
 						class="inline-block h-full w-full max-w-full align-middle"
 					/>
 				</div>
@@ -49,11 +53,7 @@ const profiles: Profile[] = [
 					class="-order-1 flex flex-col items-center gap-y-16 text-center lg:order-none lg:items-start lg:gap-y-20 lg:text-left"
 				>
 					<p class="text-xl font-semibold leading-8 text-neutral-700">
-						Somos un equipo de Médicas Veterinarias apasionadas por la Medicina Felina, que buscan
-						proporcionar una atención médica adecuada y bienestar a tu gatico en la comodidad de sus
-						hogares, brindado un ambiente tranquilo y familiar para cada consulta. Con nuestra
-						amplia experiencia y dedicación, nos comprometemos a cuidar de la salud de tu querido
-						felino.
+						{i18n.ABOUT.PARAGRAPH}
 					</p>
 					<div
 						class="relative flex flex-col rounded-[20px] border-[3px] border-solid border-secondary px-8 py-9 shadow-about"
@@ -61,7 +61,11 @@ const profiles: Profile[] = [
 						<div
 							class="-mt-14 mb-4 flex items-center justify-center pr-4 md:items-start md:justify-start"
 						>
-							{profiles.map(({ avatarUrl }) => <TinyProfilePhoto url={avatarUrl} />)}
+							{
+								fakeProfiles.map(({ avatarUrl }) => (
+									<TinyProfilePhoto src={avatarUrl} alt={i18n.ABOUT.TINY_PHOTO_ALT} />
+								))
+							}
 							<div
 								class="-mr-4 flex h-11 w-11 items-center justify-center rounded-full border-4 border-solid border-bg-primary bg-tertiary object-cover"
 							>
@@ -69,7 +73,7 @@ const profiles: Profile[] = [
 							</div>
 						</div>
 						<div class="text-xl font-semibold leading-8">
-							Brindando nuestros servicios en Medellín desde 2024
+							{i18n.ABOUT.MESSAGE}
 						</div>
 					</div>
 				</div>

@@ -4,6 +4,8 @@ import MobileMenuButton from "@/components/MobileMenuButton.astro"
 import MobileMenuContent from "@/components/MobileMenuContent.astro"
 import NavigationLink from "@/components/NavigationLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
+import { getI18N } from "@/i18n"
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@/i18n/utils"
 
 export interface Page {
 	name: string
@@ -11,12 +13,19 @@ export interface Page {
 	disabled?: boolean
 }
 
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const translatePath = useTranslatedPath(lang)
+
 const pages: Page[] = [
-	{ name: "Servicios", href: "#Services" },
-	{ name: "Beneficios", href: "#Feature" },
-	{ name: "Testimonios", href: "#Testimonial" },
-	{ name: "Equipo", href: "#Our-Team" },
-	{ name: "Precios", href: "#Pricing" },
+	{ name: t("nav.services"), href: "#Services" },
+	{ name: t("nav.features"), href: "#Feature" },
+	{ name: t("nav.testimonials"), href: "#Testimonial" },
+	{ name: t("nav.team"), href: "#Our-Team" },
+	{ name: t("nav.pricing"), href: "#Pricing" },
 ]
 ---
 
@@ -29,8 +38,8 @@ const pages: Page[] = [
 		<div class="flex w-full max-w-full items-center justify-between px-7.5 lg:max-w-navbar">
 			<HeaderLogo
 				anchorClassNames="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
-				href="/"
-				ariaLabel="home"
+				href={translatePath("/")}
+				ariaLabel={i18n.HEADER.LOGO}
 				ariaCurrent="page"
 				isMobile
 			/>
@@ -45,7 +54,12 @@ const pages: Page[] = [
 				class="relative float-right hidden w-full translate-x-0 translate-y-0 items-center justify-center lg:flex"
 			>
 				<div class="flex w-full items-center justify-between gap-7.5">
-					<HeaderLogo href="/" ariaCurrent="page" anchorClassNames="flex max-w-full items-center" />
+					<HeaderLogo
+						href={translatePath("/")}
+						ariaLabel={i18n.HEADER.LOGO}
+						ariaCurrent="page"
+						anchorClassNames="flex max-w-full items-center"
+					/>
 					<div class="flex items-center justify-center gap-x-14 text-center">
 						{
 							pages.map(({ name, href }, key) => (
@@ -59,12 +73,15 @@ const pages: Page[] = [
 						}
 					</div>
 					<div class="flex items-center gap-x-5">
-						<PrimaryButton href="#Contact"> Agenda una cita </PrimaryButton>
+						<PrimaryButton href="#Contact"> {t("nav.contact")} </PrimaryButton>
 					</div>
 				</div>
 			</nav>
 			<!-- Mobile Menu Button -->
-			<MobileMenuButton />
+			<MobileMenuButton
+				aria-label={i18n.HEADER.MOBILE_MENU_ICON.LABEL}
+				alt={i18n.HEADER.MOBILE_MENU_ICON.ALT}
+			/>
 		</div>
 		<div
 			id="shadow-nav"
@@ -72,7 +89,12 @@ const pages: Page[] = [
 			style="will-change: opacity; opacity: 0;"
 		>
 		</div>
-		<MobileMenuContent pages={pages} />
+		<MobileMenuContent
+			headerLogoHref={translatePath("/")}
+			headerLogoAriaLabel={i18n.HEADER.LOGO}
+			buttonText={t("nav.contact")}
+			pages={pages}
+		/>
 	</div>
 </div>
 <style>
@@ -183,21 +205,20 @@ const pages: Page[] = [
 
 	document.addEventListener("astro:page-load", () => {
 		const isRootPage = window.location.pathname === "/"
+
+		const currentLanguage = window.location.pathname.split("/")[1] || "es"
+
 		const $navlinks = $$(".nav-link") as NodeListOf<HTMLAnchorElement>
 		const $footerlinks = $$(".footer-link") as NodeListOf<HTMLAnchorElement>
 
-		$navlinks.forEach(($navlink) => {
-			const href = $navlink.getAttribute("href") as string
+		const adjustLink = ($link: HTMLAnchorElement) => {
+			const href = $link.getAttribute("href") as string
 			if (!isRootPage) {
-				$navlink.setAttribute("href", `/#${href.substring(1)}`)
+				$link.setAttribute("href", `/${currentLanguage}${href}`)
 			}
-		})
+		}
 
-		$footerlinks.forEach(($footerlink) => {
-			const href = $footerlink.getAttribute("href") as string
-			if (!isRootPage) {
-				$footerlink.setAttribute("href", `/#${href.substring(1)}`)
-			}
-		})
+		$navlinks.forEach(adjustLink)
+		$footerlinks.forEach(adjustLink)
 	})
 </script>

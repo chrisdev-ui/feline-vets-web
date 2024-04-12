@@ -1,10 +1,14 @@
 ---
+import { getI18N } from "@/i18n"
 import Play from "@/icons/Play.astro"
 import type { VideoPlayer } from "@/sections/Pet.astro"
 
 interface Props extends VideoPlayer {}
 
 const { id, title, poster, customStyles } = Astro.props
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <button
@@ -13,7 +17,7 @@ const { id, title, poster, customStyles } = Astro.props
 		"relative flex h-[10.938rem] w-full max-w-[290px] items-end justify-start rounded-[20px] border-[3px] border-solid border-secondary bg-transparent p-7.5 sm:max-w-[15.625rem]",
 		customStyles?.[0],
 	]}
-	aria-label="Abrir Vídeo"
+	aria-label={i18n.PET.VIDEO.LABEL}
 	aria-haspopup="dialog"
 >
 	<div
@@ -27,7 +31,7 @@ const { id, title, poster, customStyles } = Astro.props
 	<img
 		src={poster}
 		loading="lazy"
-		alt="Poster del vídeo"
+		alt={i18n.PET.VIDEO.POSTER_ALT}
 		class="absolute bottom-0 left-auto right-0 top-auto inline-block h-[13.438rem] max-w-full align-middle"
 	/>
 </button>

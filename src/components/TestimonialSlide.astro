@@ -1,4 +1,6 @@
 ---
+import { getI18N } from "@/i18n"
+import { dynamicTranslate } from "@/i18n/utils"
 import Stars from "@/icons/Stars.astro"
 import type { Testimonial } from "@/sections/Testimonial.astro"
 
@@ -14,10 +16,13 @@ const randomStyles: Record<number, { container: string; star: string }> = {
 	1: { container: "bg-tertiary text-white", star: "text-yellow-400" },
 	2: { container: "bg-[#B09E99] text-white", star: "text-yellow-400" },
 }
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <div
-	aria-label={`${id + 1} de ${total} testimonios`}
+	aria-label={dynamicTranslate(i18n.TESTIMONIAL.SLIDER.SLIDE.ARIA_LABEL, { number: id + 1, total })}
 	role="group"
 	class="testimonial-slide relative inline-block h-full w-full whitespace-normal text-left align-top"
 >
@@ -36,7 +41,7 @@ const randomStyles: Record<number, { container: string; star: string }> = {
 					loading="lazy"
 					sizes="(max-width: 479px) 100vw, (max-width: 767px) 61vw, (max-width: 991px) 39vw, 390px"
 					srcset={`${image500} 500w, ${image783 || image} 783w`}
-					alt={`Imagen del testimonio de ${name}`}
+					alt={dynamicTranslate(i18n.TESTIMONIAL.SLIDER.SLIDE.IMG_ALT, { name })}
 					class="inline-block h-full w-full max-w-full object-contain align-middle"
 				/>
 			</div>

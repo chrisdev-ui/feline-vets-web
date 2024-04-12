@@ -2,6 +2,7 @@
 import overpass from "@fontsource-variable/overpass/files/overpass-latin-wght-normal.woff2"
 import alegreya900 from "@fontsource/alegreya-sans/files/alegreya-sans-latin-900-normal.woff2"
 import lifeSavers from "@fontsource/life-savers/files/life-savers-latin-400-normal.woff2"
+import type { HTMLAttributes } from "astro/types"
 
 // import RichResults from "@/components/RichResults.astro"
 
@@ -13,15 +14,21 @@ export interface Preload {
 	crossorigin?: string
 }
 
+export interface Alternate {
+	href: HTMLAttributes<"link">["href"]
+	hreflang: HTMLAttributes<"link">["hreflang"]
+}
+
 interface Props {
 	title: string
 	description: string
 	preload?: Array<Preload>
+	alternate?: Array<Alternate>
 	canonical?: string
 	image?: string
 }
 
-const { title, description, preload, canonical, image = "/img/og.jpg" } = Astro.props
+const { title, description, preload, canonical, image = "/img/og.jpg", alternate } = Astro.props
 
 const canonicalURL = canonical
 	? new URL(canonical, Astro.site)
@@ -46,6 +53,7 @@ const keywords = ""
 }
 
 <link rel="canonical" href={canonicalURL} />
+{alternate?.map(({ href, hreflang }) => <link rel="alternate" href={href} hreflang={hreflang} />)}
 <meta name="viewport" content="width=device-width" />
 
 <meta name="keywords" content={keywords} />

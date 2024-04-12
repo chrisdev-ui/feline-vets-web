@@ -5,6 +5,8 @@ import PhoneLink from "@/components/PhoneLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
 import ServiceCard from "@/components/ServiceCard.astro"
 import Tag from "@/components/Tag.astro"
+import { BASIC_DATA } from "@/consts/basic"
+import { getI18N } from "@/i18n"
 import ServicesDecorative from "@/icons/ServicesDecorative.astro"
 
 export interface Service {
@@ -13,39 +15,38 @@ export interface Service {
 	icon: string
 }
 
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
 const services: Service[] = [
 	{
-		title: "Consulta felina especializada a domicilio",
-		description:
-			"Atención veterinaria experta directamente en tu hogar para la salud óptima de tu gato.",
+		title: i18n.SERVICES.ITEMS[0].TITLE,
+		description: i18n.SERVICES.ITEMS[0].DESCRIPTION,
 		icon: "/icons/services/first-aid-kit.png",
 	},
 	{
-		title: "Guardería en casa",
-		description:
-			"Cuidado amoroso y seguro para tu gato mientras estás fuera, en su entorno familiar.",
+		title: i18n.SERVICES.ITEMS[1].TITLE,
+		description: i18n.SERVICES.ITEMS[1].DESCRIPTION,
 		icon: "/icons/services/catsitter.png",
 	},
 	{
-		title: "Exámenes diagnósticos",
-		description: "Pruebas precisas para detectar y tratar cualquier problema de salud de tu gato.",
+		title: i18n.SERVICES.ITEMS[2].TITLE,
+		description: i18n.SERVICES.ITEMS[2].DESCRIPTION,
 		icon: "/icons/services/microscope.png",
 	},
 	{
-		title: "Vacunación y desparasitación",
-		description: "Protege a tu gato de enfermedades comunes con vacunas y desparasitación regular.",
+		title: i18n.SERVICES.ITEMS[3].TITLE,
+		description: i18n.SERVICES.ITEMS[3].DESCRIPTION,
 		icon: "/icons/services/vaccine.png",
 	},
 	{
-		title: "Certificados médicos",
-		description:
-			"Documentación oficial de salud para viajes, residencia y otros fines, garantizando el bienestar de tu gato.",
+		title: i18n.SERVICES.ITEMS[4].TITLE,
+		description: i18n.SERVICES.ITEMS[4].DESCRIPTION,
 		icon: "/icons/services/medical-report.png",
 	},
 	{
-		title: "Alianza con clínicas veterinarias",
-		description:
-			"Servicios adicionales con clínicas veterinarias de confianza para cubrir todas las necesidades de tu gato.",
+		title: i18n.SERVICES.ITEMS[5].TITLE,
+		description: i18n.SERVICES.ITEMS[5].DESCRIPTION,
 		icon: "/icons/services/clinic.png",
 	},
 ]
@@ -59,9 +60,9 @@ const services: Service[] = [
 			<div
 				class="relative z-1 flex max-w-3xl flex-col items-center justify-center gap-y-4 lg:gap-y-6"
 			>
-				<Tag text="Nuestros servicios" />
+				<Tag text={i18n.SERVICES.TAG} />
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					Nuestra solución integral para el cuidado premium de mascotas
+					{i18n.SERVICES.TITLE}
 				</h2>
 				<ServicesDecorative
 					class="absolute -top-16 bottom-auto left-0 right-auto -z-1 w-14 text-tertiary md:left-8 md:w-20 lg:-left-20 xl:-left-44 xl:top-5"
@@ -75,8 +76,10 @@ const services: Service[] = [
 			<div
 				class="flex flex-wrap items-center justify-center gap-x-0 gap-y-5 md:flex-nowrap md:justify-start md:gap-x-12"
 			>
-				<PrimaryButton href="#Contact" variant="secondary">Agenda ahora</PrimaryButton>
-				<PhoneLink variant="service" phone="9999999999" />
+				<PrimaryButton href="#Contact" variant="secondary"
+					>{i18n.SERVICES.BUTTON_TEXT}</PrimaryButton
+				>
+				<PhoneLink text={i18n.SERVICES.LINK_TEXT} variant="service" phone={BASIC_DATA.phone} />
 			</div>
 		</div>
 	</MainContainer>

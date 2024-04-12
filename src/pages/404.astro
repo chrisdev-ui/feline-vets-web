@@ -1,10 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Error404Layout from "@/layouts/Error404Layout.astro"
+import Error404 from "@/sections/Error404.astro"
 ---
 
-<Layout description="TODO: Description" title="TODO: Title 404" canonical="https://example.com">
-	<main>
-		<h1>404</h1>
-		<p>Page not found</p>
-	</main>
-</Layout>
+<Error404Layout
+	description="TODO: Description"
+	title="TODO: Title 404"
+	canonical="https://example.com"
+>
+	<Error404 />
+</Error404Layout>

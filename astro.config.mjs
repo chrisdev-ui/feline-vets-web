@@ -1,17 +1,28 @@
+import sitemap from "@astrojs/sitemap"
 import tailwind from "@astrojs/tailwind"
-import { defineConfig } from "astro/config"
-
 import vercel from "@astrojs/vercel/serverless"
+import { defineConfig } from "astro/config"
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://feline-vets-web.vercel.app/",
 	prefetch: true,
 	output: "server",
 	adapter: vercel(),
 	devToolbar: {
 		enabled: false,
 	},
-	integrations: [tailwind()],
+	integrations: [tailwind(), sitemap()],
+	i18n: {
+		defaultLocale: "es",
+		locales: ["es", "en"],
+		routing: {
+			prefixDefaultLocale: false,
+		},
+		fallback: {
+			en: "es",
+		},
+	},
 	build: {
 		inlineStylesheets: "always",
 	},

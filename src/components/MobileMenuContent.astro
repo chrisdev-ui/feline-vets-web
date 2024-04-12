@@ -6,9 +6,12 @@ import PrimaryButton from "@/components/PrimaryButton.astro"
 
 interface Props {
 	pages: Page[]
+	headerLogoHref: string
+	headerLogoAriaLabel?: string
+	buttonText: string
 }
 
-const { pages } = Astro.props
+const { pages, headerLogoHref, headerLogoAriaLabel, buttonText } = Astro.props
 ---
 
 <div
@@ -24,9 +27,9 @@ const { pages } = Astro.props
 		<div class="relative z-1 flex h-full w-full flex-col items-start justify-between overflow-auto">
 			<div class="flex w-full items-center justify-between">
 				<HeaderLogo
-					href="/"
+					href={headerLogoHref}
 					ariaCurrent="page"
-					ariaLabel="home"
+					ariaLabel={headerLogoAriaLabel}
 					anchorClassNames="relative float-left flex w-auto items-center justify-start pl-0 lg:hidden"
 					isMobile
 				/>
@@ -39,7 +42,7 @@ const { pages } = Astro.props
 				}
 			</div>
 			<div class="flex items-center gap-x-5">
-				<PrimaryButton href="#Contact"> Agenda una cita </PrimaryButton>
+				<PrimaryButton href="#Contact"> {buttonText} </PrimaryButton>
 			</div>
 		</div>
 	</nav>

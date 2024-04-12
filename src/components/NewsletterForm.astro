@@ -1,5 +1,9 @@
 ---
 import Input from "@/components/ui/Input.astro"
+import { getI18N } from "@/i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <form class="flex flex-col items-stretch gap-y-3.5 sm:items-start md:gap-y-5">
@@ -9,15 +13,15 @@ import Input from "@/components/ui/Input.astro"
 		minlength="1"
 		name="newsletter"
 		id="newsletter"
-		placeholder="Correo electrónico"
+		placeholder={i18n.FOOTER.COLUMN_2.EMAIL_PLACEHOLDER}
 		required
-		oninvalid="this.setCustomValidity('Por favor, escribe tu correo electrónico')"
+		oninvalid={`this.setCustomValidity("${i18n.FOOTER.COLUMN_2.EMAIL_INVALID}")`}
 		oninput="this.setCustomValidity('')"
 		variant="newsletter"
 	/>
 	<input
 		type="submit"
 		class="inline-block cursor-pointer rounded-[10px] border-0 bg-secondary px-6 py-3.5 text-center font-title text-lg font-bold leading-[1.875rem] tracking-[.02rem] text-bg-primary transition-all duration-300 ease-in-out hover:bg-secondary/60 hover:[outline:0]"
-		value="Suscribirme"
+		value={i18n.FOOTER.COLUMN_2.SUBMIT}
 	/>
 </form>

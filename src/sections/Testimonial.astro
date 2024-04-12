@@ -2,6 +2,7 @@
 import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
 import TestimonialSlider from "@/components/TestimonialSlider.astro"
+import { getI18N } from "@/i18n"
 import Decorative from "@/icons/Decorative.astro"
 
 export interface Testimonial {
@@ -14,33 +15,33 @@ export interface Testimonial {
 	role: string
 }
 
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
 const testimonials: Testimonial[] = [
 	{
 		name: "Valeria Berrío",
-		bigQuote: "“Atención veterinaria de confianza”",
-		quote:
-			"Mi gato recibió servicios excepcionales, garantizando su comodidad y tranquilidad en todo momento. Las doctoras fueron pacientes, hábiles y obtuvieron resultados fantásticos. Recomiendo encarecidamente sus servicios para cualquiera que busque una veterinaria cuidadosa y talentosa.",
+		bigQuote: i18n.TESTIMONIAL.ITEMS[0].BIG_QUOTE,
+		quote: i18n.TESTIMONIAL.ITEMS[0].QUOTE,
 		image: "/img/testimonials/testimonial-1.webp",
 		image500: "/img/testimonials/testimonial-1_500.webp",
-		role: "Amante de los gatos",
+		role: i18n.TESTIMONIAL.ITEMS[0].ROLE,
 	},
 	{
 		name: "Ximena Acevedo",
-		bigQuote: "“Una experiencia extraordinaria”",
-		quote:
-			"Las cuidadoras eran atentas, cariñosas y proporcionaban actualizaciones regulares sobre las actividades de mi gato. Estaba claro que trataba a mis gatos con el mismo amor que si fueran parte de su propia familia. ¡No dudaría en confiar nuevamente en ellas para cuidar de mis pequeños!",
+		bigQuote: i18n.TESTIMONIAL.ITEMS[1].BIG_QUOTE,
+		quote: i18n.TESTIMONIAL.ITEMS[1].QUOTE,
 		image: "/img/testimonials/testimonial-2.webp",
 		image500: "/img/testimonials/testimonial-2_500.webp",
-		role: "Amante de los gatos",
+		role: i18n.TESTIMONIAL.ITEMS[1].ROLE,
 	},
 	{
 		name: "Johny Ortiz",
-		bigQuote: "“Un equipo apasionado por los animales”",
-		quote:
-			"El equipo realmente va más allá por sus pacientes peludos. Desde el momento en que las vi trabajar, pude sentir el calor y el amor genuino que tienen por los animales. Me sentí tranquilizado y confiado en su experiencia. Mi mascota recibió atención médica de primera clase, y estoy agradecido por su compasión y dedicación.",
+		bigQuote: i18n.TESTIMONIAL.ITEMS[2].BIG_QUOTE,
+		quote: i18n.TESTIMONIAL.ITEMS[2].QUOTE,
 		image: "/img/testimonials/testimonial-3.webp",
 		image500: "/img/testimonials/testimonial-3_500.webp",
-		role: "Amante de los gatos",
+		role: i18n.TESTIMONIAL.ITEMS[2].ROLE,
 	},
 ]
 ---
@@ -50,10 +51,10 @@ const testimonials: Testimonial[] = [
 		<div class="flex flex-col items-center justify-center gap-y-16 text-center lg:gap-y-20">
 			<div class="relative z-1 flex w-full max-w-4xl flex-col gap-y-3.5 lg:gap-y-5">
 				<h3 class="font-subtitle text-sm font-extrabold uppercase tracking-[.175rem]">
-					Testimonios
+					{i18n.TESTIMONIAL.TAG}
 				</h3>
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					...que reflejan nuestro compromiso
+					{i18n.TESTIMONIAL.TITLE}
 				</h2>
 				<Decorative
 					class:list={"absolute -right-7 -top-5 bottom-auto left-auto -z-1 w-14 -rotate-45 text-tertiary md:-right-[100px] md:w-20"}

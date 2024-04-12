@@ -1,5 +1,6 @@
 ---
 import TeamSlide from "@/components/TeamSlide.astro"
+import { getI18N } from "@/i18n"
 import ArrowLeft from "@/icons/ArrowLeft.astro"
 import ArrowRight from "@/icons/ArrowRight.astro"
 import type { TeamMember } from "@/sections/Team.astro"
@@ -7,6 +8,9 @@ import type { TeamMember } from "@/sections/Team.astro"
 export interface Props {
 	team: TeamMember[]
 }
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 
 const { team } = Astro.props
 ---
@@ -20,7 +24,7 @@ const { team } = Astro.props
 		},
 	]}
 	role="region"
-	aria-label="carousel"
+	aria-label={i18n.TEAM.SLIDER.ARIA_LABEL}
 >
 	<div
 		id="slider-mask-1"
@@ -46,10 +50,11 @@ const { team } = Astro.props
 		</div>
 	</div>
 	<div
+		id="team-previous-slide"
 		role="button"
 		tabindex="0"
 		aria-controls="slider-mask-1"
-		aria-label="team previous slide"
+		aria-label={i18n.TEAM.SLIDER.LEFT_BUTTON_LABEL}
 		class:list={[
 			"absolute -left-[58.5px] bottom-0 right-0 top-auto z-[3] m-auto h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
@@ -62,10 +67,11 @@ const { team } = Astro.props
 		</div>
 	</div>
 	<div
+		id="team-next-slide"
 		role="button"
 		tabindex="0"
 		aria-controls="slider-mask-1"
-		aria-label="team next slide"
+		aria-label={i18n.TEAM.SLIDER.RIGHT_BUTTON_LABEL}
 		class:list={[
 			"absolute -right-[58.5px] bottom-0 left-0 top-auto z-[3] m-auto h-11 w-11 cursor-pointer select-none flex-col items-center justify-center overflow-hidden rounded-full border-[2.5px] border-solid border-secondary text-xs text-secondary transition-all duration-300 ease-in-out hover:border-tertiary hover:bg-bg-primary hover:text-tertiary",
 			{
@@ -83,11 +89,11 @@ const { team } = Astro.props
 
 	function TeamSliderAnimation() {
 		const $slides = $$(".team-slide")
-		const $prevButton = $("[aria-label='team previous slide']")
-		const $nextButton = $("[aria-label='team next slide']")
+		const $prevButton = $("#team-previous-slide") as HTMLDivElement
+		const $nextButton = $("#team-next-slide") as HTMLDivElement
 		const $teamAriaLabel = $(".team-aria-label")
 		let currentSlide = 0
-		let sliderInterval = 0
+		let sliderInterval: NodeJS.Timer
 
 		const isMobile = window.matchMedia("(max-width: 425px)").matches
 

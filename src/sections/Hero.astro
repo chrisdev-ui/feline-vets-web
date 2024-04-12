@@ -2,7 +2,12 @@
 import MainContainer from "@/components/MainContainer.astro"
 import PhoneLink from "@/components/PhoneLink.astro"
 import PrimaryButton from "@/components/PrimaryButton.astro"
+import { BASIC_DATA } from "@/consts/basic"
+import { getI18N } from "@/i18n"
 import Decorative from "@/icons/Decorative.astro"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <section
@@ -14,15 +19,15 @@ import Decorative from "@/icons/Decorative.astro"
 				class="relative z-1 flex w-full max-w-none flex-none flex-col items-start gap-y-5 md:gap-y-8 lg:max-w-2xl lg:gap-y-12"
 			>
 				<h1 class="my-0 font-title text-5xl font-black -tracking-[.1rem] md:text-7xl lg:text-8xl">
-					Salud y felicidad para tus queridos felinos
+					{i18n.HERO.TITLE}
 				</h1>
 				<div class="max-w-none lg:max-w-xl">
 					<p class="text-xl font-semibold leading-8 text-neutral-700">
-						Pasa tiempo de calidad con tu mascota, brindándole afecto, atención y refuerzo positivo.
+						{i18n.HERO.SUBTITLE}
 					</p>
 				</div>
-				<PhoneLink phone="9999999999" variant="hero" />
-				<PrimaryButton href="#Services"> Nuestros servicios </PrimaryButton>
+				<PhoneLink text={i18n.HERO.PHONE_LINK_TEXT} phone={BASIC_DATA.phone} variant="hero" />
+				<PrimaryButton href="#Services"> {i18n.HERO.BUTTON_TEXT} </PrimaryButton>
 				<Decorative
 					class="absolute bottom-0 left-auto right-0 top-auto -z-1 inline-block w-16 max-w-full rotate-12 align-middle text-tertiary md:w-24 lg:-right-[6rem] lg:bottom-0 lg:left-auto lg:top-16"
 				/>

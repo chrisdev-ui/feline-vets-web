@@ -1,5 +1,6 @@
 ---
 import OutlineButton from "@/components/OutlineButton.astro"
+import { getLangFromUrl, useTranslatedPath, useTranslations } from "@/i18n/utils"
 import TeamInstagram from "@/icons/TeamInstagram.astro"
 import TeamMail from "@/icons/TeamMail.astro"
 import TeamPhone from "@/icons/TeamPhone.astro"
@@ -9,7 +10,12 @@ interface Props extends TeamMember {
 	ariaLabel?: string
 }
 
-const { ariaLabel, name, role, image, phone, email, instagram, customStyle, id } = Astro.props
+const { ariaLabel, name, role, image, phone, email, instagram, customStyle, imgAlt, id } =
+	Astro.props
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const translatePath = useTranslatedPath(lang)
 
 const getPhone = (phone: string | undefined) => {
 	if (phone) {
@@ -62,7 +68,7 @@ const displaySocialSection = Boolean(phoneUrl || emailUrl || instagramUrl)
 				decoding="async"
 				src={image}
 				loading="lazy"
-				alt="Miembro del equipo"
+				alt={imgAlt}
 				class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
 			/>
 		</picture>
@@ -108,6 +114,8 @@ const displaySocialSection = Boolean(phoneUrl || emailUrl || instagramUrl)
 				</div>
 			)
 		}
-		<OutlineButton href={`/team/${id}`}>Ver perfil</OutlineButton>
+		<OutlineButton href={`${translatePath("equipo")}/${id}`}>
+			{t("team.viewprofile")}
+		</OutlineButton>
 	</div>
 </div>

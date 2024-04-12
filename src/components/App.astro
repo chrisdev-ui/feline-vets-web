@@ -1,0 +1,49 @@
+---
+import type { Alternate } from "@/components/SEO.astro"
+import { getI18N } from "@/i18n"
+import Layout from "@/layouts/Layout.astro"
+import About from "@/sections/About.astro"
+import Care from "@/sections/Care.astro"
+import Contact from "@/sections/Contact.astro"
+import FAQ from "@/sections/Faq.astro"
+import Feature from "@/sections/Feature.astro"
+import Hero from "@/sections/Hero.astro"
+import Instagram from "@/sections/Instagram.astro"
+import Pet from "@/sections/Pet.astro"
+import Pricing from "@/sections/Pricing.astro"
+import Services from "@/sections/Services.astro"
+import Team from "@/sections/Team.astro"
+import Testimonial from "@/sections/Testimonial.astro"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+const canonical = "https://feline-vets-web.vercel.app/"
+
+const alternate: Alternate[] = [
+	{ href: new URL(canonical), hreflang: "x-default" },
+	{ href: new URL("es", canonical), hreflang: "es-ES" },
+	{ href: new URL("en", canonical), hreflang: "en-US" },
+]
+---
+
+<Layout
+	title={i18n.SEO_TITLE}
+	description={i18n.SEO_DESCRIPTION}
+	canonical={canonical}
+	alternate={alternate}
+>
+	<Hero />
+	<main>
+		<About />
+		<Services />
+		<Care />
+		<Feature />
+		<Testimonial />
+		<Team />
+		<Pet />
+		<Pricing />
+		<Instagram />
+		<FAQ />
+		<Contact />
+	</main>
+</Layout>

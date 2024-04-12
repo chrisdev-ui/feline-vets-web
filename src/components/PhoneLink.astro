@@ -6,9 +6,10 @@ type PhoneLinkVariant = "hero" | "service" | "care" | "faq"
 interface Props {
 	phone: string
 	variant?: PhoneLinkVariant
+	text?: string
 }
 
-const { phone, variant } = Astro.props
+const { phone, variant, text = "Llámanos" } = Astro.props
 
 export const formatPhone = (phoneNumber: string) => {
 	const formatted = phoneNumber.replace(/\s/g, "")
@@ -48,6 +49,6 @@ export const formatPhone = (phoneNumber: string) => {
 			},
 		]}
 	>
-		LLámanos: {formatPhone(phone)}
+		{text}: {formatPhone(phone)}
 	</h6>
 </a>

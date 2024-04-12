@@ -2,6 +2,7 @@
 import FeatureCard from "@/components/FeatureCard.astro"
 import Jumplink from "@/components/Jumplink.astro"
 import MainContainer from "@/components/MainContainer.astro"
+import { getI18N } from "@/i18n"
 import FeatureDecorative from "@/icons/FeatureDecorative.astro"
 
 export interface Feature {
@@ -10,28 +11,31 @@ export interface Feature {
 	imageUrl: string
 }
 
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
 const features: Array<Feature[]> = [
 	[
 		{
-			title: "Antipulgas",
-			description: "Nuestros veterinarios expertos evaluará las necesidades de tu mascota",
+			title: i18n.FEATURES.ITEMS[0].TITLE,
+			description: i18n.FEATURES.ITEMS[0].DESCRIPTION,
 			imageUrl: "/img/features/feature-1.svg",
 		},
 		{
-			title: "Plantas dañinas",
-			description: "Te contaremos sobre aquellas plantas nocivas para proteger a tus mascotas",
+			title: i18n.FEATURES.ITEMS[1].TITLE,
+			description: i18n.FEATURES.ITEMS[1].DESCRIPTION,
 			imageUrl: "/img/features/feature-2.svg",
 		},
 	],
 	[
 		{
-			title: "Cuidado de su pelaje",
-			description: "Nuestros servicios especializados de cuidado del pelaje de tu gato",
+			title: i18n.FEATURES.ITEMS[2].TITLE,
+			description: i18n.FEATURES.ITEMS[2].DESCRIPTION,
 			imageUrl: "/img/features/feature-3.svg",
 		},
 		{
-			title: "Adiós a los parásitos",
-			description: "Nuestros veterinarios expertos evaluará las necesidades de tu mascota",
+			title: i18n.FEATURES.ITEMS[3].TITLE,
+			description: i18n.FEATURES.ITEMS[3].DESCRIPTION,
 			imageUrl: "/img/features/feature-4.svg",
 		},
 	],
@@ -45,11 +49,10 @@ const features: Array<Feature[]> = [
 		>
 			<div class="relative z-1 flex w-full max-w-xl flex-col gap-y-2.5 lg:gap-y-5">
 				<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
-					Beneficios adicionales
+					{i18n.FEATURES.TITLE}
 				</h2>
 				<p class="text-xl font-semibold leading-8 text-neutral-700">
-					Estas características adicionales están diseñadas para hacer que la experiencia de tu
-					mascota sea excepcional, adaptando el cuidado con tranquilidad y confianza.
+					{i18n.FEATURES.DESCRIPTION}
 				</p>
 				<FeatureDecorative
 					class:list={"absolute -left-6 -top-[60px] bottom-auto right-auto -z-1 w-14 text-tertiary sm:-left-[60px] md:w-20 lg:-left-[205px] lg:-top-[30px]"}
@@ -67,7 +70,7 @@ const features: Array<Feature[]> = [
 						loading="lazy"
 						sizes="(max-width: 479px) 100vw, (max-width: 767px) 88vw, (max-width: 991px) 56vw, 32vw"
 						srcset="/img/features/feature-image_500.webp 500w, /img/features/feature-image_800.webp 800w, /img/features/feature-image.webp 907w"
-						alt="Imagen de beneficios adicionales"
+						alt={i18n.FEATURES.IMG_ALT}
 						class="inline-block h-full w-full max-w-full align-middle"
 					/>
 				</div>

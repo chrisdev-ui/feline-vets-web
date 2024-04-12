@@ -1,0 +1,13 @@
+---
+import { BASIC_DATA } from "@/consts/basic"
+import WhatsappIcon from "@/icons/WhatsappIcon.astro"
+---
+
+<a
+	href=`https://api.whatsapp.com/send?phone=57${BASIC_DATA.phone}&text=Hola%21%quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20%servicios%20%20de%20%20feline%20%20vets%20`
+	target="_blank"
+	class="fixed bottom-10 right-10 z-50 flex h-[60px] w-[60px] transform-gpu items-center justify-center rounded-full bg-[#25d366] shadow-lg transition-transform hover:animate-tada"
+>
+	<WhatsappIcon class:list={"h-8 w-8"} />
+	<span class="sr-only">WhatsApp</span>
+</a>

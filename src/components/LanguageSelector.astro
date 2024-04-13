@@ -1,7 +1,11 @@
 ---
+import type { HTMLAttributes } from "astro/types"
+
 import { LANGUAGES } from "@/i18n/ui"
 import { getLangFromUrl, getRouteFromUrl, useTranslatedPath } from "@/i18n/utils"
 import ChevronIcon from "@/icons/Chevron.astro"
+
+interface Props extends HTMLAttributes<"div"> {}
 
 const route = getRouteFromUrl(Astro.url)
 const lang = getLangFromUrl(Astro.url)
@@ -9,9 +13,11 @@ const translatePath = useTranslatedPath(lang)
 
 const currentLocaleData = LANGUAGES[lang]
 const otherLocales = Object.values(LANGUAGES).filter((locale) => locale.code !== lang)
+
+const { class: classes, ...props } = Astro.props
 ---
 
-<div class="relative inline-block text-left">
+<div class:list={["relative inline-block text-left", classes]} {...props}>
 	<div
 		class="group rounded-md bg-black/30 text-xs font-semibold text-white transition-all hover:bg-black/70"
 	>

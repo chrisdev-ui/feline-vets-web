@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://feline-vets-web.vercel.app/
+Host: https://felinevets.com.co/
 
 # Sitemaps
-Sitemap: https://feline-vets-web.vercel.app/sitemap-index.xml
+Sitemap: https://felinevets.com.co/sitemap-index.xml

@@ -4,7 +4,7 @@ import alegreya900 from "@fontsource/alegreya-sans/files/alegreya-sans-latin-900
 import lifeSavers from "@fontsource/life-savers/files/life-savers-latin-400-normal.woff2"
 import type { HTMLAttributes } from "astro/types"
 
-// import RichResults from "@/components/RichResults.astro"
+import RichResults from "@/components/RichResults.astro"
 
 export interface Preload {
 	as: string
@@ -28,13 +28,24 @@ interface Props {
 	image?: string
 }
 
-const { title, description, preload, canonical, image = "/img/og.jpg", alternate } = Astro.props
+const {
+	title,
+	description,
+	preload,
+	canonical,
+	image = "/img/seo/og.jpeg",
+	alternate,
+} = Astro.props
 
 const canonicalURL = canonical
 	? new URL(canonical, Astro.site)
 	: new URL(Astro.url.pathname, Astro.site)
 
-const keywords = ""
+const { currentLocale } = Astro
+const ogLocale: HTMLAttributes<"meta">["content"] = currentLocale === "es" ? "es_ES" : "en_US"
+
+const keywords =
+	"veterinaria, catfriendly, domicilio, veterinarias, gato, gatito, Paula Morales, Vanessa Bonilla, chrisdev-ui, felinos, feline, vets"
 ---
 
 <title>{title}</title>
@@ -59,8 +70,8 @@ const keywords = ""
 <meta name="keywords" content={keywords} />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@infoLaVelada" />
-<meta name="twitter:creator" content="@IbaiLlanos" />
+<meta name="twitter:site" content="@felinevets" />
+<meta name="twitter:creator" content="@felinevets" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(image, Astro.url)} />
@@ -69,28 +80,16 @@ const keywords = ""
 <meta name="og:title" content={title} />
 <meta name="og:description" content={description} />
 <meta name="og:url" content={Astro.url} />
-<meta name="og:site_name" content="La Velada 4" />
+<meta name="og:site_name" content="Feline Vets" />
 <meta name="og:type" content="website" />
-<meta name="og:locale" content="es_ES" />
+<meta name="og:locale" content={ogLocale} />
 
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 
-<link rel="icon" href="/img/icons/favicon.ico" sizes="32x32" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" />
-<!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="msapplication-config" content="/browserconfig.xml" />
-
-{
-	!import.meta.env.DEV && (
-		<>
-			<script is:inline src="/registerSW.js" />
-			<link rel="manifest" href="/manifest.webmanifest" />
-		</>
-	)
-}
-
-<!-- <RichResults /> -->
+<link rel="manifest" href="/manifest.webmanifest" />
+<RichResults />

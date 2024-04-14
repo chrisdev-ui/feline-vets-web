@@ -1,0 +1,26 @@
+{
+	"name":"Feline Vets",
+	"short_name":"Feline Vets",
+	"description": "Veterinarias especializadas en medicina felina que brindan atención de la más alta calidad. Este es el lugar cat-friendly donde encontrarás todo lo relacionado con la salud felina. ¡Agenda tu cita hoy mismo!",
+	"theme_color":"#fffae0",
+	"background_color":"#fffae0",
+	"display":"fullscreen",
+	"icons":[
+		{
+			"src":"/android-chrome-192x192.png",
+			"sizes":"192x192",
+			"type":"image/png"
+		},
+		{
+			"src":"/android-chrome-512x512.png",
+			"sizes":"512x512",
+			"type":"image/png"
+		},
+		{
+			"src":"/android-chrome-512x512.png",
+			"sizes":"512x512",
+			"type":"image/png",
+			"puprose": "any maskable"
+		}
+	]
+}

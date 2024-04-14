@@ -6,6 +6,7 @@ import { defineConfig } from "astro/config"
 // https://astro.build/config
 export default defineConfig({
 	site: "https://feline-vets-web.vercel.app/",
+	compressHTML: true,
 	prefetch: true,
 	output: "server",
 	adapter: vercel(),

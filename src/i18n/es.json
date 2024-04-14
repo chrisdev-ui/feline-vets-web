@@ -5,7 +5,10 @@
     "TEAM_TITLE": "Felina Vets | Sitio Cat Friendly",
     "TEAM_DESCRIPTION": "Conoce el perfil profesional de {name} una de nuestras veterinarias especializadas en medicina felina. ¡Descubre cómo cuidamos de la salud de tu gato!",
     "ERROR_404_TITLE": "404 - Página no encontrada | Feline Vets",
-    "ERROR_404_DESCRIPTION": "Lo sentimos pero que la página que buscas no existe. Verifica la URL o visita nuestra página de inicio para encontrar la información que necesitas."
+    "ERROR_404_DESCRIPTION": "Lo sentimos pero que la página que buscas no existe. Verifica la URL o visita nuestra página de inicio para encontrar la información que necesitas.",
+    "RICH_RESULTS": {
+      "ORGANIZATION_DESCRIPTION": "Feline Vets es un grupo de veterinarias especializada en el cuidado de gatos. Estamos situados en la hermosa ciudad de Medellín y ofrecemos una amplia gama de servicios para mantener a tu gatito sano y feliz."
+    }
   },
   "HEADER": {
     "LOGO": "Volver a la página de inicio de Feline Vets",

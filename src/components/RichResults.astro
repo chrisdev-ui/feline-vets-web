@@ -1,0 +1,42 @@
+---
+import { getI18N } from "@/i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+/** https://developers.google.com/search/docs/appearance/structured-data/organization */
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"url": "https://feline-vets-web.vercel.app/",
+	"image": "/img/seo/og.jpeg",
+	"sameAs": [
+		"https://www.instagram.com/felinevets/",
+		"https://www.tiktok.com/@felinevets",
+		"https://github.com/chrisdev-ui/feline-vets-web/",
+	],
+	"logo": "/img/seo/logo.png",
+	"name": "Feline Vets",
+	"alternateName": "FelineVets",
+	"description": i18n.SEO.RICH_RESULTS.ORGANIZATION_DESCRIPTION,
+}
+
+/** https://developers.google.com/search/docs/appearance/structured-data/faqpage */
+const FAQSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		i18n.FAQ.QUESTIONS.map(({ QUESTION: question, ANSWER: answer }) => ({
+			"@type": "Question",
+			"name": question,
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": answer,
+			},
+		})),
+	],
+}
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(FAQSchema)} />

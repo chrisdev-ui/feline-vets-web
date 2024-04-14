@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://feline-vets-web.vercel.app/
+
+# Sitemaps
+Sitemap: https://feline-vets-web.vercel.app/sitemap-index.xml

@@ -5,7 +5,10 @@
     "TEAM_TITLE": "Felina Vets | Cat Friendly Site",
     "TEAM_DESCRIPTION": "Get to know the professional profile of {name}, one of our specialized veterinarians in feline medicine. Discover how we take care of your cat's health!",
     "ERROR_404_TITLE": "404 - Page not found | Feline Vets",
-    "ERROR_404_DESCRIPTION": "We're sorry, but the page you're looking for doesn't exist. Please, check the URL or return to the Feline Vets homepage."
+    "ERROR_404_DESCRIPTION": "We're sorry, but the page you're looking for doesn't exist. Please, check the URL or return to the Feline Vets homepage.",
+    "RICH_RESULTS": {
+      "ORGANIZATION_DESCRIPTION": "Feline Vets is a group of veterinarians specializing in cat care. We are located in the beautiful city of Medellin and offer a wide range of services to keep your kitty healthy and happy."
+    }
   },
   "HEADER": {
     "LOGO": "Return to the Feline Vets homepage.",

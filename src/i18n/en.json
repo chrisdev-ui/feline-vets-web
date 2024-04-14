@@ -3,7 +3,9 @@
   "SEO_DESCRIPTION": "Specialized veterinarians in feline medicine provide the highest quality care. This is the cat-friendly place where you'll find everything related to feline health. Schedule your appointment today!",
   "SEO": {
     "TEAM_TITLE": "Felina Vets | Cat Friendly Site",
-    "TEAM_DESCRIPTION": "Get to know the professional profile of {name}, one of our specialized veterinarians in feline medicine. Discover how we take care of your cat's health!"
+    "TEAM_DESCRIPTION": "Get to know the professional profile of {name}, one of our specialized veterinarians in feline medicine. Discover how we take care of your cat's health!",
+    "ERROR_404_TITLE": "404 - Page not found | Feline Vets",
+    "ERROR_404_DESCRIPTION": "We're sorry, but the page you're looking for doesn't exist. Please, check the URL or return to the Feline Vets homepage."
   },
   "HEADER": {
     "LOGO": "Return to the Feline Vets homepage.",
@@ -308,6 +310,12 @@
   "MEMBER": {
     "ABOUT_TITLE": "About me",
     "EXPERIENCE_TITLE": "{name}'s experience"
+  },
+  "ERROR_404": {
+    "TITLE": "The requested page could not be found",
+    "DESCRIPTION": "We searched high and low but couldn’t find what you’re looking for. Let’s find a better place for you to go.",
+    "BUTTON_TEXT": "Go to the homepage",
+    "IMG_ALT": "Image for the 404 section"
   },
   "FOOTER": {
     "COLUMN_1": {

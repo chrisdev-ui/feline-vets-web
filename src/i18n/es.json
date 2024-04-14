@@ -3,7 +3,9 @@
   "SEO_DESCRIPTION": "Veterinarias especializadas en medicina felina que brindan atención de la más alta calidad. Este es el lugar cat-friendly donde encontrarás todo lo relacionado con la salud felina. ¡Agenda tu cita hoy mismo!",
   "SEO": {
     "TEAM_TITLE": "Felina Vets | Sitio Cat Friendly",
-    "TEAM_DESCRIPTION": "Conoce el perfil profesional de {name} una de nuestras veterinarias especializadas en medicina felina. ¡Descubre cómo cuidamos de la salud de tu gato!"
+    "TEAM_DESCRIPTION": "Conoce el perfil profesional de {name} una de nuestras veterinarias especializadas en medicina felina. ¡Descubre cómo cuidamos de la salud de tu gato!",
+    "ERROR_404_TITLE": "404 - Página no encontrada | Feline Vets",
+    "ERROR_404_DESCRIPTION": "Lo sentimos pero que la página que buscas no existe. Verifica la URL o visita nuestra página de inicio para encontrar la información que necesitas."
   },
   "HEADER": {
     "LOGO": "Volver a la página de inicio de Feline Vets",
@@ -308,6 +310,12 @@
   "MEMBER": {
     "ABOUT_TITLE": "Sobre mí",
     "EXPERIENCE_TITLE": "Experiencia de {name}"
+  },
+  "ERROR_404": {
+    "TITLE": "No se ha podido encontrar la página solicitada",
+    "DESCRIPTION": "Hemos buscado por todas partes pero no hemos encontrado lo que buscabas. Encontremos un lugar mejor para ti.",
+    "BUTTON_TEXT": "Ir a la página de inicio",
+    "IMG_ALT": "Imagen de la sección de error 404"
   },
   "FOOTER": {
     "COLUMN_1": {

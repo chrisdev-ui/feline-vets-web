@@ -1,1 +1,33 @@
-<section></section>
+---
+import MainContainer from "@/components/MainContainer.astro"
+import PrimaryButton from "@/components/PrimaryButton.astro"
+import { getI18N } from "@/i18n"
+import { getLangFromUrl, useTranslatedPath } from "@/i18n/utils"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const lang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(lang)
+---
+
+<section class="relative block h-dvh w-full text-center align-middle">
+	<MainContainer>
+		<div class="flex min-h-dvh w-full flex-col items-center justify-center gap-y-11">
+			<h2 class="my-0 font-title text-4xl font-black -tracking-[.0625rem] md:text-6xl">
+				{i18n.ERROR_404.TITLE}
+			</h2>
+			<img
+				src="/img/error/felinevets-404.webp"
+				loading="lazy"
+				decoding="async"
+				alt={i18n.ERROR_404.IMG_ALT}
+				class="mt-8 w-full max-w-xl animate-wobble"
+			/>
+			<p class="text-xl font-semibold leading-8 text-neutral-700">
+				{i18n.ERROR_404.DESCRIPTION}
+			</p>
+			<PrimaryButton href={translatePath("/")}>{i18n.ERROR_404.BUTTON_TEXT}</PrimaryButton>
+		</div>
+	</MainContainer>
+</section>

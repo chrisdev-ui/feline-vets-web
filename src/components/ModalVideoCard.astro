@@ -23,7 +23,12 @@ const i18n = getI18N({ currentLocale })
 	<div
 		class="flex h-full w-1/2 max-w-[6.25rem] flex-col items-start justify-center gap-y-3.5 text-left sm:w-full sm:gap-y-4"
 	>
-		<h5 class:list={["z-10 font-title text-xl font-black md:text-2xl", customStyles?.[2]]}>
+		<h5
+			class:list={[
+				"z-10 font-title text-xl font-black [text-shadow:1px_1px_1px_#000000] md:text-2xl",
+				customStyles?.[2],
+			]}
+		>
 			{title}
 		</h5>
 		<Play class:list={["h-10 w-10 sm:h-12 sm:w-12", [customStyles?.[1]]]} />

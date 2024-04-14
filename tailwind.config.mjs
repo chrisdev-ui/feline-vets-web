@@ -47,7 +47,7 @@ export default {
 				"card-4": "8px 9px rgba(124, 161, 255, .8)",
 				"card-5": "8px 9px rgba(151, 245, 151, .5)",
 				"card-6": "8px 9px rgba(255, 118, 208, .6)",
-				"feature-1": "8px 9px #97f597",
+				"feature-1": "8px 9px #edaac3",
 				"feature-2": "8px 9px #ffd15c",
 				"feature-3": "8px 9px #67e4ff",
 				"feature-4": "8px 9px #7ca1ff",

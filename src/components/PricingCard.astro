@@ -20,7 +20,11 @@ const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
 
 const formatPrice = (price: number) => {
-	return `$${price / 1000}/m`
+	return new Intl.NumberFormat("es-CO", {
+		style: "currency",
+		currency: "COP",
+		minimumFractionDigits: 0,
+	}).format(price)
 }
 ---
 
@@ -63,7 +67,7 @@ const formatPrice = (price: number) => {
 			))
 		}
 	</div>
-	<div class="mt-7.5 sm:mt-11">
+	<div class="mt-7.5 sm:mt-11 lg:mt-auto">
 		<OutlineButton href="#Contact">{i18n.PRICING.BUTTON_TEXT}</OutlineButton>
 	</div>
 	<img

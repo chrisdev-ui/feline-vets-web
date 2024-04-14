@@ -6,6 +6,6 @@ interface Basic {
 
 export const BASIC_DATA: Basic = {
 	city: "Medellín, Colombia",
-	phone: "3142829044",
+	phone: "3150126060",
 	email: "felinevetsco@gmail.com",
 }

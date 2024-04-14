@@ -13,8 +13,8 @@
     }
   },
   "HERO": {
-    "TITLE": "Salud y felicidad para tus queridos felinos",
-    "SUBTITLE": "Pasa tiempo de calidad con tu mascota, brindándole afecto, atención y refuerzo positivo.",
+    "TITLE": "Experiencia y dedicación para cada ronroneo",
+    "SUBTITLE": "Brindamos una atención médica especializada para que dejes la salud y cuidado de tu gatico, en las mejores manos.",
     "BUTTON_TEXT": "Nuestros servicios",
     "PHONE_LINK_TEXT": "Llámanos"
   },
@@ -33,20 +33,20 @@
     "LINK_TEXT": "Llámanos",
     "ITEMS": [
       {
-        "TITLE": "Consulta felina especializada a domicilio",
-        "DESCRIPTION": "Atención veterinaria experta directamente en tu hogar para la salud óptima de tu gato."
+        "TITLE": "Consulta felina",
+        "DESCRIPTION": "Atención veterinaria especializada en la comodidad de tu hogar para un bienestar óptimo."
       },
       {
         "TITLE": "Guardería en casa",
-        "DESCRIPTION": "Cuidado amoroso y seguro para tu gato mientras estás fuera, en su entorno familiar."
+        "DESCRIPTION": "Sal de viaje con la tranquilidad de que será cuidado por veterinarios expertos, en su entorno familiar."
       },
       {
         "TITLE": "Exámenes diagnósticos",
-        "DESCRIPTION": "Pruebas precisas para detectar y tratar cualquier problema de salud de tu gato."
+        "DESCRIPTION": "Pruebas sanguíneas e imágenes que orientan a un adecuado diagnóstico para tu gatito."
       },
       {
         "TITLE": "Vacunación y desparasitación",
-        "DESCRIPTION": "Protege a tu gato de enfermedades comunes con vacunas y desparasitación regular."
+        "DESCRIPTION": "La medicina preventiva es la mejor medicina !Protege a tu gatito de forma regular!"
       },
       {
         "TITLE": "Certificados médicos",
@@ -54,45 +54,45 @@
       },
       {
         "TITLE": "Alianza con clínicas veterinarias",
-        "DESCRIPTION": "Servicios adicionales con clínicas veterinarias de confianza para cubrir todas las necesidades de tu gato."
+        "DESCRIPTION": "Servicios adicionales como cirugía e interconsulta con otros especialistas en clinicas veterinarias de confianza."
       }
     ]
   },
   "CARE": {
     "IMG_ALT": "Imagen de la sección de cuidados",
-    "TITLE": "Proporcionando el mejor cuidado médico para tus mininos.",
-    "DESCRIPTION": "Nos dedicamos a fomentar la salud, la felicidad y la armonía de tu gato contigo.",
+    "TITLE": "Proprocionando el mejor servicio médico para tus gaticos.",
+    "DESCRIPTION": "Nos dedicamos a promover la salud y el bienestar de tu compañero de vida.",
     "BUTTON_TEXT": "Agenda ahora",
     "LINK_TEXT": "Llámanos",
     "ITEMS": [
-      "Revisiones veterinarias regulares",
-      "Nutrición adecuada",
-      "Ejercicio y Estimulación Mental",
-      "Prácticas de Aseo Regular",
-      "Cuidado de Higiene Dental",
-      "Prevención de Parásitos"
+      "Asesorías nutricionales",
+      "Enriquecimiento ambiental",
+      "Revisiones médicas periódicas",
+      "Aromaterapia",
+      "Medicina biorreguladora",
+      "Primoconsulta"
     ]
   },
   "FEATURES": {
     "TITLE": "Beneficios adicionales",
-    "DESCRIPTION": "Estas características adicionales están diseñadas para hacer que la experiencia de tu mascota sea excepcional, adaptando el cuidado con tranquilidad y confianza.",
+    "DESCRIPTION": "Estas características adicionales están diseñadas para hacer que la experiencia de tu gatito sea excepcional, adaptando el cuidado con tranquilidad y confianza.",
     "IMG_ALT": "Imagen de la sección de beneficios adicionales",
     "ITEMS": [
       {
-        "TITLE": "Antipulgas",
-        "DESCRIPTION": "Nuestros veterinarios expertos evaluará las necesidades de tu mascota"
+        "TITLE": "Servicio Cat Friendly",
+        "DESCRIPTION": "Mejorar la atención reduciendo el estrés durante la visita"
       },
       {
-        "TITLE": "Plantas dañinas",
-        "DESCRIPTION": "Te contaremos sobre aquellas plantas nocivas para proteger a tus mascotas"
+        "TITLE": "Tips de comportamiento felino",
+        "DESCRIPTION": "Entender como se relaciona tu gatito con su entorno"
       },
       {
-        "TITLE": "Cuidado de su pelaje",
-        "DESCRIPTION": "Nuestros servicios especializados de cuidado del pelaje de tu gato"
+        "TITLE": "Enriquecimiento ambiental",
+        "DESCRIPTION": "Permitirle al animal expresar su naturaleza enriqueciendo su entorno"
       },
       {
-        "TITLE": "Adiós a los parásitos",
-        "DESCRIPTION": "Nuestros veterinarios expertos evaluará las necesidades de tu mascota"
+        "TITLE": "Enfermería en casa",
+        "DESCRIPTION": "Cuidados especiales para un tratamiento exitoso"
       }
     ]
   },
@@ -127,8 +127,8 @@
     ]
   },
   "TEAM": {
-    "TAG": "Nuestro equipo",
-    "TITLE": "Conoce a nuestro equipo de veterinarias",
+    "TAG": "Equipo médico",
+    "TITLE": "Conoce a nuestro equipo médico",
     "SLIDER": {
       "ARIA_LABEL": "Carrusel de miembros de nuestro equipo",
       "LEFT_BUTTON_LABEL": "Ver miembro anterior",
@@ -156,8 +156,8 @@
     ]
   },
   "PET": {
-    "TITLE": "Tu mascota es lo más importante para nosotros",
-    "DESCRIPTION": "Al elegir nuestros servicios, escoges un equipo comprometido con la salud y felicidad de tu gato.",
+    "TITLE": "Tu gatito es lo más importante para nosotros",
+    "DESCRIPTION": "Al elegir nuestros servicios, escoges un equipo comprometido con la salud y bienestar de tu peludito.",
     "VIDEO_WARNING": "Tu navegador no soporta la etiqueta de video.",
     "IMG_ALT": "Imagen de la sección de mascotas",
     "VIDEO": {
@@ -166,35 +166,54 @@
     },
     "VIDEOS": [
       {
-        "TITLE": "Guardería"
+        "TITLE": "Medicina"
       },
       {
-        "TITLE": "Otros"
+        "TITLE": "Guardería"
       }
     ]
   },
   "PRICING": {
     "TAG": "Nuestros planes",
-    "TITLE": "Servicios de calidad a tu alcance para tu mascota",
+    "TITLE": "Servicios de calidad a tu alcance para tu gatito",
     "IMG_ALT": "Imagen de la sección de precios",
     "BUTTON_TEXT": "Contáctanos",
-    "SERVICES": [
-      "Baño",
-      "Chequeo de estado físico",
-      "Aseo",
-      "Cuidado de pelo y uñas",
-      "Cepillado y secado",
-      "Control de caída de pelo"
-    ],
+    "SERVICES": {
+      "BASIC": [
+        "Primoconsulta",
+        "Desparasitación interna",
+        "Plan vacunal completo",
+        "Prueba de sida y leucemia Idexx",
+        "Perfil prequirúrgico",
+        "Esterilización"
+      ],
+      "INTERMEDIATE": [
+        "Consulta",
+        "Desparasitación interna",
+        "Vacunación anual",
+        "Chequeo sanguíneo completo",
+        "Ecografía abdominal",
+        "PCR hemotrópicos o virales"
+      ],
+      "PREMIUM": [
+        "Consulta",
+        "Desparasitación interna",
+        "Vacunación anual",
+        "Perfil sanguíneo completo",
+        "Ecografía abdominal",
+        "SDMA",
+        "Coprológico"
+      ]
+    },
     "CARDS": [
       {
-        "SERVICE_TITLE": "Plan Básico"
+        "SERVICE_TITLE": "Plan Gatito"
       },
       {
-        "SERVICE_TITLE": "Plan Intermedio"
+        "SERVICE_TITLE": "Plan Adulto"
       },
       {
-        "SERVICE_TITLE": "Plan Premium"
+        "SERVICE_TITLE": "Plan Senior"
       }
     ]
   },

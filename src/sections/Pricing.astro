@@ -20,39 +20,30 @@ export interface PricingCard {
 	img: string
 }
 
-enum Plan {
-	BASIC = 3,
-	INTERMEDIATE = 5,
-}
-
 const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
 
-const services: Array<Service> = i18n.PRICING.SERVICES
+const basicServices: Array<Service> = i18n.PRICING.SERVICES.BASIC
+const intermediateServices: Array<Service> = i18n.PRICING.SERVICES.INTERMEDIATE
+const premiumServices: Array<Service> = i18n.PRICING.SERVICES.PREMIUM
 
 const pricingCards: PricingCard[] = [
 	{
-		price: 100000,
+		price: 1150000,
 		serviceName: i18n.PRICING.CARDS[0].SERVICE_TITLE,
-		points: services.map((service, index) => ({
-			text: service,
-			included: index + 1 <= Plan.BASIC,
-		})),
+		points: basicServices.map((service) => ({ text: service, included: true })),
 		img: "/img/pricing/regular.webp",
 	},
 	{
-		price: 200000,
+		price: 665000,
 		serviceName: i18n.PRICING.CARDS[1].SERVICE_TITLE,
-		points: services.map((service, index) => ({
-			text: service,
-			included: index + 1 <= Plan.INTERMEDIATE,
-		})),
+		points: intermediateServices.map((service) => ({ text: service, included: true })),
 		img: "/img/pricing/medium.webp",
 	},
 	{
-		price: 300000,
+		price: 775000,
 		serviceName: i18n.PRICING.CARDS[2].SERVICE_TITLE,
-		points: services.map((service) => ({ text: service, included: true })),
+		points: premiumServices.map((service) => ({ text: service, included: true })),
 		img: "/img/pricing/premium.webp",
 	},
 ]
@@ -73,7 +64,7 @@ const pricingCards: PricingCard[] = [
 				/>
 			</div>
 			<div
-				class="flex w-full flex-wrap items-center justify-center gap-x-14 gap-y-14 lg:flex-nowrap lg:items-start lg:gap-y-0"
+				class="flex w-full flex-wrap items-center justify-center gap-x-14 gap-y-14 lg:flex-nowrap lg:items-stretch lg:gap-y-0"
 			>
 				{pricingCards.map((pricingCard, key) => <Card {...pricingCard} key={key} />)}
 			</div>

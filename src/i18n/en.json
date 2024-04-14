@@ -13,8 +13,8 @@
     }
   },
   "HERO": {
-    "TITLE": "Health and happiness to your beloved felines.",
-    "SUBTITLE": "Spend quality time with your pet, providing them with affection, attention, and positive reinforcement.",
+    "TITLE": "Experience and dedication for every purr",
+    "SUBTITLE": "We provide specialized medical care, so you can trust your kitty's health and well-being in the best hands.",
     "BUTTON_TEXT": "Our services",
     "PHONE_LINK_TEXT": "Call us"
   },
@@ -33,66 +33,66 @@
     "LINK_TEXT": "Call us",
     "ITEMS": [
       {
-        "TITLE": "Specialized in-home feline consultation",
-        "DESCRIPTION": "Expert veterinary care right in your home for your cat's optimal health."
+        "TITLE": "Feline consultation",
+        "DESCRIPTION": "Specialized veterinary care in the comfort of your home for optimal well-being."
       },
       {
         "TITLE": "Cat sitter",
-        "DESCRIPTION": "Loving and secure care for your cat while you're away in their familiar environment."
+        "DESCRIPTION": "Travel with the peace of mind that your pet will be cared for by expert veterinarians."
       },
       {
         "TITLE": "Diagnostic exams",
-        "DESCRIPTION": "Accurate tests to detect and treat any health issues in your cat."
+        "DESCRIPTION": "Blood tests and imaging ensure a proper diagnosis for your kitten's health."
       },
       {
         "TITLE": "Vaccination and deworming",
-        "DESCRIPTION": "Protect your cat from common diseases with regular vaccinations and deworming."
+        "DESCRIPTION": "Preventive medicine is the best medicine. Protect your kitty on a regular basis!"
       },
       {
         "TITLE": "Medical certificates",
-        "DESCRIPTION": "Official health documentation for travel, residency, and other purposes, ensuring your cat's well-being."
+        "DESCRIPTION": "Official health documents for travel and residence, ensuring your cat's well-being."
       },
       {
-        "TITLE": "Alliance with veterinary clinics",
-        "DESCRIPTION": "Additional services with trusted veterinary clinics to meet all your cat's needs."
+        "TITLE": "Alliances with veterinary clinics",
+        "DESCRIPTION": "Additional services such as surgery and consultation with other specialists in trusted veterinary clinics."
       }
     ]
   },
   "CARE": {
     "IMG_ALT": "Image for the Care section",
-    "TITLE": "Providing the best medical care for your little ones.",
-    "DESCRIPTION": "We are dedicated to promoting the health, happiness, and harmony of your cat with you.",
+    "TITLE": "Providing the best medical service for your kitties.",
+    "DESCRIPTION": "We are dedicated to promoting the health and well-being of your life partner.",
     "BUTTON_TEXT": "Schedule now",
     "LINK_TEXT": "Call us",
     "ITEMS": [
-      "Regular veterinary check-ups",
-      "Proper nutrition",
-      "Exercise and mental stimulation",
-      "Regular grooming practices",
-      "Dental hygiene care",
-      "Parasite prevention"
+      "Nutritional counseling",
+      "Environmental enrichment",
+      "Periodic medical check-ups",
+      "Aromatherapy",
+      "Bioregulatory medicine",
+      "Primoconsultation"
     ]
   },
   "FEATURES": {
     "TITLE": "Extra features",
-    "DESCRIPTION": "These extra features are designed to make your pet's experience exceptional, tailoring the care with peace of mind.",
+    "DESCRIPTION": "These additional features are designed to make your kitty's experience exceptional, tailoring care with peace of mind and confidence.",
     "IMG_ALT": "Image for the Extra features section",
     "ITEMS": [
       {
-        "TITLE": "Flea treatments",
-        "DESCRIPTION": "Our expert veterinarians will assess your pet's needs"
+        "TITLE": "Cat Friendly Service",
+        "DESCRIPTION": "Improving attention by reducing stress during the visit"
       },
       {
-        "TITLE": "Harmful plants",
-        "DESCRIPTION": "About these harmful plants to protect your pets"
+        "TITLE": "Feline behavioral tips",
+        "DESCRIPTION": "Understanding how your kitten relates to its environment"
       },
       {
-        "TITLE": "Care for their fur",
-        "DESCRIPTION": "Our specialized services for the care of your cat's fur"
+        "TITLE": "Environmental enrichment",
+        "DESCRIPTION": "Allow the animal to express its nature by enriching its environment"
       },
       {
-        "TITLE": "Goodbye to worms",
-        "DESCRIPTION": "Our expert veterinarians will assess your pet's needs"
+        "TITLE": "Nursing at home",
+        "DESCRIPTION": "Special care for successful treatment"
       }
     ]
   },
@@ -127,7 +127,7 @@
     ]
   },
   "TEAM": {
-    "TAG": "Our team",
+    "TAG": "Medical team",
     "TITLE": "Meet our specialized veterinarian team",
     "SLIDER": {
       "ARIA_LABEL": "Carousel of our specialized veterinarian team",
@@ -156,8 +156,8 @@
     ]
   },
   "PET": {
-    "TITLE": "Putting your pet at the heart of our care",
-    "DESCRIPTION": "When you choose our services, you're selecting a team dedicated to the health and happiness of your cat.",
+    "TITLE": "Putting your kitten at the heart of our care",
+    "DESCRIPTION": "When you choose our services, you're selecting a team dedicated to the health and and well-being of your furry friend.",
     "VIDEO_WARNING": "Your browser does not support the video tag.",
     "IMG_ALT": "Pet section image",
     "VIDEO": {
@@ -166,35 +166,54 @@
     },
     "VIDEOS": [
       {
-        "TITLE": "Nursery"
+        "TITLE": "Medicine"
       },
       {
-        "TITLE": "Others"
+        "TITLE": "Nursery"
       }
     ]
   },
   "PRICING": {
     "TAG": "Our Pricing",
-    "TITLE": "Quality services within reach for your pet",
+    "TITLE": "Quality services within reach for your kitten",
     "IMG_ALT": "Image for the Pricing section",
     "BUTTON_TEXT": "Contact us",
-    "SERVICES": [
-      "Pet shower",
-      "Fitness checkup",
-      "Pet grooming",
-      "Hair and nail cut",
-      "Brushing and drying",
-      "Control of shedding"
-    ],
+    "SERVICES": {
+      "BASIC": [
+        "Primoconsultation",
+        "Internal deworming",
+        "Complete vaccination plan",
+        "AIDS and Idexx leukemia test",
+        "Pre-surgical profile",
+        "Sterilization"
+      ],
+      "INTERMEDIATE": [
+        "Consultation",
+        "Internal deworming",
+        "Annual vaccination",
+        "Complete blood check-up",
+        "Abdominal ultrasound",
+        "Hemotropic or viral PCRs"
+      ],
+      "PREMIUM": [
+        "Consultation",
+        "Internal deworming",
+        "Annual vaccination",
+        "Complete blood profile",
+        "Abdominal ultrasound",
+        "SDMA",
+        "Coprological"
+      ]
+    },
     "CARDS": [
       {
-        "SERVICE_TITLE": "Regular Session"
+        "SERVICE_TITLE": "Kitten Plan"
       },
       {
-        "SERVICE_TITLE": "Standard Session"
+        "SERVICE_TITLE": "Adult Plan"
       },
       {
-        "SERVICE_TITLE": "Premium Session"
+        "SERVICE_TITLE": "Senior Plan"
       }
     ]
   },

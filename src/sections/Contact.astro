@@ -48,27 +48,27 @@ const contactData: ContactData = {
 					class="relative z-1 order-1 flex w-full flex-col items-start justify-center gap-y-8 pt-11 sm:w-auto lg:order-none"
 				>
 					<h4 class="font-title text-xl font-black md:text-2xl">{i18n.CONTACT.DATA.TITLE}</h4>
-					<div class="flex max-w-[288px] flex-col gap-y-5">
+					<div class="flex max-w-72 flex-col gap-y-5">
 						<div class="flex items-center gap-x-5">
-							<Location class="mt-2 h-7 w-7 text-tertiary" />
+							<Location class="h-7 w-7 text-tertiary" />
 							<p class="text-xl font-semibold leading-8 text-neutral-700">
 								{contactData.city}
 							</p>
 						</div>
 						<a href={`tel:+57${contactData.phone}`} class="flex items-center gap-x-5">
-							<Phone class="mt-2 h-7 w-7 text-tertiary" />
+							<Phone class="h-7 w-7 text-tertiary" />
 							<p class="text-xl font-semibold leading-8 text-neutral-700">
 								{formatPhone(contactData.phone)}
 							</p>
 						</a>
 						<a href={`mailto:${contactData.email}`} class="flex items-center gap-x-5">
-							<Mail class="mt-2 h-7 w-7 text-tertiary" />
+							<Mail class="h-7 w-7 text-tertiary" />
 							<p class="text-xl font-semibold leading-8 text-neutral-700">
 								{contactData.email}
 							</p>
 						</a>
 						<div class="flex items-center gap-x-5">
-							<Calendar class="mt-2 h-7 w-7 text-tertiary" />
+							<Calendar class="h-7 w-7 text-tertiary" />
 							<p class="text-xl font-semibold leading-8 text-neutral-700">
 								{contactData.schedule}
 							</p>

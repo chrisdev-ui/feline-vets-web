@@ -17,7 +17,18 @@ export default defineConfig({
 	devToolbar: {
 		enabled: false,
 	},
-	integrations: [tailwind(), sitemap()],
+	integrations: [
+		tailwind(),
+		sitemap({
+			i18n: {
+				defaultLocale: "es",
+				locales: {
+					es: "es-ES",
+					en: "en-US",
+				},
+			},
+		}),
+	],
 	i18n: {
 		defaultLocale: "es",
 		locales: ["es", "en"],

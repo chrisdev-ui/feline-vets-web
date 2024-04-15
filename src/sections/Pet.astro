@@ -19,18 +19,16 @@ const i18n = getI18N({ currentLocale })
 const videos: VideoPlayer[] = [
 	{
 		id: "petvideo1",
-		src: "https://res.cloudinary.com/dsogxa0hj/video/upload/f_auto:video,q_auto/ts3zoti2e8h4xqk1yn1t",
-		srcset:
-			"https://res.cloudinary.com/dsogxa0hj/video/upload/f_webm,vc_vp9,q_auto/v1712110108/ts3zoti2e8h4xqk1yn1t",
+		src: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/placeholder-video.mp4",
+		srcset: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/placeholder-video.webm",
 		poster: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/pet-poster-1.webp",
 		title: i18n.PET.VIDEOS[0].TITLE,
 		customStyles: ["shadow-[9px_10px_#a06aff]", "text-[#a06aff]", "text-tertiary"],
 	},
 	{
 		id: "petvideo2",
-		src: "https://res.cloudinary.com/dsogxa0hj/video/upload/f_auto:video,q_auto/ts3zoti2e8h4xqk1yn1t",
-		srcset:
-			"https://res.cloudinary.com/dsogxa0hj/video/upload/f_webm,vc_vp9,q_auto/v1712110108/ts3zoti2e8h4xqk1yn1t",
+		src: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/placeholder-video.mp4",
+		srcset: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/placeholder-video.webm",
 		poster: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/pet-poster-2.webp",
 		title: i18n.PET.VIDEOS[1].TITLE,
 		customStyles: ["shadow-[9px_10px_#58cfcb]", "text-[#58cfcb]", "text-[#58cfcb]"],
@@ -69,7 +67,7 @@ const videos: VideoPlayer[] = [
 						videos.map((video) => (
 							<ModalVideoCard {...video}>
 								<main slot="main">
-									<video width="640" height="360" controls>
+									<video preload="none" width="640" height="360" controls>
 										<source src={video.src} type="video/mp4" />
 										<source src={video.srcset} type="video/webm" />
 										<track

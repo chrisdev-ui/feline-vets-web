@@ -206,7 +206,12 @@ const pages: Page[] = [
 	document.addEventListener("astro:page-load", () => {
 		const isRootPage = window.location.pathname === "/"
 
-		const currentLanguage = window.location.pathname.split("/")[1] || "es"
+		let currentLanguage = window.location.pathname.split("/")[1]
+		if (currentLanguage === "es") {
+			currentLanguage = ""
+		} else if (currentLanguage !== "en") {
+			currentLanguage = ""
+		}
 
 		const $navlinks = $$(".nav-link") as NodeListOf<HTMLAnchorElement>
 		const $footerlinks = $$(".footer-link") as NodeListOf<HTMLAnchorElement>
@@ -214,7 +219,8 @@ const pages: Page[] = [
 		const adjustLink = ($link: HTMLAnchorElement) => {
 			const href = $link.getAttribute("href") as string
 			if (!isRootPage) {
-				$link.setAttribute("href", `/${currentLanguage}${href}`)
+				const redirectUrl = `/${currentLanguage}${href}`
+				$link.setAttribute("href", redirectUrl)
 			}
 		}
 

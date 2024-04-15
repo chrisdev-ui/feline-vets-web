@@ -33,7 +33,7 @@ const {
 	description,
 	preload,
 	canonical,
-	image = "/img/seo/og.jpeg",
+	image = "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/og.jpeg",
 	alternate,
 } = Astro.props
 
@@ -53,6 +53,7 @@ const keywords =
 <meta charset="UTF-8" />
 <meta name="description" content={description} />
 
+<link rel="preconnect" href="https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev" />
 <link rel="preload" href={overpass} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={alegreya900} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={lifeSavers} as="font" type="font/woff2" crossorigin />
@@ -88,7 +89,7 @@ const keywords =
 <meta name="googlebot" content="index, follow" />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" />
 
 <meta name="msapplication-config" content="/browserconfig.xml" />
 <link rel="sitemap" href="/sitemap-index.xml" />

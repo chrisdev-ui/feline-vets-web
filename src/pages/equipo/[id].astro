@@ -1,5 +1,6 @@
 ---
 import VeterinarianProfile from "@/components/pages/VeterinarianProfile.astro"
+import type { Preload } from "@/components/SEO.astro"
 import { allMembers } from "@/consts/team"
 import { getI18N } from "@/i18n"
 import type { TeamMember } from "@/sections/Team.astro"
@@ -32,7 +33,16 @@ const teamMembers: TeamMember[] = allMembers.map((member, idx) => ({
 
 const [member] = teamMembers.filter((teamMember) => teamMember.id === id)
 
+const preloadMemberImg: Array<Preload> = [
+	{
+		as: "image",
+		href: member.image,
+		type: "image/webp",
+		rel: "preload",
+	},
+]
+
 export const prerender = true
 ---
 
-<VeterinarianProfile member={member} />
+<VeterinarianProfile member={member} preloadImages={preloadMemberImg} />

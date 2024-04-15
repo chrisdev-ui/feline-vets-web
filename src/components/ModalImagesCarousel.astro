@@ -23,6 +23,7 @@ const i18n = getI18N({ currentLocale })
 			<img
 				class="h-full w-full rounded-[30px] object-cover"
 				loading="lazy"
+				decoding="async"
 				src={media_url}
 				alt={caption || i18n.INSTAGRAM.MODAL_IMAGE_ALT}
 			/>

@@ -1,6 +1,6 @@
 ---
 import overpass from "@fontsource-variable/overpass/files/overpass-latin-wght-normal.woff2"
-import alegreya900 from "@fontsource/alegreya-sans/files/alegreya-sans-latin-900-normal.woff2"
+import alegreya900 from "@fontsource/alegreya-sans/latin-900.css"
 import lifeSavers from "@fontsource/life-savers/files/life-savers-latin-400-normal.woff2"
 import type { HTMLAttributes } from "astro/types"
 
@@ -56,7 +56,7 @@ const keywords =
 <link rel="preconnect" href="https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev" />
 <link rel="preconnect" href="https://scontent.cdninstagram.com" />
 <link rel="preload" href={overpass} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={alegreya900} as="font" type="font/woff2" crossorigin />
+<link rel="preload stylesheet" href={alegreya900} as="style" type="text/css" crossorigin />
 <link rel="preload" href={lifeSavers} as="font" type="font/woff2" crossorigin />
 
 {

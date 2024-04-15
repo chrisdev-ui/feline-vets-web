@@ -239,24 +239,28 @@
     "IMAGE_ALT": "Imagen de la sección de preguntas frecuentes",
     "QUESTIONS": [
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "¿Cómo solicito una cita para el servicio veterinario a domicilio?",
+        "ANSWER": "Puedes solicitar una cita a través de nuestro botón de whatsapp directamente o a través de nuestro formulario de contacto en la página web. Estaremos encantadas de programar una visita a la hora que te convenga."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "¿Qué debo preparar antes de la visita del veterinario?",
+        "ANSWER": "Te recomendamos tener a tu gato en un espacio tranquilo y seguro, preferiblemente en la sala o donde se sienta cómodo. También asegúrate de tener su historial médico a mano, incluyendo registros de vacunas y cualquier medicación que esté tomando."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "¿Cómo se comportará mi gato durante la visita?",
+        "ANSWER": "La mayoría de los gatos se sienten más cómodos en su entorno cotidiano, lo que puede hacer que la visita sea menos estresante. Sin embargo, cada gato es diferente, por lo que estaremos preparadas para manejar cualquier situación. Ten enviaremos una guía antes de la consulta con todas las indicaciones."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "¿Qué métodos de pagos tienen habilitados para pagar el servicio?",
+        "ANSWER": "Aceptamos diferentes métodos de pago, como efectivo y transferencia bancaria. El pago se realiza al finalizar la visita. Escríbenos a través de WhatsApp para conocer más detalles."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "¿Atienden emergencias veterinarias?",
+        "ANSWER": "Nuestro servicio veterinario a domicilio no está diseñado para atender emergencias. Si tu gato tiene una emergencia, te recomendamos acudir a la clínica veterinaria de atención 24 horas más cercana. Si necesitas ayuda para encontrar una clínica, podemos proporcionarte información de contacto de clínicas locales."
+      },
+      {
+        "QUESTION": "¿Qué pasa si necesito cancelar o reprogramar mi cita?",
+        "ANSWER": "Entendemos que pueden surgir imprevistos, pero te pedimos que nos avises con al menos 24 horas de antelación si necesitas cancelar o reprogramar tu cita. Las cancelaciones con menos de 24 horas de antelación pueden estar sujetas a cargos."
       }
     ]
   },

@@ -239,24 +239,28 @@
     "IMAGE_ALT": "Image for the Frequently asked questions section",
     "QUESTIONS": [
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "How do I request an appointment for a home veterinary service?",
+        "ANSWER": "You can request an appointment through our whatsapp button directly or through our contact form on the website. We will be happy to schedule a visit at a time that suits you."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "What should I prepare before the veterinarian's visit?",
+        "ANSWER": "We recommend keeping your cat in a quiet, safe space, preferably in the living room or wherever he feels comfortable. Also be sure to keep his medical history handy, including records of vaccinations and any medications he is taking."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "How will my cat behave during the visit?",
+        "ANSWER": "Most cats are more comfortable in their everyday environment, which can make the visit less stressful. However, every cat is different, so we will be prepared to handle any situation. We will send you a guide before the visit with all the instructions."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "What payment methods are available to pay for the service?",
+        "ANSWER": "We accept different methods of payment, such as cash and bank transfer. Payment is made at the end of the visit. Write us via WhatsApp for more details."
       },
       {
-        "QUESTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-        "ANSWER": "Lorem ipsum dolor sit amet, consectetur adipiscing elit ( Lorem ipsum dolor sit amet, consectetur adipiscing elit ) Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "QUESTION": "Do you attend veterinary emergencies?",
+        "ANSWER": "Our home veterinary service is not designed for emergencies. If your cat has an emergency, we recommend that you go to the nearest 24-hour veterinary clinic. If you need help finding a clinic, we can provide you with contact information for local clinics."
+      },
+      {
+        "QUESTION": "What if I need to cancel or reschedule my appointment?",
+        "ANSWER": "We understand that unforeseen circumstances may arise, but we ask that you give us at least 24 hours notice if you need to cancel or reschedule your appointment. Cancellations with less than 24 hours notice may be subject to charges."
       }
     ]
   },

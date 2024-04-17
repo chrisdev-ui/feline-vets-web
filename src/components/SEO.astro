@@ -12,6 +12,8 @@ export interface Preload {
 	type: string
 	rel?: "preload" | "prefetch"
 	crossorigin?: string
+	imagesrcset?: string
+	imagesizes?: string
 }
 
 export interface Alternate {
@@ -60,8 +62,8 @@ const keywords =
 <link rel="preload" href={lifeSavers} as="font" type="font/woff2" crossorigin />
 
 {
-	preload?.map(({ href, as, type, rel = "preload", crossorigin }) => (
-		<link {rel} {href} {as} {type} {crossorigin} />
+	preload?.map(({ href, as, type, rel = "preload", crossorigin, imagesizes, imagesrcset }) => (
+		<link {rel} {href} {as} {type} {imagesrcset} {imagesizes} {crossorigin} />
 	))
 }
 

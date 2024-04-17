@@ -1,5 +1,5 @@
 ---
-import type { Alternate } from "@/components/SEO.astro"
+import type { Alternate, Preload } from "@/components/SEO.astro"
 import { getI18N } from "@/i18n"
 import Layout from "@/layouts/Layout.astro"
 import About from "@/sections/About.astro"
@@ -19,6 +19,21 @@ const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
 const canonical = "https://felinevets.com.co/"
 
+const preloadIndexImgs: Array<Preload> = [
+	{
+		as: "image",
+		href: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/hero-asset.svg",
+		type: "image/webp",
+		rel: "preload",
+	},
+	{
+		as: "image",
+		href: "https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/hero-image.webp",
+		type: "image/webp",
+		rel: "preload",
+	},
+]
+
 const alternate: Alternate[] = [
 	{ href: new URL(canonical), hreflang: "x-default" },
 	{ href: new URL("es", canonical), hreflang: "es-ES" },
@@ -31,6 +46,7 @@ const alternate: Alternate[] = [
 	description={i18n.SEO_DESCRIPTION}
 	canonical={canonical}
 	alternate={alternate}
+	preload={preloadIndexImgs}
 >
 	<Hero />
 	<main>

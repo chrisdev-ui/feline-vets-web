@@ -7,13 +7,14 @@ import type { HTMLAttributes } from "astro/types"
 import RichResults from "@/components/RichResults.astro"
 
 export interface Preload {
-	as: string
-	href: string
-	type: string
-	rel?: "preload" | "prefetch"
-	crossorigin?: string
-	imagesrcset?: string
-	imagesizes?: string
+	href: HTMLAttributes<"link">["href"]
+	as: HTMLAttributes<"link">["as"]
+	type: HTMLAttributes<"link">["type"]
+	rel?: HTMLAttributes<"link">["rel"]
+	crossorigin?: HTMLAttributes<"link">["crossorigin"]
+	imagesizes?: HTMLAttributes<"link">["imagesizes"]
+	imagesrcset?: HTMLAttributes<"link">["imagesrcset"]
+	fetchpriority?: HTMLAttributes<"link">["fetchpriority"]
 }
 
 export interface Alternate {
@@ -62,9 +63,11 @@ const keywords =
 <link rel="preload" href={lifeSavers} as="font" type="font/woff2" crossorigin />
 
 {
-	preload?.map(({ href, as, type, rel = "preload", crossorigin, imagesizes, imagesrcset }) => (
-		<link {rel} {href} {as} {type} {imagesrcset} {imagesizes} {crossorigin} />
-	))
+	preload?.map(
+		({ href, as, type, rel = "preload", crossorigin, imagesizes, imagesrcset, fetchpriority }) => (
+			<link {rel} {href} {as} {type} {imagesrcset} {imagesizes} {crossorigin} {fetchpriority} />
+		)
+	)
 }
 
 <link rel="canonical" href={canonicalURL} />

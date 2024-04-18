@@ -26,16 +26,18 @@ const showSocialIcons = phoneUrl || emailUrl || instagramUrl
 	class="block bg-[url(https://pub-e0766a16d9da4b039da6c1561ffd52b6.r2.dev/hero.svg)] bg-cover bg-[50%_100%] py-40 md:py-48 lg:py-56"
 >
 	<MainContainer>
-		<div class="flex max-w-full items-center justify-center gap-x-32">
+		<div
+			class="flex max-w-full flex-wrap items-center justify-center gap-x-0 gap-y-4 sm:gap-y-20 lg:gap-x-32 lg:gap-y-0"
+		>
 			<div class="flex flex-col items-start justify-start gap-y-2.5">
 				<h1
-					class="font-title text-4xl font-black leading-10 -tracking-[.0625rem] md:text-6xl"
+					class="text-center font-title text-4xl font-black leading-10 -tracking-[.0625rem] xs:text-left md:text-6xl"
 					transition:animate="slide"
 				>
 					{name}
 				</h1>
 				<div
-					class="flex items-center justify-start gap-x-3"
+					class="mx-auto flex items-center justify-start gap-x-3 xs:mx-0"
 					transition:animate={slide({ duration: "1s" })}
 				>
 					<p class="text-xl">{role}</p>
@@ -83,7 +85,7 @@ const showSocialIcons = phoneUrl || emailUrl || instagramUrl
 					src={image}
 					loading="lazy"
 					alt={imgAlt}
-					class="inline-block h-[150px] w-[150px] max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
+					class="inline-block h-64 w-64 max-w-full flex-none rounded-full object-cover align-middle md:flex-auto lg:h-56 lg:w-56"
 				/>
 				<div
 					class="absolute -bottom-10 -left-11 flex h-32 w-32 flex-col items-center justify-center gap-1 rounded-full border-8 border-solid border-bg-primary bg-tertiary text-center"

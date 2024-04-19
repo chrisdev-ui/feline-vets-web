@@ -195,7 +195,7 @@ const pages: Page[] = [
 		})
 	})
 
-	window.addEventListener("unload", () => {
+	window.addEventListener("beforeunload", () => {
 		document.body.removeEventListener("scroll", handleScroll)
 	})
 </script>
